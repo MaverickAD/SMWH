@@ -5,9 +5,9 @@ import { MailBox, Spawner, Packer } from './methodLevel/objects';
 const ww = window.innerWidth;
 const wh = window.innerHeight;
 
-export default class GameView extends Phaser.Scene {
+export default class LevelFirst extends Phaser.Scene {
   constructor(){
-    super({key : "GameView"});
+    super({key : "LevelFirst"});
   }
 
   preload(){

@@ -3,7 +3,8 @@ import Phaser from 'phaser'
 import MainMenu from './menuScene/MainMenu'
 import SettingsMenu from './menuScene/SettingsMenu'
 import ControlMenu from './menuScene/ControlMenu'
-import GameView from './levelScene/View'
+import LevelFirst from './levelScene/levelFirst'
+import LevelSecond from './levelScene/levelSecond'
 import DialogIntro from './levelScene/dialog/DialogIntro'
 import DialogLevel1 from './levelScene/dialog/DialogLevel1'
 
@@ -22,7 +23,7 @@ const config = {
       gravity: {y : 0}
     }
   },
-  scene: [MainMenu, SettingsMenu, ControlMenu, GameView, DialogIntro, DialogLevel1],
+  scene: [MainMenu, SettingsMenu, ControlMenu, LevelFirst, LevelSecond, DialogIntro, DialogLevel1],
   callbacks: {
     postBoot: function (game) {
       game.scene.dump();
