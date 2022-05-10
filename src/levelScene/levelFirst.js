@@ -145,8 +145,6 @@ export default class LevelFirst extends Phaser.Scene {
     this.actualFrame = 0;
     this.wichSubFrame = 0;
 
-    this.add.image(100, 100, 'eclair3').setScale(3);
-
   }
 
   update() {
