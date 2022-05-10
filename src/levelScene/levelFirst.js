@@ -55,6 +55,8 @@ export default class LevelFirst extends Phaser.Scene {
       else this.add.tileSprite(...elem, 'murVerti');
     });
 
+    console.log(decoration)
+
     decoration.forEach(elem => {
       console.log(elem);
       const temp = this.add.image(elem[0], elem[1], elem[2]);

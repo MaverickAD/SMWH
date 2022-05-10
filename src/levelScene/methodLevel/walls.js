@@ -116,11 +116,10 @@ export const walls = [
     [ww * (20/20),   wh *  (6/12) ,    10 , wh *  (12/12) ],
 ];
 
-
 export const decoration = [
     [ww*(3/20), wh*(1.5/20) - 9, 'trident', {'scale' : 1.3, 'rotation' : 0.8}],
-    [ww*(7/20) + 10, wh*(8/12) - 8, 'lyre', {'scale' : 1.4, 'rotation' : 0.2}]
-        [ww*(16/20) + 10, wh*(6/12) - 16,  'caducee', {'scale' : 1.1, 'rotation' : 0.5}],
+    [ww*(7/20) + 10, wh*(8/12) - 8, 'lyre', {'scale' : 1.4, 'rotation' : 0.2}],
+    [ww*(16/20) + 10, wh*(6/12) - 16,  'caducee', {'scale' : 1.1, 'rotation' : 0.5}],
     [ww*(10/20) + 10, wh*(11/12) - 8,  'marteau', {'rotation' : 0.8}],
     [ww*(9/20) + 10, wh*(4/12) - 8,  'rat', {'scale' : 0.7}],
     [ww*(4/20) + 10, wh*(10/12) - 8,  'rat', {'scale' : 0.7, 'rotation' : 'flip'}]
