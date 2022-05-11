@@ -33,6 +33,11 @@ export class Spawner {
             );
     }
 
+    generateNewBottle() {
+        this.fill = true;
+        this.waitingObject = new Bottle(this.scene.add.circle(this.x, this.y, 10, 0x03BE73, 1),0);
+    }
+
     getObj(){
         this.fill = false;
         return this.waitingObject;
@@ -122,15 +127,16 @@ export class Packer {
 }
 
 export class Bottle {
-    constructor(obj, scene){
+    constructor(obj, id){
         this.obj = obj;
-        this.scene = scene;
-        this.id = 0;
+        this.id = id;
 
         this.x = this.obj.x
         this.y = this.obj.y
 
-        this.scene.physics.add.existing(this.obj, true);
-        this.scene.physics.add.collider(this.obj, this.scene.ball);
+        this.isPacked = false;
+    }
+    destroy(){
+        this.obj.destroy();
     }
 }

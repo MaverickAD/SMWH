@@ -1,4 +1,8 @@
 import Phaser from 'phaser';
+import {Packer, Spawner} from "./methodLevel/objects";
+
+const ww = window.innerWidth;
+const wh = window.innerHeight;
 
 export default class LevelSecond extends Phaser.Scene {
     constructor() {
@@ -14,14 +18,17 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('persogauche2', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2.png');
         this.load.image('persohaut1',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1.png');
         this.load.image('persohaut2',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2.png');
+        this.load.image('packer1',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
+        this.load.image('packer2',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
     }
 
     create() {
-
+        //init player
         this.ball = this.add.circle(400, 250, 10, 0xFFFFFF, 0);
         this.physics.add.existing(this.ball);
         this.ball.body.setCollideWorldBounds(true, 0.3, 0.3);
 
+        //init key of keyboard
         this.keyBoard = this.input.keyboard;
         this.inputKeysDir  = this.keyBoard.addKeys('Z,Q,S,D,UP,RIGHT,LEFT,UP,DOWN', true, true);
 
@@ -35,6 +42,28 @@ export default class LevelSecond extends Phaser.Scene {
         this.lastSpaceDown = 0;
         this.loosedSpeedperFrame = 20;
 
+        //init spawner
+        //here 1 spawner
+        this.allSpawner = [
+            new Spawner(
+                this.add.rectangle(ww*(0.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
+            )
+        ];
+
+        //init packer at the center
+        this.allPacker = [
+            new Packer(
+                this.add.rectangle(ww*(12/20), wh*(8.5/20), ww*(1/10), wh*(1/10), 0xFFD700, 0),
+                this.add.image(ww*(12/20), wh*(8.5/20), 'packer1').setScale(2),
+                this.add.image(ww*(12/20), wh*(8.5/20), 'packer2').setScale(2),
+                this
+            )
+        ];
+
+        this.secBall = undefined;//init if something are in the hand
+        this.allSpawner.forEach(s => s.generateNewBottle());//generate new bottle to package
+
+        //sprite for the player, walk effect
         this.allFramesWalk = [
             this.add.image(this.ball.x, this.ball.y, 'persobas1').setScale(2.5),
             this.add.image(this.ball.x, this.ball.y, 'persobas2').setScale(2.5),
@@ -52,6 +81,13 @@ export default class LevelSecond extends Phaser.Scene {
     }
 
     update() {
+        //if player are something in his hand, put the object near of player
+        if(this.secBall){
+            this.secBall.obj.x = this.ball.x + 10;
+            this.secBall.obj.y = this.ball.y + 10;
+        }
+
+        //update of sprite when the player move
         this.allFramesWalk.forEach(i => {
             i.x = this.ball.x;
             i.y = this.ball.y;
@@ -92,23 +128,72 @@ export default class LevelSecond extends Phaser.Scene {
             this.allFramesWalk[this.actualFrame + (this.wichSubFrame > 5)].visible = true;
         }
 
-        if (this.inputKeysMeta.SHIFT.isDown && this.inputKeysMeta.SHIFT.timeDown - this.lastShiftDown > 500) {
+        if (this.inputKeysMeta.SPACE.isDown && this.inputKeysMeta.SPACE.timeDown - this.lastSpaceDown > 100 ) {
 
-            this.lastShiftDown = this.inputKeysMeta.SHIFT.timeDown;
+            if (!this.secBall) {
+                for (let s of this.allSpawner)
+                    if (this.isInRect(this.ball, s, 60)) {
+                        this.secBall = s.getObj();
+                    }
 
-            const ratioX = Math.min(1, Math.abs(vx / 200));
-            const ratioY = Math.min(1, Math.abs(vy / 200));
+                for (let p of this.allPacker) {
+                    if (p.finished && this.isInRect(this.ball, p, 150)) {
+                        this.secBall = p.package;
+                        p.takeObject();
+                        break;
+                    }
+                }
 
-            this.ball.body.setVelocityX(ratioX * (vx >= 0 ? 900 : -900));
-            this.ball.body.setVelocityY(ratioY * (vy >= 0 ? 900 : -900));
+            }
+
+            else {
+                // if ( this.secBall.id == this.mailBoxCerbere.id
+                //     && this.secBall.isPacked && this.isInRect(this.ball, this.mailBoxCerbere, 100)) {
+                //     this.score += 15;
+                // }
+                // else if (this.secBall.id == this.mailBoxMedusa.id
+                //     &&   this.secBall.isPacked && this.isInRect(this.ball, this.mailBoxMedusa, 100)) {
+                //     this.score += 15;
+                // }
+                // else if (this.secBall.id == this.mailBoxCerbere.id
+                //     &&   this.secBall.isPacked && this.isInRect(this.ball, this.mailBoxIcare, 100)) {
+                //     this.score += 15;
+                // }
+                //
+                for (let p of this.allPacker) {
+                    if (!this.secBall.isPacked && this.isInRect(this.ball, p, 150)) {
+                        this.score += 5;
+                        if (!p.package) {
+                            p.initPackaging(this.secBall, this.time.now);
+                            break;
+                        }
+                    }
+                }
+
+                this.secBall.destroy();
+                this.secBall = undefined;
+                this.score   -= 5;
+                this.allSpawner.forEach(s => s.fill ? undefined : s.generateNewBottle());
+            }
+
+            this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
         }
 
         this.wichSubFrame = this.wichSubFrame == 10 ? 0 : this.wichSubFrame + 1;
+        this.allPacker.forEach(p => p.actualizeSituationPackage(this.time.now, this.wichSubFrame > 5));
     }
 
     anyOfKey(keys, duration=0) {
         for (let key of keys)
             if (this.keyBoard.checkDown(key, duration)) return true;
         return false;
+    }
+
+    isInRect(obj, obj2, n) {
+        return this.calcDistance(obj, obj2) <= n;
+    }
+
+    calcDistance(obj1, obj2) {
+        return Math.sqrt(Math.pow(obj1.y - obj2.y, 2) + Math.pow(obj1.x - obj2.x, 2));
     }
 }
