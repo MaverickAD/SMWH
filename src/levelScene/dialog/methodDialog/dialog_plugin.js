@@ -2,6 +2,9 @@ export var DialogModalPlugin = function (scene) {
     this.scene = scene;
     this.systems = scene.sys;
 
+    this.scene.input.keyboard.on('keydown-SPACE', event => { if (this.timedEvent) this.timedEvent.delay = 0  })
+    this.scene.input.keyboard.on('keyup-SPACE',   event => { if (this.timedEvent) this.timedEvent.delay = 90 })
+    
     if (!scene.sys.settings.isBooted) {
         scene.sys.events.once('boot', this.boot, this);
     }
@@ -37,24 +40,24 @@ DialogModalPlugin.prototype = {
         if (!opts) opts = {};
         // set properties from opts object or use defaults
         this.borderThickness = opts.borderThickness || 3;
-        this.borderColor = opts.borderColor || 0x907748;
-        this.borderAlpha = opts.borderAlpha || 1;
-        this.windowAlpha = opts.windowAlpha || 0.8;
-        this.windowColor = opts.windowColor || 0x303030;
-        this.windowHeight = opts.windowHeight || 150;
-        this.padding = opts.padding || 32;
-        this.closeBtnColor = opts.closeBtnColor || 'darkgoldenrod';
-        this.dialogSpeed = opts.dialogSpeed || 3;
+        this.borderColor     = opts.borderColor     || 0x907748;
+        this.borderAlpha     = opts.borderAlpha     || 1;
+        this.windowAlpha     = opts.windowAlpha     || 0.8;
+        this.windowColor     = opts.windowColor     || 0x303030;
+        this.windowHeight    = opts.windowHeight    || 150;
+        this.padding         = opts.padding         || 32;
+        this.allText         = opts.allText         || ["prout", "caca"]
+        // this.closeBtnColor   = opts.closeBtnColor   || 'darkgoldenrod';
 
         this.eventCounter = 0;
-        this.visible = true;
+        this.actualDialog = 0;
         this.text;
         this.dialog;
         this.graphics;
-        this.closeBtn;
 
         // Create the dialog window
         this._createWindow();
+        this.setText(this.allText[this.actualDialog++]);
     },
 
     // Hide/Show the dialog window
@@ -62,36 +65,30 @@ DialogModalPlugin.prototype = {
         this.visible = !this.visible;
         if (this.text) this.text.visible = this.visible;
         if (this.graphics) this.graphics.visible = this.visible;
-        if (this.closeBtn) this.closeBtn.visible = this.visible;
     },
 
     // Slowly displays the text in the window to make it appear annimated
     _animateText: function () {
-        this.eventCounter++;
-        this.text.setText(this.text.text + this.dialog[this.eventCounter - 1]);
-        if (this.eventCounter === this.dialog.length) {
-            this.timedEvent.remove();
-        }
+        if (++this.eventCounter === this.dialog.length) this.timedEvent.remove();
+        const actual = this.dialog[this.eventCounter - 2];
+        if (actual) this.text.setText(this.text.text + actual);
     },
 
     // Sets the text for the dialog window
-    setText: function (text, animate) {
+    setText: function (text) {
         // Reset the dialog
         this.eventCounter = 0;
         this.dialog = text.split('');
         if (this.timedEvent) this.timedEvent.remove();
 
-        var tempText = animate ? '' : text;
-        this._setText(tempText);
+        this._setText(text);
 
-        if (animate) {
-            this.timedEvent = this.scene.time.addEvent({
-                delay: 150 - (this.dialogSpeed * 30),
-                callback: this._animateText,
-                callbackScope: this,
-                loop: true
-            });
-        }
+        this.timedEvent = this.scene.time.addEvent({
+            delay: 90,
+            callback: this._animateText,
+            callbackScope: this,
+            loop: false
+        });
     },
 
     // Calcuate the position of the text in the dialog window
@@ -121,8 +118,8 @@ DialogModalPlugin.prototype = {
 
         this._createOuterWindow(windowDimensions);
         this._createInnerWindow(windowDimensions);
-        this._createCloseModalButtonBorder();
-        this._createCloseModalButton();
+        // this._createCloseModalButtonBorder();
+        // this._createCloseModalButton();
     },
 
     // Gets the width of the game (based on the scene)
@@ -162,36 +159,36 @@ DialogModalPlugin.prototype = {
     },
 
     // Creates the close dialog button border
-    _createCloseModalButtonBorder: function () {
-        var x = this._getGameWidth() - this.padding - 20;
-        var y = this._getGameHeight() - this.windowHeight - this.padding;
-        this.graphics.strokeRect(x, y, 20, 20);
-    },
+    // _createCloseModalButtonBorder: function () {
+    //     var x = this._getGameWidth() - this.padding - 20;
+    //     var y = this._getGameHeight() - this.windowHeight - this.padding;
+    //     this.graphics.strokeRect(x, y, 20, 20);
+    // },
 
-    // Creates the close dialog window button
-    _createCloseModalButton: function () {
-        var self = this;
-        this.closeBtn = this.scene.make.text({
-            x: this._getGameWidth() - this.padding - 14,
-            y: this._getGameHeight() - this.windowHeight - this.padding + 3,
-            text: 'X',
-            style: {
-                font: 'bold 12px Arial',
-                fill: this.closeBtnColor
-            }
-        });
-        this.closeBtn.setInteractive();
+    // // Creates the close dialog window button
+    // _createCloseModalButton: function () {
+    //     var self = this;
+    //     this.closeBtn = this.scene.make.text({
+    //         x: this._getGameWidth() - this.padding - 14,
+    //         y: this._getGameHeight() - this.windowHeight - this.padding + 3,
+    //         text: 'X',
+    //         style: {
+    //             font: 'bold 12px Arial',
+    //             fill: this.closeBtnColor
+    //         }
+    //     });
+    //     this.closeBtn.setInteractive();
 
-        this.closeBtn.on('pointerover', function () {
-            this.setTint(0xff0000);
-        });
-        this.closeBtn.on('pointerout', function () {
-            this.clearTint();
-        });
-        this.closeBtn.on('pointerdown', function () {
-            self.toggleWindow();
-            if (self.timedEvent) self.timedEvent.remove();
-            if (self.text) self.text.destroy();
-        });
-    }
+    //     this.closeBtn.on('pointerover', function () {
+    //         this.setTint(0xff0000);
+    //     });
+    //     this.closeBtn.on('pointerout', function () {
+    //         this.clearTint();
+    //     });
+    //     this.closeBtn.on('pointerdown', function () {
+    //         self.toggleWindow();
+    //         if (self.timedEvent) self.timedEvent.remove();
+    //         if (self.text) self.text.destroy();
+    //     });
+    // }
 };
