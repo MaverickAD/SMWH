@@ -77,7 +77,6 @@ export default class LevelSecond extends Phaser.Scene {
         ];
 
         this.secBall = undefined;//init if something are in the hand
-        this.allSpawner.forEach(s => s.generateNewBottle());//generate new bottle to package
 
         //sprite for the player, walk effect
         this.allFramesWalk = [
