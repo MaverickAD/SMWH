@@ -62,7 +62,7 @@ export default class LevelSecond extends Phaser.Scene {
         //here 1 spawner
         this.allSpawner = [
             new Spawner(
-                this.add.rectangle(ww*(0.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
+                this.add.rectangle(ww*(1/2), wh*(1/2), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
             )
         ];
 
@@ -83,6 +83,8 @@ export default class LevelSecond extends Phaser.Scene {
         this.allFramesWalk[0].visible = true;
         this.actualFrame = 0;
         this.wichSubFrame = 0;
+
+        this.allBottle = []
     }
 
     update() {
@@ -138,16 +140,19 @@ export default class LevelSecond extends Phaser.Scene {
             if (!this.secBall) {
                 for (let s of this.allSpawner)
                     if (this.isInRect(this.ball, s, 60)) {
-                        this.secBall = s.getObj();
+                        this.secBall = s.generateNewBottle('bottleEmptyWithoutTag');
+                        this.allBottle.push(this.secBall);
+
+
                     }
 
-                for (let p of this.allPacker) {
-                    if (p.finished && this.isInRect(this.ball, p, 150)) {
-                        this.secBall = p.package;
-                        p.takeObject();
-                        break;
-                    }
-                }
+                // for (let p of this.allPacker) {
+                //     if (p.finished && this.isInRect(this.ball, p, 150)) {
+                //         this.secBall = p.package;
+                //         p.takeObject();
+                //         break;
+                //     }
+                // }
 
             }
 
@@ -167,10 +172,7 @@ export default class LevelSecond extends Phaser.Scene {
                 //
 
 
-                this.secBall.destroy();
                 this.secBall = undefined;
-                this.score   -= 5;
-                this.allSpawner.forEach(s => s.fill ? undefined : s.generateNewBottle());
             }
 
             this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;

@@ -12,9 +12,24 @@ export class Spawner {
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
 
-    getObj(){
-        this.fill = false;
-        return this.waitingObject;
+    generateNewBottle(texture) {
+        this.newBottle = new Bottle(1,  this.scene, texture);
+        return this.newBottle
+    }
+}
+
+export class Bottle {
+    constructor(id, scene, texture) {
+        this.id = id;
+        this.scene = scene;
+        this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture);
+
+        this.x = this.scene.ball.x;
+        this.y = this.scene.ball.y;
+    }
+
+    destroy() {
+        this.obj.destroy()
     }
 }
 
