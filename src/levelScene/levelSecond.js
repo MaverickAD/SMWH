@@ -21,7 +21,16 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('persohaut2grand',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2-grand.png');
         this.load.image('packer1',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
         this.load.image('packer2',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
+        this.load.image('bottleEmptyWithoutTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_empty_without_tag.png');
+        this.load.image('bottleEmptyWithTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_empty_with_tag.png');
+        this.load.image('bottleRedWithoutTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_red_without_tag.png');
+        this.load.image('bottleRedWithTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_red_with_tag.png');
+        this.load.image('bottleRoseWithoutTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_without_tag.png');
+        this.load.image('bottleRoseWithTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_with_tag.png');
+        this.load.image('bottleWhiteWithoutTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_without_tag.png');
+        this.load.image('bottleWhiteWithTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_with_tag.png');
     }
+
 
     create() {
         //init player
