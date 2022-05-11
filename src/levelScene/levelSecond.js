@@ -72,14 +72,14 @@ export default class LevelSecond extends Phaser.Scene {
 
         //sprite for the player, walk effect
         this.allFramesWalk = [
-            this.add.image(this.ball.x, this.ball.y, 'persobas1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persobas2').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persohaut1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persohaut2').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persodroite1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persodroite2').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persogauche1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persogauche2').setScale(2.5)
+            this.add.image(this.ball.x, this.ball.y, 'persobas1grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persobas2grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persohaut1grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persohaut2grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persodroite1grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persodroite2grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persogauche1grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persogauche2grand').setScale(2.5)
         ];
         this.allFramesWalk.forEach(i => i.visible = false)
         this.allFramesWalk[0].visible = true;
