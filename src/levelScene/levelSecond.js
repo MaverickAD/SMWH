@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import {Packer, Spawner} from "./methodLevel/objects";
+import {walls} from "./methodLevel/wallsLevel2";
 
 const ww = window.innerWidth;
 const wh = window.innerHeight;
@@ -27,6 +28,12 @@ export default class LevelSecond extends Phaser.Scene {
         this.ball = this.add.circle(400, 250, 10, 0xFFFFFF, 0);
         this.physics.add.existing(this.ball);
         this.ball.body.setCollideWorldBounds(true, 0.3, 0.3);
+
+        walls.forEach(elem => {
+            let closure = this.add.rectangle(...elem, 0xFFFFFF, 1);
+            this.physics.add.existing(closure, true);
+            this.physics.add.collider(closure, this.ball);
+        });
 
         //init key of keyboard
         this.keyBoard = this.input.keyboard;
