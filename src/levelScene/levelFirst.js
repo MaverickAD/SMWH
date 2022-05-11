@@ -11,31 +11,31 @@ export default class LevelFirst extends Phaser.Scene {
   }
 
   preload(){
-    this.load.image('mask_blur',    'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/maskBlur.png');
-    this.load.image('murHorizon',   'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/murHorizon.png');
-    this.load.image('murVerti',     'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/murVerti.png');
-    this.load.image('ground',       'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/ground.png');
-    this.load.image('persobas1',    'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-bas1.png');
-    this.load.image('persobas2',    'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-bas2.png');
-    this.load.image('persodroite1', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-droite1.png');
-    this.load.image('persodroite2', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-droite2.png');
-    this.load.image('persogauche1', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-gauche1.png');
-    this.load.image('persogauche2', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-gauche2.png');
-    this.load.image('persohaut1',   'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-haut1.png');
-    this.load.image('persohaut2',   'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-haut2.png');
-    this.load.image('mailboxblue1', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/mailboxblue1.png');
-    this.load.image('mailboxred1',  'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/mailboxred1.png');
-    this.load.image('packer1',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/packer1.png');
-    this.load.image('packer2',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/packer2.png');
-    this.load.image('packedpacket', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/packedpacket.png');
-    this.load.image('trident',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/trident.png');
-    this.load.image('lyre',         'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/lyre.png');
-    this.load.image('caducee',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/caducee.png');
-    this.load.image('marteau',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/marteau.png');
-    this.load.image('rat',          'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/rat.png');
+    this.load.image('mask_blur',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/maskBlur.png');
+    this.load.image('murHorizon',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/murHorizon.png');
+    this.load.image('murVerti',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/murVerti.png');
+    this.load.image('ground',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/ground.png');
+    this.load.image('persobas1',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas1.png');
+    this.load.image('persobas2',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas2.png');
+    this.load.image('persodroite1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite1.png');
+    this.load.image('persodroite2', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite2.png');
+    this.load.image('persogauche1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche1.png');
+    this.load.image('persogauche2', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2.png');
+    this.load.image('persohaut1',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1.png');
+    this.load.image('persohaut2',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2.png');
+    this.load.image('mailboxblue1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxblue1.png');
+    this.load.image('mailboxred1',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxred1.png');
+    this.load.image('packer1',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
+    this.load.image('packer2',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
+    this.load.image('packedpacket', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packedpacket.png');
+    this.load.image('trident',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/trident.png');
+    this.load.image('lyre',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/lyre.png');
+    this.load.image('caducee',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/caducee.png');
+    this.load.image('marteau',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/marteau.png');
+    this.load.image('rat',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/rat.png');
 
     for (let i = 1; i < 17; i++)
-      eval(`this.load.image('eclair${i}',       'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/eclair${i}.png');`)
+      eval(`this.load.image('eclair${i}', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png');`)
 
   }
 
