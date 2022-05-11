@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {Packer, Spawner} from "./methodLevel/objects";
+import {Spawner} from "./methodLevel/objectsLevel2";
 import {walls} from "./methodLevel/wallsLevel2";
 
 const ww = window.innerWidth;
@@ -11,24 +11,24 @@ export default class LevelSecond extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('persobas1grand',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas1-grand.png');
-        this.load.image('persobas2grand',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas2-grand.png');
-        this.load.image('persodroite1grand', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite1-grand.png');
-        this.load.image('persodroite2grand', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite2-grand.png');
-        this.load.image('persogauche1grand', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche1-grand.png');
-        this.load.image('persogauche2grand', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2-grand.png');
-        this.load.image('persohaut1grand',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1-grand.png');
-        this.load.image('persohaut2grand',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2-grand.png');
-        this.load.image('packer1',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
-        this.load.image('packer2',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
-        this.load.image('bottleEmptyWithoutTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_empty_without_tag.png');
-        this.load.image('bottleEmptyWithTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_empty_with_tag.png');
-        this.load.image('bottleRedWithoutTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_red_without_tag.png');
-        this.load.image('bottleRedWithTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_red_with_tag.png');
-        this.load.image('bottleRoseWithoutTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_without_tag.png');
-        this.load.image('bottleRoseWithTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_with_tag.png');
-        this.load.image('bottleWhiteWithoutTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_without_tag.png');
-        this.load.image('bottleWhiteWithTag', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_with_tag.png');
+        this.load.image('persobas1grand',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas1-grand.png');
+        this.load.image('persobas2grand',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas2-grand.png');
+        this.load.image('persodroite1grand',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite1-grand.png');
+        this.load.image('persodroite2grand',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite2-grand.png');
+        this.load.image('persogauche1grand',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche1-grand.png');
+        this.load.image('persogauche2grand',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2-grand.png');
+        this.load.image('persohaut1grand',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1-grand.png');
+        this.load.image('persohaut2grand',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2-grand.png');
+        this.load.image('packer1',                  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
+        this.load.image('packer2',                  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
+        this.load.image('bottleEmptyWithoutTag',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_empty_without_tag.png');
+        this.load.image('bottleEmptyWithTag',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_empty_with_tag.png');
+        this.load.image('bottleRedWithoutTag',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_red_without_tag.png');
+        this.load.image('bottleRedWithTag',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_red_with_tag.png');
+        this.load.image('bottleRoseWithoutTag',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_without_tag.png');
+        this.load.image('bottleRoseWithTag',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_with_tag.png');
+        this.load.image('bottleWhiteWithoutTag',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_without_tag.png');
+        this.load.image('bottleWhiteWithTag',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_with_tag.png');
     }
 
 
@@ -63,16 +63,6 @@ export default class LevelSecond extends Phaser.Scene {
         this.allSpawner = [
             new Spawner(
                 this.add.rectangle(ww*(0.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
-            )
-        ];
-
-        //init packer at the center
-        this.allPacker = [
-            new Packer(
-                this.add.rectangle(ww*(12/20), wh*(8.5/20), ww*(1/10), wh*(1/10), 0xFFD700, 0),
-                this.add.image(ww*(12/20), wh*(8.5/20), 'packer1').setScale(2),
-                this.add.image(ww*(12/20), wh*(8.5/20), 'packer2').setScale(2),
-                this
             )
         ];
 
@@ -175,15 +165,7 @@ export default class LevelSecond extends Phaser.Scene {
                 //     this.score += 15;
                 // }
                 //
-                for (let p of this.allPacker) {
-                    if (!this.secBall.isPacked && this.isInRect(this.ball, p, 150)) {
-                        this.score += 5;
-                        if (!p.package) {
-                            p.initPackaging(this.secBall, this.time.now);
-                            break;
-                        }
-                    }
-                }
+
 
                 this.secBall.destroy();
                 this.secBall = undefined;
@@ -195,7 +177,7 @@ export default class LevelSecond extends Phaser.Scene {
         }
 
         this.wichSubFrame = this.wichSubFrame == 10 ? 0 : this.wichSubFrame + 1;
-        this.allPacker.forEach(p => p.actualizeSituationPackage(this.time.now, this.wichSubFrame > 5));
+
     }
 
     anyOfKey(keys, duration=0) {

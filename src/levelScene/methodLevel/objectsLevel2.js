@@ -17,3 +17,10 @@ export class Spawner {
         return this.waitingObject;
     }
 }
+
+
+//presse
+//bottle
+//etiqueteur
+//spwaner raisin et bottle
+//mailbox
