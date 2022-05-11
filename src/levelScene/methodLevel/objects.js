@@ -33,11 +33,6 @@ export class Spawner {
             );
     }
 
-    generateNewBottle() {
-        this.fill = true;
-        this.waitingObject = new Bottle(this.scene.add.circle(this.x, this.y, 10, 0x03BE73, 1),0);
-    }
-
     getObj(){
         this.fill = false;
         return this.waitingObject;
@@ -126,17 +121,3 @@ export class Packer {
 
 }
 
-export class Bottle {
-    constructor(obj, id){
-        this.obj = obj;
-        this.id = id;
-
-        this.x = this.obj.x
-        this.y = this.obj.y
-
-        this.isPacked = false;
-    }
-    destroy(){
-        this.obj.destroy();
-    }
-}
