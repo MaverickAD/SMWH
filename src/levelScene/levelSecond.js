@@ -11,14 +11,14 @@ export default class LevelSecond extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('persobas1',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas1.png');
-        this.load.image('persobas2',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas2.png');
-        this.load.image('persodroite1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite1.png');
-        this.load.image('persodroite2', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite2.png');
-        this.load.image('persogauche1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche1.png');
-        this.load.image('persogauche2', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2.png');
-        this.load.image('persohaut1',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1.png');
-        this.load.image('persohaut2',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2.png');
+        this.load.image('persobas1grand',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas1-grand.png');
+        this.load.image('persobas2grand',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas2-grand.png');
+        this.load.image('persodroite1grand', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite1-grand.png');
+        this.load.image('persodroite2grand', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite2-grand.png');
+        this.load.image('persogauche1grand', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche1-grand.png');
+        this.load.image('persogauche2grand', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2-grand.png');
+        this.load.image('persohaut1grand',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1-grand.png');
+        this.load.image('persohaut2grand',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2-grand.png');
         this.load.image('packer1',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
         this.load.image('packer2',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
     }
