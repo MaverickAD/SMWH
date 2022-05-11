@@ -1,4 +1,4 @@
-export class Spawner {
+export class BottleSpawner {
     constructor(obj, scene) {
 
         this.scene  = scene;
@@ -22,7 +22,7 @@ export class Bottle {
     constructor(id, scene, texture) {
         this.id = id;
         this.scene = scene;
-        this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture);
+        this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture).setScale(0.5);
 
         this.x = this.scene.ball.x;
         this.y = this.scene.ball.y;

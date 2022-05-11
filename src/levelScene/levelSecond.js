@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {Spawner} from "./methodLevel/objectsLevel2";
+import {BottleSpawner} from "./methodLevel/objectsLevel2";
 import {walls} from "./methodLevel/wallsLevel2";
 
 const ww = window.innerWidth;
@@ -34,7 +34,7 @@ export default class LevelSecond extends Phaser.Scene {
 
     create() {
         //init player
-        this.ball = this.add.circle(400, 250, 10, 0xFFFFFF, 0);
+        this.ball = this.add.rectangle(400, 250, 40, 75, 0xFFFFFF, 0);
         this.physics.add.existing(this.ball);
         this.ball.body.setCollideWorldBounds(true, 0.3, 0.3);
 
@@ -58,26 +58,24 @@ export default class LevelSecond extends Phaser.Scene {
         this.lastSpaceDown = 0;
         this.loosedSpeedperFrame = 20;
 
-        //init spawner
-        //here 1 spawner
-        this.allSpawner = [
-            new Spawner(
+        //init bottle spawner
+        this.bottleSpawner = 
+            new BottleSpawner(
                 this.add.rectangle(ww*(1/2), wh*(1/2), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
-            )
-        ];
+            );
 
         this.secBall = undefined;//init if something are in the hand
 
         //sprite for the player, walk effect
         this.allFramesWalk = [
-            this.add.image(this.ball.x, this.ball.y, 'persobas1grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persobas2grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persohaut1grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persohaut2grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persodroite1grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persodroite2grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persogauche1grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persogauche2grand').setScale(2.5)
+            this.add.image(this.ball.x, this.ball.y, 'persobas1grand').setScale(3),
+            this.add.image(this.ball.x, this.ball.y, 'persobas2grand').setScale(3),
+            this.add.image(this.ball.x, this.ball.y, 'persohaut1grand').setScale(3),
+            this.add.image(this.ball.x, this.ball.y, 'persohaut2grand').setScale(3),
+            this.add.image(this.ball.x, this.ball.y, 'persodroite1grand').setScale(3),
+            this.add.image(this.ball.x, this.ball.y, 'persodroite2grand').setScale(3),
+            this.add.image(this.ball.x, this.ball.y, 'persogauche1grand').setScale(3),
+            this.add.image(this.ball.x, this.ball.y, 'persogauche2grand').setScale(3)
         ];
         this.allFramesWalk.forEach(i => i.visible = false)
         this.allFramesWalk[0].visible = true;
@@ -138,21 +136,13 @@ export default class LevelSecond extends Phaser.Scene {
         if (this.inputKeysMeta.SPACE.isDown && this.inputKeysMeta.SPACE.timeDown - this.lastSpaceDown > 100 ) {
 
             if (!this.secBall) {
-                for (let s of this.allSpawner)
-                    if (this.isInRect(this.ball, s, 60)) {
-                        this.secBall = s.generateNewBottle('bottleEmptyWithoutTag');
-                        this.allBottle.push(this.secBall);
+                
+                if (this.isInRect(this.ball, this.bottleSpawner, 80)) {
+                    this.secBall = this.bottleSpawner.generateNewBottle('bottleEmptyWithoutTag');
+                    this.allBottle.push(this.secBall);
 
+                }
 
-                    }
-
-                // for (let p of this.allPacker) {
-                //     if (p.finished && this.isInRect(this.ball, p, 150)) {
-                //         this.secBall = p.package;
-                //         p.takeObject();
-                //         break;
-                //     }
-                // }
 
             }
 
