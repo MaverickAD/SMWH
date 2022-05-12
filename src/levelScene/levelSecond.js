@@ -127,12 +127,19 @@ export default class LevelSecond extends Phaser.Scene {
 
         if (vy > -200 && vy < 200) {
             if (this.anyOfKey(this.upKeys)) {
-                this.ball.body.setVelocityY(-200);
-                this.actualFrame = 2;
+                
+                if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
+                    this.ball.body.setVelocityY(-200);
+                    this.actualFrame = 2;
+                }
             }
             else if (this.anyOfKey(this.downKeys)) {
-                this.ball.body.setVelocityY(200);
-                this.actualFrame = 0;
+                
+                if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
+                    this.ball.body.setVelocityY(200);
+                    this.actualFrame = 0;
+                }
+
             }
         }
 
@@ -162,7 +169,7 @@ export default class LevelSecond extends Phaser.Scene {
 
             else {
                 if(this.isInRect(this.ball, this.etiqueteur, 80)){
-                    this.etiqueteur.putTag(this.secBall, 'bottleEmptyWithTag')
+                    this.etiqueteur.putTag(this.secBall)
                 }
                 else{
                     this.secBall = undefined;

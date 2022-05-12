@@ -22,7 +22,9 @@ export class Bottle {
     constructor(id, scene, texture) {
         this.id = id;
         this.scene = scene;
-        this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture).setScale(0.5);
+        this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture).setScale(0.7);
+
+        this.state = "Empty";
 
         this.x = this.scene.ball.x;
         this.y = this.scene.ball.y;
@@ -47,8 +49,8 @@ export class Etiqueteur {
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
 
-    putTag(bottle, texture) {
-        bottle.obj.setTexture(texture);
+    putTag(bottle) {
+        bottle.obj.setTexture("bottle" + bottle.state + "WithTag");
     }
 }
 

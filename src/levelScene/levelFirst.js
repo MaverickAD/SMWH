@@ -193,12 +193,16 @@ export default class LevelFirst extends Phaser.Scene {
 
     if (vy > -200 && vy < 200) {
       if (this.anyOfKey(this.upKeys)) {
-        this.ball.body.setVelocityY(-200);
-        this.actualFrame = 2;
+        if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
+          this.ball.body.setVelocityY(-200);
+          this.actualFrame = 2;
+        }
       }
       else if (this.anyOfKey(this.downKeys)) {
-        this.ball.body.setVelocityY(200);
-        this.actualFrame = 0;
+        if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
+          this.ball.body.setVelocityY(200);
+          this.actualFrame = 0;
+        }
       }
     }
 
