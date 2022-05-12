@@ -31,11 +31,16 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('bottleWhiteWithTag',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_with_tag.png');
         this.load.image('GrapeRed',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeRed.png');
         this.load.image('GrapeWhite',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeWhite.png');
-        this.load.image('pressRedFullUnpressed',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedFullUnpressed.png');
+        this.load.image('bush',                     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bush.png');
+        this.load.image('grass',                     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/grass.png');
+        this.load.image('pressRedFullUnpressed',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedFullUnpressed.png');
     }
 
 
     create() {
+        this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
+
+
         //init player
         this.ball = this.add.rectangle(400, 250, 40, 75, 0xFFFFFF, 0);
         this.physics.add.existing(this.ball);
@@ -75,11 +80,11 @@ export default class LevelSecond extends Phaser.Scene {
 
         this.allGrapeSpawner = [
             new GrapeSpawner(
-                this.add.rectangle(ww*(3.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this, "White"
+                this.add.rectangle(ww*(9/12), wh*(7.5/8), ww*(1/20), wh*(1/12), 0xFFD700, 0), this, "White"
             ),
 
             new GrapeSpawner(
-                this.add.rectangle(ww*(10.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this, "Red"
+                this.add.rectangle(ww*(11.5/12), wh*(6.5/8), ww*(1/20), wh*(1/12), 0xFFD700, 0), this, "Red"
             ),
         ]
         
