@@ -65,7 +65,7 @@ export default class MainMenu extends Phaser.Scene {
 
         this.playButton.setInteractive()
         this.playButton.on('pointerdown', () => {
-            this.scene.start('LevelFirst')
+            this.scene.start('DialogLevel1')
         })
 
         this.settingsButton.setInteractive()

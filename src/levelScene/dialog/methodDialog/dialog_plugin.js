@@ -2,12 +2,17 @@ export var DialogModalPlugin = function (scene) {
     this.scene = scene;
     this.systems = scene.sys;
 
-    this.scene.input.keyboard.on('keydown-SPACE', event => { if (this.timedEvent) this.timedEvent.delay = 0  })
-    this.scene.input.keyboard.on('keyup-SPACE',   event => { if (this.timedEvent) this.timedEvent.delay = 90 })
+    this.scene.input.keyboard.on('keydown-SPACE', _ => {
+        if (this.isFinished()) {
+            this.setText(this.iterator.next());
+            this.graphics.x = this.iterator.isEven() ? this.otherX : this.defaultX;
+        }
+        if (this.timedEvent) this.timedEvent.delay = 0  
+    });
+
+    this.scene.input.keyboard.on('keyup-SPACE',   _ => { if (this.timedEvent) this.timedEvent.delay = 90 })
     
-    if (!scene.sys.settings.isBooted) {
-        scene.sys.events.once('boot', this.boot, this);
-    }
+    if (!scene.sys.settings.isBooted) scene.sys.events.once('boot', this.boot, this);
 };
 
 DialogModalPlugin.register = function (PluginManager) {
@@ -16,12 +21,9 @@ DialogModalPlugin.register = function (PluginManager) {
 
 DialogModalPlugin.prototype = {
     // called when the plugin is loaded by the PluginManager
-    boot: function () {
-        var eventEmitter = this.systems.events;
-        eventEmitter.on('destroy', this.destroy, this);
-    },
+    boot: function () { this.systems.events.on('destroy', this.destroy, this) },
 
-    //  Called when a Scene shuts down, it may then come back again later
+    // Called when a Scene shuts down, it may then come back again later
     // (which will invoke the 'start' event) but should be considered dormant.
     shutdown: function () {
         if (this.timedEvent) this.timedEvent.remove();
@@ -46,8 +48,7 @@ DialogModalPlugin.prototype = {
         this.windowColor     = opts.windowColor     || 0x303030;
         this.windowHeight    = opts.windowHeight    || 150;
         this.padding         = opts.padding         || 32;
-        this.allText         = opts.allText         || ["prout", "caca"]
-        // this.closeBtnColor   = opts.closeBtnColor   || 'darkgoldenrod';
+        this.dialogs         = opts.dialogs
 
         this.eventCounter = 0;
         this.actualDialog = 0;
@@ -57,7 +58,12 @@ DialogModalPlugin.prototype = {
 
         // Create the dialog window
         this._createWindow();
-        this.setText(this.allText[this.actualDialog++]);
+        this.iterator = (() => { 
+            let n = 0;
+            return { next : () => this.dialogs[n++]?.text, isEven : () => n % 2 === 0};
+        })();
+
+        this.setText(this.iterator.next());
     },
 
     // Hide/Show the dialog window
@@ -69,13 +75,18 @@ DialogModalPlugin.prototype = {
 
     // Slowly displays the text in the window to make it appear annimated
     _animateText: function () {
-        if (++this.eventCounter === this.dialog.length) this.timedEvent.remove();
-        const actual = this.dialog[this.eventCounter - 2];
+        const actual = this.dialog[++this.eventCounter - 1];
+        if (this.isFinished()) this.timedEvent.remove();
         if (actual) this.text.setText(this.text.text + actual);
     },
 
+    isFinished: function () { return (this.eventCounter === this.dialog.length) },
+
     // Sets the text for the dialog window
     setText: function (text) {
+
+        if (text === undefined) return;
+
         // Reset the dialog
         this.eventCounter = 0;
         this.dialog = text.split('');
@@ -87,7 +98,7 @@ DialogModalPlugin.prototype = {
             delay: 90,
             callback: this._animateText,
             callbackScope: this,
-            loop: false
+            loop: true
         });
     },
 
@@ -100,9 +111,9 @@ DialogModalPlugin.prototype = {
         var y = this._getGameHeight() - this.windowHeight - this.padding + 10;
 
         this.text = this.scene.make.text({
-            x,
-            y,
-            text,
+            x : x,
+            y : y,
+            text : "",
             style: {
                 wordWrap: { width: this._getGameWidth() - (this.padding * 2) - 25 }
             }
@@ -118,8 +129,6 @@ DialogModalPlugin.prototype = {
 
         this._createOuterWindow(windowDimensions);
         this._createInnerWindow(windowDimensions);
-        // this._createCloseModalButtonBorder();
-        // this._createCloseModalButton();
     },
 
     // Gets the width of the game (based on the scene)
@@ -134,16 +143,15 @@ DialogModalPlugin.prototype = {
 
     // Calculates where to place the dialog window based on the game size
     _calculateWindowDimensions: function (width, height) {
-        var x = this.padding;
-        var y = height - this.windowHeight - this.padding;
-        var rectWidth = width - (this.padding * 2);
+        var x          = this.padding;
+        var y          = height - this.windowHeight - this.padding;
+        var rectWidth  = (width - (x * 2)) * (2/3);
         var rectHeight = this.windowHeight;
-        return {
-            x,
-            y,
-            rectWidth,
-            rectHeight
-        };
+
+        this.defaultX  = this.padding - x;
+        this.otherX    = width / 3 - x;
+
+        return { x, y, rectWidth, rectHeight };
     },
 
     // Creates the inner dialog window (where the text is displayed)
@@ -157,38 +165,4 @@ DialogModalPlugin.prototype = {
         this.graphics.lineStyle(this.borderThickness, this.borderColor, this.borderAlpha);
         this.graphics.strokeRect(x, y, rectWidth, rectHeight);
     },
-
-    // Creates the close dialog button border
-    // _createCloseModalButtonBorder: function () {
-    //     var x = this._getGameWidth() - this.padding - 20;
-    //     var y = this._getGameHeight() - this.windowHeight - this.padding;
-    //     this.graphics.strokeRect(x, y, 20, 20);
-    // },
-
-    // // Creates the close dialog window button
-    // _createCloseModalButton: function () {
-    //     var self = this;
-    //     this.closeBtn = this.scene.make.text({
-    //         x: this._getGameWidth() - this.padding - 14,
-    //         y: this._getGameHeight() - this.windowHeight - this.padding + 3,
-    //         text: 'X',
-    //         style: {
-    //             font: 'bold 12px Arial',
-    //             fill: this.closeBtnColor
-    //         }
-    //     });
-    //     this.closeBtn.setInteractive();
-
-    //     this.closeBtn.on('pointerover', function () {
-    //         this.setTint(0xff0000);
-    //     });
-    //     this.closeBtn.on('pointerout', function () {
-    //         this.clearTint();
-    //     });
-    //     this.closeBtn.on('pointerdown', function () {
-    //         self.toggleWindow();
-    //         if (self.timedEvent) self.timedEvent.remove();
-    //         if (self.text) self.text.destroy();
-    //     });
-    // }
 };

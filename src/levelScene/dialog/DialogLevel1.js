@@ -12,7 +12,12 @@ export default class DialogLevel1 extends Phaser.Scene {
 
     create() {
         this.dialogFirst = new DialogModalPlugin(this)
-        this.dialogFirst.init({allText : ["oaentuhaonstuh", 'caca']})
+        this.dialogFirst.init({
+            dialogs : [
+                { text : 'taume tu es tres beau' },
+                { text : 'merci ca fait plaisir' },
+                { text : 'loick dit que cela n"est pas vrai' }],
+        })
     }
 
     update() {}
