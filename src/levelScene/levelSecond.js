@@ -92,14 +92,14 @@ export default class LevelSecond extends Phaser.Scene {
 
         //sprite for the player, walk effect
         this.allFramesWalk = [
-            this.add.image(this.ball.x, this.ball.y, 'persobas1grand').setScale(3),
-            this.add.image(this.ball.x, this.ball.y, 'persobas2grand').setScale(3),
-            this.add.image(this.ball.x, this.ball.y, 'persohaut1grand').setScale(3),
-            this.add.image(this.ball.x, this.ball.y, 'persohaut2grand').setScale(3),
-            this.add.image(this.ball.x, this.ball.y, 'persodroite1grand').setScale(3),
-            this.add.image(this.ball.x, this.ball.y, 'persodroite2grand').setScale(3),
-            this.add.image(this.ball.x, this.ball.y, 'persogauche1grand').setScale(3),
-            this.add.image(this.ball.x, this.ball.y, 'persogauche2grand').setScale(3)
+            this.add.image(this.ball.x, this.ball.y, 'persobas1grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persobas2grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persohaut1grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persohaut2grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persodroite1grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persodroite2grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persogauche1grand').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'persogauche2grand').setScale(2.5)
         ];
         this.allFramesWalk.forEach(i => i.visible = false)
         this.allFramesWalk[0].visible = true;
@@ -132,29 +132,29 @@ export default class LevelSecond extends Phaser.Scene {
         if (vx < 0) this.ball.body.setVelocityX(Math.min(vx + this.loosedSpeedperFrame, 0));
         if (vy < 0) this.ball.body.setVelocityY(Math.min(vy + this.loosedSpeedperFrame, 0));
 
-        if (vx > -200 && vx < 200) {
+        if (vx > -300 && vx < 300) {
             if (this.anyOfKey(this.rightKeys)) {
-                this.ball.body.setVelocityX(200);
+                this.ball.body.setVelocityX(300);
                 this.actualFrame = 4;
             }
             else if (this.anyOfKey(this.leftKeys)) {
-                this.ball.body.setVelocityX(-200);
+                this.ball.body.setVelocityX(-300);
                 this.actualFrame = 6;
             }
         }
 
-        if (vy > -200 && vy < 200) {
+        if (vy > -300 && vy < 300) {
             if (this.anyOfKey(this.upKeys)) {
                 
                 if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
-                    this.ball.body.setVelocityY(-200);
+                    this.ball.body.setVelocityY(-300);
                     this.actualFrame = 2;
                 }
             }
             else if (this.anyOfKey(this.downKeys)) {
 
                 if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
-                    this.ball.body.setVelocityY(200);
+                    this.ball.body.setVelocityY(300);
                     this.actualFrame = 0;
                 }
 

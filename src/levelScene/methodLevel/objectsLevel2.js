@@ -86,7 +86,7 @@ export class GrapeSpawner {
         this.x      = this.obj.x;
         this.y      = this.obj.y;
         
-        this.scene.add.image(this.x, this.y, 'bush');
+        this.scene.add.image(this.x, this.y, 'bush').setScale(1.5);
         this.waitingGrape = new Grape (this.scene, this.color, this.scene.add.image(this.x, this.y, "Grape" + this.color));
 
         this.scene.physics.add.existing(this.obj, true); 
