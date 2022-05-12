@@ -3,11 +3,14 @@ export var DialogModalPlugin = function (scene) {
     this.systems = scene.sys;
 
     this.scene.input.keyboard.on('keydown-SPACE', _ => {
+        if (this.iterator.isEnded()) return;
         if (this.isFinished()) {
             this.setText(this.iterator.next());
-            this.graphics.x = this.iterator.isEven() ? this.otherX : this.defaultX;
+            const newx = this.iterator.isEven() ? this.otherX : this.defaultX;
+            this.graphics.x = newx;
+            this.text.x     = newx + 40;
         }
-        if (this.timedEvent) this.timedEvent.delay = 0  
+        if (this.timedEvent) this.timedEvent.delay = 0;
     });
 
     this.scene.input.keyboard.on('keyup-SPACE',   _ => { if (this.timedEvent) this.timedEvent.delay = 90 })
@@ -60,7 +63,11 @@ DialogModalPlugin.prototype = {
         this._createWindow();
         this.iterator = (() => { 
             let n = 0;
-            return { next : () => this.dialogs[n++]?.text, isEven : () => n % 2 === 0};
+            let m = this.dialogs.length;
+            return { next :    () => this.dialogs[n++]?.text,
+                     isEven :  () => n % 2 === 0,
+                     isEnded : () => n === m
+                   };
         })();
 
         this.setText(this.iterator.next());

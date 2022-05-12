@@ -7,7 +7,7 @@ export default class DialogLevel1 extends Phaser.Scene {
     }
 
     preload() {
-
+        this.load.image('zeus', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair16.png');
     }
 
     create() {
@@ -18,6 +18,7 @@ export default class DialogLevel1 extends Phaser.Scene {
                 { text : 'merci ca fait plaisir' },
                 { text : 'loick dit que cela n"est pas vrai' }],
         })
+        this.add.image(100, 100, 'zeus').setScale(3);
     }
 
     update() {}
