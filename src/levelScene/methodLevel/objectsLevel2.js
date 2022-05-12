@@ -20,6 +20,8 @@ export class BottleSpawner {
 
 export class Bottle {
     constructor(scene, texture) {
+        this.id = "bottle"
+
         this.scene = scene;
         this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture).setScale(0.7);
 
@@ -56,6 +58,9 @@ export class Etiqueteur {
 
 export class Grape {
     constructor(scene, color, obj) {
+
+        this.id = "grape"
+
         this.scene = scene;
         this.obj = obj;
         this.color = color;

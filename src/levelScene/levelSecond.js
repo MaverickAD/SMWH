@@ -190,6 +190,9 @@ export default class LevelSecond extends Phaser.Scene {
                     this.etiqueteur.putTag(this.secBall)
                 }
                 else{
+                    if(this.secBall.id === "grape"){
+                        this.secBall.destroy();
+                    }
                     this.secBall = undefined;
                 }
 
