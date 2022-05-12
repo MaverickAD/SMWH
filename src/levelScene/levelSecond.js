@@ -89,7 +89,9 @@ export default class LevelSecond extends Phaser.Scene {
         //if player are something in his hand, put the object near of player
         if(this.secBall){
             this.secBall.obj.x = this.ball.x + 10;
+            this.secBall.x = this.ball.x + 10;
             this.secBall.obj.y = this.ball.y + 10;
+            this.secBall.y = this.ball.y + 10;
         }
 
         //update of sprite when the player move
@@ -136,14 +138,20 @@ export default class LevelSecond extends Phaser.Scene {
         if (this.inputKeysMeta.SPACE.isDown && this.inputKeysMeta.SPACE.timeDown - this.lastSpaceDown > 100 ) {
 
             if (!this.secBall) {
-                
-                if (this.isInRect(this.ball, this.bottleSpawner, 80)) {
-                    this.secBall = this.bottleSpawner.generateNewBottle('bottleEmptyWithoutTag');
-                    this.allBottle.push(this.secBall);
-
+                for (let bottle of this.allBottle) {
+                    if (this.isInRect(this.ball, bottle, 60)) {
+                        this.secBall = bottle;
+                        break;
+                    }
                 }
 
-
+                if(!this.secBall){
+                    if (this.isInRect(this.ball, this.bottleSpawner, 80)) {
+                        this.secBall = this.bottleSpawner.generateNewBottle('bottleEmptyWithoutTag');
+                        this.allBottle.push(this.secBall);
+                    }
+                }
+                
             }
 
             else {
@@ -161,7 +169,7 @@ export default class LevelSecond extends Phaser.Scene {
                 // }
                 //
 
-
+                console.log("x = ", this.secBall.x, "y = ", this.secBall.y);
                 this.secBall = undefined;
             }
 
