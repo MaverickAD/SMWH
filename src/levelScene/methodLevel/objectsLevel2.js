@@ -103,6 +103,27 @@ export class GrapeSpawner {
 }
 
 
+export class Press {
+    constructor(obj, scene) {
+
+        this.scene  = scene;
+        this.obj    = obj;
+
+
+        this.x      = this.obj.x;
+        this.y      = this.obj.y;
+
+        this.scene.physics.add.existing(this.obj, true);
+        this.scene.physics.add.collider(this.obj, this.scene.ball);
+    }
+
+    giveWine(bottle) {
+        bottle.obj.setTexture("bottle" + bottle.state + "WithTag");
+    }
+}
+
+
+
 
 //presse
 //bottle

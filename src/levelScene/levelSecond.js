@@ -31,7 +31,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('bottleWhiteWithTag',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_with_tag.png');
         this.load.image('GrapeRed',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeRed.png');
         this.load.image('GrapeWhite',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeWhite.png');
-        this.load.image('presseRedFullUnpressed',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/presseRedFullUnpressed.png');
+        this.load.image('pressRedFullUnpressed',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedFullUnpressed.png');
     }
 
 
@@ -41,12 +41,13 @@ export default class LevelSecond extends Phaser.Scene {
         this.physics.add.existing(this.ball);
         this.ball.body.setCollideWorldBounds(true, 0.3, 0.3);
 
+        
         walls.forEach(elem => {
             let closure = this.add.rectangle(...elem, 0xFFFFFF, 1);
             this.physics.add.existing(closure, true);
             this.physics.add.collider(closure, this.ball);
         });
-
+        
         //init key of keyboard
         this.keyBoard = this.input.keyboard;
         this.inputKeysDir  = this.keyBoard.addKeys('Z,Q,S,D,UP,RIGHT,LEFT,UP,DOWN', true, true);
