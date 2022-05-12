@@ -55,6 +55,35 @@ export class Etiqueteur {
 }
 
 
+export class GrapeSpawner {
+    constructor(obj, scene, color) {
+
+        this.scene  = scene;
+        this.obj    = obj;
+
+        this.color   = color;
+
+        this.x      = this.obj.x;
+        this.y      = this.obj.y;
+        
+        this.waitingGrape = this.scene.add.image(this.x, this.y, "Grape" + this.color);
+
+        this.scene.physics.add.existing(this.obj, true);
+        this.scene.physics.add.collider(this.obj, this.scene.ball);
+    }
+
+    generateNewGrape() {
+        this.waitingGrape = this.scene.add.image(this.scene.ball.x, this.scene.ball.y,  "Grape" + this.color);
+    }
+
+    getGrape(){
+        this.generateNewGrape();
+        return this.waitingGrape;
+    }
+}
+
+
+
 //presse
 //bottle
 //etiqueteur

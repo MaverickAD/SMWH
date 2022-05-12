@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {BottleSpawner, Etiqueteur, Bottle} from "./methodLevel/objectsLevel2";
+import {BottleSpawner, Etiqueteur, Bottle, GrapeSpawner} from "./methodLevel/objectsLevel2";
 import {walls} from "./methodLevel/wallsLevel2";
 
 const ww = window.innerWidth;
@@ -29,6 +29,8 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('bottleRoseWithTag',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_with_tag.png');
         this.load.image('bottleWhiteWithoutTag',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_without_tag.png');
         this.load.image('bottleWhiteWithTag',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_with_tag.png');
+        this.load.image('GrapeRed',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeRed.png');
+        this.load.image('GrapeWhite',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeWhite.png');
     }
 
 
@@ -69,6 +71,15 @@ export default class LevelSecond extends Phaser.Scene {
                 this.add.rectangle(ww*(22.8/24), wh*(6.5/16), ww*(1.5/24), wh*(2/8), 0xFFD700, 1), this
             );
 
+        this.allGrapeSpawner = [
+            new GrapeSpawner(
+                this.add.rectangle(ww*(3.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this, "White"
+            ),
+
+            new GrapeSpawner(
+                this.add.rectangle(ww*(10.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this, "Red"
+            ),
+        ]
         
         this.secBall = undefined;//init if something are in the hand
 
