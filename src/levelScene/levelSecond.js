@@ -170,7 +170,7 @@ export default class LevelSecond extends Phaser.Scene {
                 }
 
                 if(!this.secBall){
-                    if (this.isInRect(this.ball, this.bottleSpawner, 80)) {
+                    if (this.isInRect(this.ball, this.bottleSpawner, 100)) {
                         this.secBall = this.bottleSpawner.generateNewBottle('bottleEmptyWithoutTag');
                         this.allBottle.push(this.secBall);
                     }
@@ -187,7 +187,7 @@ export default class LevelSecond extends Phaser.Scene {
             }
 
             else {
-                if(this.isInRect(this.ball, this.etiqueteur, 80)){
+                if(this.isInRect(this.ball, this.etiqueteur, 100)){
                     this.etiqueteur.putTag(this.secBall)
                 }
                 else{
