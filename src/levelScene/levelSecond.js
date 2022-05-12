@@ -29,8 +29,9 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('bottleRoseWithTag',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_with_tag.png');
         this.load.image('bottleWhiteWithoutTag',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_without_tag.png');
         this.load.image('bottleWhiteWithTag',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_with_tag.png');
-        this.load.image('GrapeRed',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeRed.png');
-        this.load.image('GrapeWhite',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeWhite.png');
+        this.load.image('GrapeRed',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeRed.png');
+        this.load.image('GrapeWhite',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeWhite.png');
+        this.load.image('presseRedFullUnpressed',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/presseRedFullUnpressed.png');
     }
 
 
