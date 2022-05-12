@@ -65,7 +65,7 @@ export class Grape {
     }
 
     destroy() {
-        this.obj.destroy()
+        this.obj.destroy();
     }
 }
 
@@ -81,14 +81,14 @@ export class GrapeSpawner {
         this.x      = this.obj.x;
         this.y      = this.obj.y;
         
-        this.waitingGrape = new Grape (this.scene.add.image(this.x, this.y, "Grape" + this.color), this.scene, this.color);
+        this.waitingGrape = new Grape (this.scene, this.color, this.scene.add.image(this.x, this.y, "Grape" + this.color));
 
         this.scene.physics.add.existing(this.obj, true); 
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
 
     generateNewGrape() {
-        this.waitingGrape = new Grape (this.scene.add.image(this.x, this.y, "Grape" + this.color), this.scene, this.color);
+        this.waitingGrape = new Grape (this.scene, this.color, this.scene.add.image(this.x, this.y, "Grape" + this.color));
     }
 
     getGrape(){
