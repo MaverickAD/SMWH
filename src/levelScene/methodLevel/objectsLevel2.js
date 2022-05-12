@@ -13,14 +13,13 @@ export class BottleSpawner {
     }
 
     generateNewBottle(texture) {
-        this.newBottle = new Bottle(1,  this.scene, texture);
+        this.newBottle = new Bottle(this.scene, texture);
         return this.newBottle
     }
 }
 
 export class Bottle {
-    constructor(id, scene, texture) {
-        this.id = id;
+    constructor(scene, texture) {
         this.scene = scene;
         this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture).setScale(0.7);
 
@@ -55,6 +54,22 @@ export class Etiqueteur {
 }
 
 
+export class Grape {
+    constructor(scene, color, obj) {
+        this.scene = scene;
+        this.obj = obj;
+        this.color = color;
+
+        this.x = this.obj.x;
+        this.y = this.obj.y;
+    }
+
+    destroy() {
+        this.obj.destroy()
+    }
+}
+
+
 export class GrapeSpawner {
     constructor(obj, scene, color) {
 
@@ -66,14 +81,14 @@ export class GrapeSpawner {
         this.x      = this.obj.x;
         this.y      = this.obj.y;
         
-        this.waitingGrape = this.scene.add.image(this.x, this.y, "Grape" + this.color);
+        this.waitingGrape = new Grape (this.scene.add.image(this.x, this.y, "Grape" + this.color).setScale(0.04), this.scene, this.color);
 
         this.scene.physics.add.existing(this.obj, true);
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
 
     generateNewGrape() {
-        this.waitingGrape = this.scene.add.image(this.scene.ball.x, this.scene.ball.y,  "Grape" + this.color);
+        this.waitingGrape = new Grape (this.scene.add.image(this.x, this.y, "Grape" + this.color).setScale(0.04), this.scene, this.color);
     }
 
     getGrape(){
