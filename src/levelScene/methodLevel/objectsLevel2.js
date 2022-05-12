@@ -110,16 +110,20 @@ export class Press {
         this.scene  = scene;
         this.obj    = obj;
 
+        this.state  = "empty";
+
 
         this.x      = this.obj.x;
         this.y      = this.obj.y;
+        
+        // this.img =  this.scene.add.image(this.x, this.y,)
 
         this.scene.physics.add.existing(this.obj, true);
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
 
     giveWine(bottle) {
-        bottle.obj.setTexture("bottle" + bottle.state + "WithTag");
+        this.state = "empty"
     }
 }
 
