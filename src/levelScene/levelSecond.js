@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {BottleSpawner} from "./methodLevel/objectsLevel2";
+import {BottleSpawner, Etiqueteur, Bottle} from "./methodLevel/objectsLevel2";
 import {walls} from "./methodLevel/wallsLevel2";
 
 const ww = window.innerWidth;
@@ -63,7 +63,13 @@ export default class LevelSecond extends Phaser.Scene {
             new BottleSpawner(
                 this.add.rectangle(ww*(1/2), wh*(1/2), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
             );
+        
+        this.etiqueteur = 
+            new Etiqueteur(
+                this.add.rectangle(ww*(0.5/2), wh*(1.5/2), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
+            );
 
+        
         this.secBall = undefined;//init if something are in the hand
 
         //sprite for the player, walk effect
@@ -155,22 +161,13 @@ export default class LevelSecond extends Phaser.Scene {
             }
 
             else {
-                // if ( this.secBall.id == this.mailBoxCerbere.id
-                //     && this.secBall.isPacked && this.isInRect(this.ball, this.mailBoxCerbere, 100)) {
-                //     this.score += 15;
-                // }
-                // else if (this.secBall.id == this.mailBoxMedusa.id
-                //     &&   this.secBall.isPacked && this.isInRect(this.ball, this.mailBoxMedusa, 100)) {
-                //     this.score += 15;
-                // }
-                // else if (this.secBall.id == this.mailBoxCerbere.id
-                //     &&   this.secBall.isPacked && this.isInRect(this.ball, this.mailBoxIcare, 100)) {
-                //     this.score += 15;
-                // }
-                //
+                if(this.isInRect(this.ball, this.etiqueteur, 80)){
+                    this.etiqueteur.putTag(this.secBall, 'bottleEmptyWithTag')
+                }
+                else{
+                    this.secBall = undefined;
+                }
 
-                console.log("x = ", this.secBall.x, "y = ", this.secBall.y);
-                this.secBall = undefined;
             }
 
             this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
