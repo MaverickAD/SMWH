@@ -177,7 +177,8 @@ export default class LevelSecond extends Phaser.Scene {
                 }
 
                 for(let spawner in this.allGrapeSpawner) {
-                    if(this.isInRect(this.ball, spawner, 70)){
+                    if(this.isInRect(this.ball, spawner, 90)){
+                        console.log("prout")
                         this.secBall = spawner.getGrape();
                         break;
                     }
