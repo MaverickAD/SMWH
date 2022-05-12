@@ -61,12 +61,12 @@ export default class LevelSecond extends Phaser.Scene {
         //init bottle spawner
         this.bottleSpawner = 
             new BottleSpawner(
-                this.add.rectangle(ww*(1/2), wh*(1/2), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
+                this.add.rectangle(ww*(3/12), wh*(7/8), ww*(1/12), wh*(1/8), 0xFFD700, 1), this
             );
         
         this.etiqueteur = 
             new Etiqueteur(
-                this.add.rectangle(ww*(0.5/2), wh*(1.5/2), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
+                this.add.rectangle(ww*(22.8/24), wh*(6.5/16), ww*(1.5/24), wh*(2/8), 0xFFD700, 1), this
             );
 
         
@@ -134,7 +134,7 @@ export default class LevelSecond extends Phaser.Scene {
                 }
             }
             else if (this.anyOfKey(this.downKeys)) {
-                
+
                 if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
                     this.ball.body.setVelocityY(200);
                     this.actualFrame = 0;
