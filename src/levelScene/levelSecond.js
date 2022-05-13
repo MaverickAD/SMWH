@@ -21,13 +21,13 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('persohaut2grand',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2-grand.png');
         this.load.image('packer1',                  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
         this.load.image('packer2',                  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
-        this.load.image('bottleEmptyWithoutTag',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_empty_without_tag.png');
+        this.load.image('bottleEmpty',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_empty_without_tag.png');
         this.load.image('bottleEmptyWithTag',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_empty_with_tag.png');
-        this.load.image('bottleRedWithoutTag',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_red_without_tag.png');
+        this.load.image('bottleRed',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_red_without_tag.png');
         this.load.image('bottleRedWithTag',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_red_with_tag.png');
-        this.load.image('bottleRoseWithoutTag',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_without_tag.png');
+        this.load.image('bottleRose',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_without_tag.png');
         this.load.image('bottleRoseWithTag',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_rose_with_tag.png');
-        this.load.image('bottleWhiteWithoutTag',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_without_tag.png');
+        this.load.image('bottleWhite',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_without_tag.png');
         this.load.image('bottleWhiteWithTag',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_of_wine_white_with_tag.png');
         this.load.image('GrapeRed',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeRed.png');
         this.load.image('GrapeWhite',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeWhite.png');
@@ -200,7 +200,7 @@ export default class LevelSecond extends Phaser.Scene {
 
                 if(!this.secBall){
                     if (this.isInRect(this.ball, this.bottleSpawner, 200)) {
-                        this.secBall = this.bottleSpawner.generateNewBottle('bottleEmptyWithoutTag');
+                        this.secBall = this.bottleSpawner.generateNewBottle('bottleEmpty');
                         this.allBottle.push(this.secBall);
                         this.sendBottle.generateCommand()
                     }
@@ -224,10 +224,12 @@ export default class LevelSecond extends Phaser.Scene {
             else {
                 let DidSmth = false;
                 if(this.isInRect(this.ball, this.etiqueteur, 100) && this.secBall.id == "bottle"){
-                    this.etiqueteur.putTag(this.secBall);
-                    DidSmth = true;
+                    if(!this.secBall.tag){
+                        DidSmth = true;
+                        this.etiqueteur.putTag(this.secBall);
+                    }
                 }
-                if(this.secBall.id == "grape" && !DidSmth){
+                if(!DidSmth && this.secBall.id == "grape"){
                     for(let press of this.allPress) {
                         if(this.isInRect(this.ball, press, 80)){
                             DidSmth = true;
@@ -235,6 +237,18 @@ export default class LevelSecond extends Phaser.Scene {
                                 press.receiveGrape(this.secBall);
                                 this.secBall.destroy();
                                 this.secBall = undefined;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if(!DidSmth && this.secBall.id == "bottle" ){
+                    for(let press of this.allPress) {
+                        if(this.isInRect(this.ball, press, 80)){
+                            if(press.collectable){
+                                DidSmth = true;
+                                press.giveWine(this.secBall);
                                 break;
                             }
                         }

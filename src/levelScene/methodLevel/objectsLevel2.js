@@ -30,7 +30,8 @@ export class Bottle {
 
         this.id_state = 0;
 
-        this.state = "Empty";
+        this.color = "Empty";
+        this.tag = false;
 
         this.x = this.scene.ball.x;
         this.y = this.scene.ball.y;
@@ -56,7 +57,8 @@ export class Etiqueteur {
     }
 
     putTag(bottle) {
-        bottle.obj.setTexture("bottle" + bottle.state + "WithTag");
+        bottle.obj.setTexture("bottle" + bottle.color + "WithTag");
+        bottle.tag = true;
         bottle.id_state += 1;
     }
 }
@@ -117,8 +119,10 @@ export class Press {
         this.obj    = obj;
 
         this.state  = "Empty";
+        this.color = "Empty"
         this.space = true;
         this.pressable = false;
+        this.collectable = false;
 
         this.pressAdvencement = 0; 
 
@@ -168,18 +172,33 @@ export class Press {
         this.advencementBar.width = this.pressAdvencement;
         if (this.pressAdvencement >= 100){
             switch (this.state){
-                case "FullRedUnpressed" : this.state =   "RedPressed"; break;
-                case "FullWhiteUnpressed" : this.state = "WhitePressed"; break;
-                case "FullRoseUnpressed" : this.state =  "RosePressed"; break;
+                case "FullRedUnpressed" : this.state =   "RedPressed"; this.color = "Red"; break;
+                case "FullWhiteUnpressed" : this.state = "WhitePressed"; this.color = "White"; break;
+                case "FullRoseUnpressed" : this.state =  "RosePressed"; this.color = "Rose"; break;
             }
+            this.collectable = true;
             this.advencementBar.width = 0;
+            this.pressAdvencement = 0;
             this.img.setTexture("press" + this.state);
             this.pressable = false;
         }
     }
 
     giveWine(bottle) {
-        this.state = "empty"
+        
+        if (bottle.tag){
+            bottle.obj.setTexture("bottle" + this.color + "WithTag");
+        }
+        else{
+            bottle.obj.setTexture("bottle" + this.color);
+        }
+        bottle.color = this.color;
+
+        this.img.setTexture("pressEmpty");
+        this.state = "Empty"; 
+        this.collectable = false;
+        this.color = "Empty"
+        this.space = true;
     }
 }
 
