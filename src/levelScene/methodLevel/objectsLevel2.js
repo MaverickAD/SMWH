@@ -125,7 +125,10 @@ export class Press {
 
         this.x      = this.obj.x;
         this.y      = this.obj.y;
+
         
+        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 50, 0, 20, 0xFFD700, 1);
+        this.advencementBar.setDisplayOrigin(0,1);
         this.img =  this.scene.add.image(this.x, this.y, "press" + this.state)
 
         this.scene.physics.add.existing(this.obj, true);
@@ -162,12 +165,14 @@ export class Press {
 
     press(){
         this.pressAdvencement += 5;
+        this.advencementBar.width = this.pressAdvencement;
         if (this.pressAdvencement >= 100){
             switch (this.state){
                 case "FullRedUnpressed" : this.state =   "RedPressed"; break;
                 case "FullWhiteUnpressed" : this.state = "WhitePressed"; break;
                 case "FullRoseUnpressed" : this.state =  "RosePressed"; break;
             }
+            this.advencementBar.width = 0;
             this.img.setTexture("press" + this.state);
             this.pressable = false;
         }

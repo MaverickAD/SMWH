@@ -42,7 +42,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('pressWhitePressed',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressWhitePressed.png');
         this.load.image('pressRedPressed',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedPressed.png');
         this.load.image('pressRosePressed',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRosePressed.png');
-        this.load.image('shelf',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/shelf.png');
+        this.load.image('shelf',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/shelf.png');
     }
 
 
@@ -104,7 +104,10 @@ export default class LevelSecond extends Phaser.Scene {
 
         this.allPress = [
             new Press (
-                this.add.rectangle(ww*(6/12), wh*(4/8), ww*(1/20), wh*(1/12), 0xFFD700, 1), this 
+                this.add.rectangle(ww*(7.5/12), wh*(1.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this 
+            ), 
+            new Press (
+                this.add.rectangle(ww*(9.5/12), wh*(1.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this 
             )
         ]
         this.secBall = undefined;//init if something are in the hand
@@ -245,7 +248,6 @@ export default class LevelSecond extends Phaser.Scene {
                 }
 
                 if(!DidSmth) {
-                    console.log("test");
                     if(this.secBall.id === "grape"){
                         this.secBall.destroy();
                     }
