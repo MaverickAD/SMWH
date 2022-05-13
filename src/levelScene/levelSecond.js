@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {BottleSpawner, Etiqueteur, Bottle, GrapeSpawner} from "./methodLevel/objectsLevel2";
+import {BottleSpawner, Etiqueteur, Bottle, GrapeSpawner, Press} from "./methodLevel/objectsLevel2";
 import {walls} from "./methodLevel/wallsLevel2";
 
 const ww = window.innerWidth;
@@ -32,8 +32,16 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('GrapeRed',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeRed.png');
         this.load.image('GrapeWhite',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/GrapeWhite.png');
         this.load.image('bush',                     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bush.png');
-        this.load.image('grass',                     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/grass.png');
-        this.load.image('pressRedFullUnpressed',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedFullUnpressed.png');
+        this.load.image('grass',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/grass.png');
+        this.load.image('pressEmpty',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressEmpty.png');
+        this.load.image('pressHalfRedUnpressed',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressHalfRedUnpressed.png');
+        this.load.image('pressHalfWhiteUnpressed',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressHalfWhiteUnpressed.png');
+        this.load.image('pressFullRedUnpressed',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressFullRedUnpressed.png');
+        this.load.image('pressFullWhiteUnpressed',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressFullWhiteUnpressed.png');
+        this.load.image('pressFullRoseUnpressed',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressFullRoseUnpressed.png');
+        this.load.image('pressWhitePressed',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressWhitePressed.png');
+        this.load.image('pressRedPressed',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedPressed.png');
+        this.load.image('pressRosePressed',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRosePressed.png');
     }
 
 
@@ -88,6 +96,12 @@ export default class LevelSecond extends Phaser.Scene {
             ),
         ]
         
+
+        this.allPress = [
+            new Press (
+                this.add.rectangle(ww*(6/12), wh*(4/8), ww*(1/20), wh*(1/12), 0xFFD700, 1), this 
+            )
+        ]
         this.secBall = undefined;//init if something are in the hand
 
         //sprite for the player, walk effect

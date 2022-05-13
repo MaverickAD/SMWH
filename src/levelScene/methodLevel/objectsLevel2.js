@@ -110,16 +110,40 @@ export class Press {
         this.scene  = scene;
         this.obj    = obj;
 
-        this.state  = "empty";
+        this.state  = "Empty";
 
 
         this.x      = this.obj.x;
         this.y      = this.obj.y;
         
-        // this.img =  this.scene.add.image(this.x, this.y,)
+        this.img =  this.scene.add.image(this.x, this.y, "press" + this.state)
 
         this.scene.physics.add.existing(this.obj, true);
         this.scene.physics.add.collider(this.obj, this.scene.ball);
+    }
+
+    receive(grape){
+        switch (this.state) {
+            case 'Empty': 
+                this.img.setTexture("pressHalf" + grape.color + "Unpressed"); this.state = "Half" + grape.color + "Unpressed";  break;
+            case 'HalfRedUnpressed' : 
+                if(grape.color == "Red"){
+                    this.img.setTexture("pressFullRedUnpressed"); this.state = "FullRedUnpressed";
+                }
+                else{
+                    this.img.setTexture("pressFullRoseUnpressed"); this.state = "FullRoseUnpressed";
+                }
+                break;
+            case 'HalfWhiteUnpressed' : 
+                if(grape.color == "Red"){
+                    this.img.setTexture("pressFullRoseUnpressed"); this.state = "FullRoseUnpressed";
+                }
+                else{
+                    this.img.setTexture("pressFullWhiteUnpressed"); this.state = "FullWhiteUnpressed";
+                }
+                break;
+        }   
+
     }
 
     giveWine(bottle) {
