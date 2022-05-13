@@ -116,7 +116,7 @@ export default class LevelFirst extends Phaser.Scene {
     );
 
     this.mailBoxMedusa = new MailBox(
-        this.add.rectangle(ww*(7.5/20), wh*(11.5/12), ww*(1/20), wh*(1/12), 0x00FF00, 1), this, 1
+        this.add.rectangle(ww*(7.5/20), wh*(11.5/12), ww*(1/20), wh*(1/12), 0x00FF00, 0), this, 1
     );
 
     this.mailBoxIcare = new MailBox(
