@@ -111,6 +111,7 @@ export class Press {
         this.obj    = obj;
 
         this.state  = "Empty";
+        this.space = true;
 
 
         this.x      = this.obj.x;
@@ -122,7 +123,7 @@ export class Press {
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
 
-    receive(grape){
+    receiveGrape(grape){
         switch (this.state) {
             case 'Empty': 
                 this.img.setTexture("pressHalf" + grape.color + "Unpressed"); this.state = "Half" + grape.color + "Unpressed";  break;
@@ -133,6 +134,7 @@ export class Press {
                 else{
                     this.img.setTexture("pressFullRoseUnpressed"); this.state = "FullRoseUnpressed";
                 }
+                this.space = false;
                 break;
             case 'HalfWhiteUnpressed' : 
                 if(grape.color == "Red"){
@@ -141,6 +143,7 @@ export class Press {
                 else{
                     this.img.setTexture("pressFullWhiteUnpressed"); this.state = "FullWhiteUnpressed";
                 }
+                this.space = false;
                 break;
         }   
 
