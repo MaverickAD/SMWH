@@ -25,6 +25,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('persohaut2',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2.png');
     this.load.image('mailboxblue1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxblue1.png');
     this.load.image('mailboxred1',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxred1.png');
+    this.load.image('mailboxgreen1','https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxgreen1.png');
     this.load.image('packer1',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
     this.load.image('packer2',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
     this.load.image('packedpacket', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packedpacket.png');
@@ -40,6 +41,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('comb',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_comb.png');
     this.load.image('bone',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bone.png');
     this.load.image('bowl',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bowl.png');
+    this.load.image('box',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/box_packed.png');
 
     for (let i = 1; i < 17; i++)
       eval(`this.load.image('eclair${i}', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png');`)
@@ -143,7 +145,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.allSpawner.forEach(s => s.generateNewPackage());//generate new object to package
 
     //init maks around the player
-    this.spotlight  = this.add.image(this.ball.x, this.ball.y, 'mask_blur').setDepth(2);
+    this.spotlight  = this.add.image(this.ball.x, this.ball.y, 'mask_blur').setDepth(10);
 
     //sprite for the player, walk effect
     this.allFramesWalk = [
@@ -159,6 +161,7 @@ export default class LevelFirst extends Phaser.Scene {
 
     this.add.image(this.mailBoxIcare.x,   this.mailBoxIcare.y, 'mailboxblue1').setScale(0.5);
     this.add.image(this.mailBoxCerbere.x, this.mailBoxCerbere.y, 'mailboxred1').setScale(0.5);
+    this.add.image(this.mailBoxMedusa.x,  this.mailBoxMedusa.y, 'mailboxgreen1').setScale(0.5);
 
 
     this.allFramesWalk.forEach(i => i.visible = false)
@@ -247,6 +250,7 @@ export default class LevelFirst extends Phaser.Scene {
         for (let p of this.allPacker) {
           if (p.finished && this.isInRect(this.ball, p, 150)) {
             this.secBall = p.package;
+            this.secBall.obj.setScale(0.3)
             p.takeObject();
             break;
           }
