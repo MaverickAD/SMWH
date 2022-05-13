@@ -11,6 +11,7 @@ export class BottleSpawner {
         this.img = this.scene.add.image(this.x, this.y - 90, "shelf").setScale(3);
         this.img.setDepth(3);
 
+    
         this.scene.physics.add.existing(this.obj, true);
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
@@ -124,6 +125,7 @@ export class Press {
         this.pressable = false;
         this.collectable = false;
 
+        this.frame = 1;
         this.pressAdvencement = 0; 
 
 
@@ -131,10 +133,11 @@ export class Press {
         this.y      = this.obj.y;
 
         
-        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 50, 0, 20, 0xFFD700, 1);
+        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 100, 0, 20, 0xFFD700, 1);
         this.advencementBar.setDisplayOrigin(0,1);
-        this.img =  this.scene.add.image(this.x, this.y, "press" + this.state)
-
+        this.img =  this.scene.add.image(this.x, this.y, "press" + this.state).setScale(1.5);
+        
+        
         this.scene.physics.add.existing(this.obj, true);
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
@@ -170,6 +173,14 @@ export class Press {
     press(){
         this.pressAdvencement += 5;
         this.advencementBar.width = this.pressAdvencement;
+        this.frame ++; 
+        if (this.frame == 4){
+            this.frame = 1;
+        }
+
+        this.img.setTexture("press" + this.state + this.frame);
+
+
         if (this.pressAdvencement >= 100){
             switch (this.state){
                 case "FullRedUnpressed" : this.state =   "RedPressed"; this.color = "Red"; break;

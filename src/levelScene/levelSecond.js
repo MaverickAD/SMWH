@@ -49,11 +49,12 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('pressRedPressed',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedPressed.png');
         this.load.image('pressRosePressed',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRosePressed.png');
         this.load.image('shelf',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/shelf.png');
+        this.load.image('ground',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/groundLevel2.png');
     }
 
 
     create() {
-        this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
+        this.add.tileSprite(ww * 0.5, wh * 0.5 ,  ww , wh , 'ground').setScale(2);
         this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
 
 
@@ -111,10 +112,13 @@ export default class LevelSecond extends Phaser.Scene {
 
         this.allPress = [
             new Press (
-                this.add.rectangle(ww*(7.5/12), wh*(1.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this 
+                this.add.rectangle(ww*(7.5/12), wh*(2.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this, false
             ), 
             new Press (
-                this.add.rectangle(ww*(9.5/12), wh*(1.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this 
+                this.add.rectangle(ww*(9.5/12), wh*(2.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , false
+            ),
+            new Press (
+                this.add.rectangle(ww*(1.5/24), wh*(5.5/8), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , true
             )
         ]
         this.secBall = undefined;//init if something are in the hand
@@ -238,7 +242,7 @@ export default class LevelSecond extends Phaser.Scene {
                 }
                 if(!DidSmth && this.secBall.id == "grape"){
                     for(let press of this.allPress) {
-                        if(this.isInRect(this.ball, press, 80)){
+                        if(this.isInRect(this.ball, press, 100)){
                             DidSmth = true;
                             if(press.space){
                                 press.receiveGrape(this.secBall);
