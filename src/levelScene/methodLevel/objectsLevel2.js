@@ -28,6 +28,8 @@ export class Bottle {
         this.scene = scene;
         this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture).setScale(0.7);
 
+        this.id_state = 0;
+
         this.state = "Empty";
 
         this.x = this.scene.ball.x;
@@ -55,6 +57,7 @@ export class Etiqueteur {
 
     putTag(bottle) {
         bottle.obj.setTexture("bottle" + bottle.state + "WithTag");
+        bottle.id_state += 1;
     }
 }
 
@@ -174,6 +177,35 @@ export class Press {
         this.state = "empty"
     }
 }
+
+export class SendBottle {
+    constructor(obj, scene) {
+        this.obj = obj
+        this.scene = scene
+        this.command = undefined
+
+        this.x = this.obj.x
+        this.y = this.obj.y
+
+        this.scene.physics.add.existing(this.obj, true);
+        this.scene.physics.add.collider(this.obj, this.scene.ball);
+    }
+
+    generateCommand(){
+        const randIndicator = Math.random()
+        if (randIndicator <= 0.33) {
+            this.command = "Red"
+        }
+        else if (0.33 < randIndicator && randIndicator <= 0.66) {
+            this.command = "White"
+        }
+        else if (0.66 < randIndicator && randIndicator < 1){
+            this.command = "Rose"
+        }
+        console.log(this.command)
+    }
+}
+
 
 
 

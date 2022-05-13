@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {BottleSpawner, Etiqueteur, Bottle, GrapeSpawner, Press} from "./methodLevel/objectsLevel2";
+import {BottleSpawner, Etiqueteur, Bottle, GrapeSpawner, Press, SendBottle} from "./methodLevel/objectsLevel2";
 import {walls} from "./methodLevel/wallsLevel2";
 
 const ww = window.innerWidth;
@@ -96,6 +96,10 @@ export default class LevelSecond extends Phaser.Scene {
                 this.add.rectangle(ww*(11.5/12), wh*(6.5/8), ww*(1/20), wh*(1/12), 0xFFD700, 0), this, "Red"
             ),
         ]
+
+        this.sendBottle = new SendBottle(
+            this.add.rectangle(ww*(6.5/20), wh*(1/2), ww*(1/40), wh*(1/24), 0xFF00FF, 1), this
+        )
         
 
         this.allPress = [
@@ -195,6 +199,7 @@ export default class LevelSecond extends Phaser.Scene {
                     if (this.isInRect(this.ball, this.bottleSpawner, 200)) {
                         this.secBall = this.bottleSpawner.generateNewBottle('bottleEmptyWithoutTag');
                         this.allBottle.push(this.secBall);
+                        this.sendBottle.generateCommand()
                     }
                 }
 
@@ -232,6 +237,13 @@ export default class LevelSecond extends Phaser.Scene {
                         }
                     }
                 }
+                if(this.isInRect(this.ball, this.sendBottle, 100)){
+                    console.log('sendBottle')
+                    console.log(this.secBall)
+                    this.secBall.destroy()
+                    this.secBall = undefined;
+                }
+
                 if(!DidSmth) {
                     console.log("test");
                     if(this.secBall.id === "grape"){
