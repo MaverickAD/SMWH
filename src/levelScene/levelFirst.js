@@ -11,42 +11,44 @@ export default class LevelFirst extends Phaser.Scene {
   }
 
   preload(){
-    this.load.image('mask_blur',    'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/maskBlur.png');
-    this.load.image('murHorizon',   'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/murHorizon.png');
-    this.load.image('murVerti',     'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/murVerti.png');
-    this.load.image('ground',       'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/ground.png');
-    this.load.image('persobas1',    'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-bas1.png');
-    this.load.image('persobas2',    'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-bas2.png');
-    this.load.image('persodroite1', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-droite1.png');
-    this.load.image('persodroite2', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-droite2.png');
-    this.load.image('persogauche1', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-gauche1.png');
-    this.load.image('persogauche2', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-gauche2.png');
-    this.load.image('persohaut1',   'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-haut1.png');
-    this.load.image('persohaut2',   'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/perso-marche-haut2.png');
-    this.load.image('mailboxblue1', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/mailboxblue1.png');
-    this.load.image('mailboxred1',  'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/mailboxred1.png');
-    this.load.image('packer1',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/packer1.png');
-    this.load.image('packer2',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/packer2.png');
-    this.load.image('packedpacket', 'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/packedpacket.png');
-    this.load.image('trident',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/trident.png');
-    this.load.image('lyre',         'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/lyre.png');
-    this.load.image('caducee',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/caducee.png');
-    this.load.image('marteau',      'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/marteau.png');
-    this.load.image('rat',          'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/rat.png');
+    this.load.image('mask_blur',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/maskBlur.png');
+    this.load.image('murHorizon',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/murHorizon.png');
+    this.load.image('murVerti',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/murVerti.png');
+    this.load.image('ground',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/ground.png');
+    this.load.image('persobas1',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas1.png');
+    this.load.image('persobas2',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas2.png');
+    this.load.image('persodroite1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite1.png');
+    this.load.image('persodroite2', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite2.png');
+    this.load.image('persogauche1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche1.png');
+    this.load.image('persogauche2', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2.png');
+    this.load.image('persohaut1',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1.png');
+    this.load.image('persohaut2',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2.png');
+    this.load.image('mailboxblue1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxblue1.png');
+    this.load.image('mailboxred1',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxred1.png');
+    this.load.image('packer1',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
+    this.load.image('packer2',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
+    this.load.image('packedpacket', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packedpacket.png');
+    this.load.image('trident',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/trident.png');
+    this.load.image('lyre',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/lyre.png');
+    this.load.image('caducee',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/caducee.png');
+    this.load.image('marteau',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/marteau.png');
+    this.load.image('rat',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/rat.png');
 
     for (let i = 1; i < 17; i++)
-      eval(`this.load.image('eclair${i}',       'https://raw.githubusercontent.com/SimonHauguel/Anticape/main/assets/eclair${i}.png');`)
+      eval(`this.load.image('eclair${i}', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png');`)
 
   }
 
   create(){
-
+    //sprite for the ground
     this.add.tileSprite(ww * 0.5, wh *  0.5 ,  ww, wh, 'ground');
 
+    //init player
     this.ball = this.add.circle(400, 250, 10, 0xFFFFFF, 0);
     this.physics.add.existing(this.ball);
     this.ball.body.setCollideWorldBounds(true, 0.3, 0.3);
 
+    //init walls
     walls.forEach(elem => {
       let closure = this.add.rectangle(...elem, 0xFFFFFF, 0);
       this.physics.add.existing(closure, true);
@@ -67,6 +69,7 @@ export default class LevelFirst extends Phaser.Scene {
       }
     });
 
+    //init key of keyboard
     this.keyBoard      = this.input.keyboard;
     this.inputKeysDir  = this.keyBoard.addKeys('Z,Q,S,D,UP,RIGHT,LEFT,UP,DOWN', true, true);
     this.inputKeysMeta = this.keyBoard.addKeys('SHIFT,SPACE');
@@ -82,6 +85,8 @@ export default class LevelFirst extends Phaser.Scene {
 
     this.score = 0;
 
+    //init spawner
+    //here 2 spawner but we can add more
     this.allSpawner = [
       new Spawner(
           this.add.rectangle(ww*(0.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
@@ -92,6 +97,7 @@ export default class LevelFirst extends Phaser.Scene {
       )
     ];
 
+    //init mailbox
     this.mailBoxCerbere = new MailBox(
         this.add.rectangle(ww*(7.5/20), wh*(0.5/12), ww*(1/40), wh*(1/24), 0xFF0000, 0), this, 0
     );
@@ -104,6 +110,7 @@ export default class LevelFirst extends Phaser.Scene {
         this.add.rectangle(ww*(19.5/20), wh*(1/2), ww*(1/40), wh*(1/24), 0x0000FF, 0), this, 2
     );
 
+    //init packer at the center
     this.allPacker = [
       new Packer(
           this.add.rectangle(ww*(12/20), wh*(8.5/20), ww*(1/10), wh*(1/10), 0xFFD700, 0),
@@ -121,11 +128,13 @@ export default class LevelFirst extends Phaser.Scene {
 
     this.viewScore = this.add.text(ww*(12/20), wh*(1/2), this.score);
 
-    this.secBall = undefined;
-    this.allSpawner.forEach(s => s.generateNewPackage());
+    this.secBall = undefined;//init if something are in the hand
+    this.allSpawner.forEach(s => s.generateNewPackage());//generate new object to package
 
+    //init maks around the player
     this.spotlight  = this.add.image(this.ball.x, this.ball.y, 'mask_blur').setDepth(2);
 
+    //sprite for the player, walk effect
     this.allFramesWalk = [
       this.add.image(this.ball.x, this.ball.y, 'persobas1').setScale(2.5),
       this.add.image(this.ball.x, this.ball.y, 'persobas2').setScale(2.5),
@@ -148,12 +157,13 @@ export default class LevelFirst extends Phaser.Scene {
   }
 
   update() {
-
+    //if player are something in his hand, put the object near of player
     if (this.secBall) {
       this.secBall.obj.x = this.ball.x+10;
       this.secBall.obj.y = this.ball.y+10;
     }
 
+    //update of sprite when the player move
     this.allFramesWalk.forEach(i => {
       i.x = this.ball.x;
       i.y = this.ball.y;
@@ -183,12 +193,16 @@ export default class LevelFirst extends Phaser.Scene {
 
     if (vy > -200 && vy < 200) {
       if (this.anyOfKey(this.upKeys)) {
-        this.ball.body.setVelocityY(-200);
-        this.actualFrame = 2;
+        if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
+          this.ball.body.setVelocityY(-200);
+          this.actualFrame = 2;
+        }
       }
       else if (this.anyOfKey(this.downKeys)) {
-        this.ball.body.setVelocityY(200);
-        this.actualFrame = 0;
+        if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
+          this.ball.body.setVelocityY(200);
+          this.actualFrame = 0;
+        }
       }
     }
 
@@ -197,6 +211,7 @@ export default class LevelFirst extends Phaser.Scene {
       this.allFramesWalk[this.actualFrame + (this.wichSubFrame > 5)].visible = true;
     }
 
+    //dash with SHIFT key
     if (this.inputKeysMeta.SHIFT.isDown && this.inputKeysMeta.SHIFT.timeDown - this.lastShiftDown > 500) {
 
       this.lastShiftDown = this.inputKeysMeta.SHIFT.timeDown;
@@ -208,6 +223,7 @@ export default class LevelFirst extends Phaser.Scene {
       this.ball.body.setVelocityY(ratioY * (vy >= 0 ? 900 : -900));
     }
 
+    //get object with SPACE key
     if (this.inputKeysMeta.SPACE.isDown && this.inputKeysMeta.SPACE.timeDown - this.lastSpaceDown > 100 ) {
 
       if (!this.secBall) {
@@ -279,3 +295,9 @@ export default class LevelFirst extends Phaser.Scene {
   }
 
 }
+
+
+//add sprite missing
+//sound
+//chrono
+//score into end game
