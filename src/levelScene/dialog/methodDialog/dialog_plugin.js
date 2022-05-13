@@ -54,6 +54,8 @@ DialogModalPlugin.prototype = {
         this.dialogs         = opts.dialogs
 
         this.eventCounter = 0;
+        this.stackPicture = [];
+        this.sound;
         this.text;
         this.dialog;
         this.graphics;
@@ -65,8 +67,9 @@ DialogModalPlugin.prototype = {
             let m = this.dialogs.length;
             return { next :       () => this.dialogs[n++]?.text,
                      getPicture : () => this.dialogs[n-1]?.picture,
+                     getMusic :   () => this.dialogs[n-1]?.sound,
                      isEven :     () => n % 2 === 0,
-                     isEnded :    () => n === m
+                     isEnded :    () => n === m,
                    };
         })();
 
@@ -99,13 +102,31 @@ DialogModalPlugin.prototype = {
         this.dialog = text.split('');
         if (this.timedEvent) this.timedEvent.remove();
 
-        if (this.picture) this.picture.destroy();
+        if (this.stackPicture.length === 2) {
+            this.stackPicture[0].destroy();
+            this.stackPicture = [this.stackPicture[1]];
+        }
+        this.stackPicture[0]?.setAlpha(0.3);
+
         if (!this.iterator.isEven())
-            this.picture = this.scene.add.image(this.padding, 100, this.iterator.getPicture())
-                .setOrigin(0, 1)
-                .setScale(2);
-        else 
-            this.picture = this.scene.add.image(200, 200, this.iterator.getPicture());
+            this.stackPicture.push(this.scene.add.image(
+                this.padding, 
+                this._getGameHeight() - this.windowHeight - this.padding,
+                this.iterator.getPicture()
+            ).setOrigin(0, 1)
+             .setScale(3));
+        else {
+            this.stackPicture.push(this.scene.add.image(
+                this._getGameWidth()  - this.padding,
+                this._getGameHeight() - this.windowHeight - this.padding,
+                this.iterator.getPicture())
+                    .setOrigin(1, 1)
+                    .setScale(3));
+            this.stackPicture[1].flipX = true;
+        }
+
+        this.scene.sound.stopAll();
+        this.sound = this.scene.sound.add(this.iterator.getMusic()).play();
 
         this._setText();
 

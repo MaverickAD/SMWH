@@ -7,16 +7,20 @@ export default class DialogLevel1 extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('zeus', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/Zeus.svg');
+        this.load.image('zeus',    'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/Zeus.svg');
+        this.load.image('trident', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/trident.png')
+        this.load.audio('meuh',    'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/meuh.wav');
     }
 
     create() {
         this.dialogFirst = new DialogModalPlugin(this)
         this.dialogFirst.init({
             dialogs : [
-                { text : 'taume tu es tres beau', picture : 'zeus' },
-                { text : 'merci ca fait plaisir', picture : 'zeus' },
-                { text : 'loick dit que cela n"est pas vrai', picture : 'zeus' }],
+                { text : 'Ou est mon trident', picture : 'zeus',    sound : 'meuh'},
+                { text : 'Je suis ici',        picture : 'trident', sound : 'meuh'},
+                { text : 'Bonjour a toi',      picture : 'zeus',    sound : 'meuh'},
+                { text : 'Bonjour de meme',    picture : 'trident', sound : 'meuh'}
+            ],
         })
     }
 
