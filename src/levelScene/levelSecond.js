@@ -203,12 +203,20 @@ export default class LevelSecond extends Phaser.Scene {
                         break;
                     }
                 }
-                
+
             }
 
             else {
-                if(this.isInRect(this.ball, this.etiqueteur, 100)){
+                if(this.isInRect(this.ball, this.etiqueteur, 100) && this.secBall.id == "bottle"){
                     this.etiqueteur.putTag(this.secBall)
+                }
+                else if(this.secBall.id == "grape"){
+                    for(let press of this.allPress) {
+                        if(this.isInRect(this.ball, press, 80)){
+                            press.giveWine(this.secBall);
+                            break;
+                        }
+                    }
                 }
                 else{
                     if(this.secBall.id === "grape"){
