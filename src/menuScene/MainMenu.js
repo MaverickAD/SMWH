@@ -6,7 +6,10 @@ export default class MainMenu extends Phaser.Scene {
     }
 
     preload(){
-
+        this.load.image('homemenu1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/homemenu1.jpg');
+        this.load.image('homemenu2', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/homemenu2.jpg');
+        this.load.image('homemenu3', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/homemenu3.jpg');
+        this.load.image('homemenu4', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/homemenu4.jpg');
     }
 
     create() {
