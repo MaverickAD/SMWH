@@ -180,7 +180,7 @@ export default class LevelSecond extends Phaser.Scene {
             this.allFramesWalk[this.actualFrame + (this.wichSubFrame > 5)].visible = true;
         }
 
-        if (this.inputKeysMeta.SPACE.isDown && this.inputKeysMeta.SPACE.timeDown - this.lastSpaceDown > 100 ) {
+        if (this.inputKeysMeta.SPACE.isDown && this.inputKeysMeta.SPACE.timeDown - this.lastSpaceDown > 50 ) {
 
             if (!this.secBall) {
                 for (let bottle of this.allBottle) {

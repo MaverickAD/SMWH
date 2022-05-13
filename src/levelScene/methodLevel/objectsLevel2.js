@@ -113,6 +113,8 @@ export class Press {
         this.state  = "Empty";
         this.space = true;
 
+        this.pressAdvencement = 0; 
+
 
         this.x      = this.obj.x;
         this.y      = this.obj.y;
@@ -147,6 +149,10 @@ export class Press {
                 break;
         }   
 
+    }
+
+    press(){
+        
     }
 
     giveWine(bottle) {
