@@ -295,3 +295,9 @@ export default class LevelFirst extends Phaser.Scene {
   }
 
 }
+
+
+//add sprite missing
+//sound
+//chrono
+//score into end game

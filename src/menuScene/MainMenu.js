@@ -65,7 +65,7 @@ export default class MainMenu extends Phaser.Scene {
 
         this.playButton.setInteractive()
         this.playButton.on('pointerdown', () => {
-            this.scene.start('LevelSecond')
+            this.scene.start('LevelFirst')
         })
 
         this.settingsButton.setInteractive()
@@ -75,7 +75,7 @@ export default class MainMenu extends Phaser.Scene {
 
 
         if (this.inputKeysMeta.ENTER.isDown && this.selectedButton === 0){
-            this.scene.start('LevelSecond')
+            this.scene.start('LevelFirst')
         }
         else if (this.inputKeysMeta.ENTER.isDown && this.selectedButton === 1){
             this.scene.start('SettingsMenu')
