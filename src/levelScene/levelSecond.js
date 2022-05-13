@@ -205,6 +205,12 @@ export default class LevelSecond extends Phaser.Scene {
                     }
                 }
 
+                for(let press of this.allPress){
+                    if(this.isInRect(this.ball, press, 80) && press.pressable){
+                        press.press();
+                    }
+                }
+
             }
 
             else {

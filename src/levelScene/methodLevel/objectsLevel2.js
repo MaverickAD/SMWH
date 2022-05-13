@@ -115,6 +115,7 @@ export class Press {
 
         this.state  = "Empty";
         this.space = true;
+        this.pressable = false;
 
         this.pressAdvencement = 0; 
 
@@ -140,6 +141,7 @@ export class Press {
                     this.img.setTexture("pressFullRoseUnpressed"); this.state = "FullRoseUnpressed";
                 }
                 this.space = false;
+                this.pressable = true;
                 break;
             case 'HalfWhiteUnpressed' : 
                 if(grape.color == "Red"){
@@ -149,13 +151,23 @@ export class Press {
                     this.img.setTexture("pressFullWhiteUnpressed"); this.state = "FullWhiteUnpressed";
                 }
                 this.space = false;
+                this.pressable = true;
                 break;
         }   
 
     }
 
     press(){
-
+        this.pressAdvencement += 5;
+        if (this.pressAdvencement >= 100){
+            switch (this.state){
+                case "FullRedUnpressed" : this.state =   "RedPressed"; break;
+                case "FullWhiteUnpressed" : this.state = "WhitePressed"; break;
+                case "FullRoseUnpressed" : this.state =  "RosePressed"; break;
+            }
+            this.img.setTexture("press" + this.state);
+            this.pressable = false;
+        }
     }
 
     giveWine(bottle) {
