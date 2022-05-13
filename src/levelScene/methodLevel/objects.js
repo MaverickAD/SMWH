@@ -16,21 +16,42 @@ export class Spawner {
     generateNewPackage() {
         this.fill = true;
         const randIndicator = Math.random()
-        if (randIndicator <= 0.33)
+        if (randIndicator <= 0.16){
             this.waitingObject = new Package(
-                this.scene.add.circle(this.x, this.y, 10, 0xFF0000, 1),
+                this.scene.add.image(this.x - 5, this.y - 30, 'leaf'),
                 0
             );
-        else if (randIndicator <= 0.66)
+        }
+        else if (0.16 < randIndicator && randIndicator <= 0.32){
             this.waitingObject = new Package(
-                this.scene.add.circle(this.x, this.y,10, 0x00FF00, 1),
+                this.scene.add.circle(this.x - 5, this.y - 30, 'sunglasses'),
+                0
+            );
+        }
+        else if (0.32 < randIndicator && randIndicator <= 0.48){
+            this.waitingObject = new Package(
+                this.scene.add.circle(this.x - 5, this.y - 30, 'miror'),
                 1
             );
-        else
+        }
+        else if (0.48 < randIndicator && randIndicator <= 0.64){
             this.waitingObject = new Package(
-                this.scene.add.circle(this.x, this.y, 10, 0x0000FF, 1),
+                this.scene.add.circle(this.x - 5, this.y - 30, 'comb'),
+                1
+            );
+        }
+        else if (0.64 < randIndicator && randIndicator <= 0.80){
+            this.waitingObject = new Package(
+                this.scene.add.circle(this.x - 5, this.y - 30, 'bone'),
                 2
             );
+        }
+        else if (0.80 < randIndicator){
+            this.waitingObject = new Package(
+                this.scene.add.circle(this.x - 5, this.y - 30, 'bowl'),
+                2
+            );
+        }
     }
 
     getObj(){

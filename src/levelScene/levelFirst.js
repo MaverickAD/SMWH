@@ -33,6 +33,13 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('caducee',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/caducee.png');
     this.load.image('marteau',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/marteau.png');
     this.load.image('rat',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/rat.png');
+    this.load.image('spwaner',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/spawner.png');
+    this.load.image('leaf',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_leaf.png');
+    this.load.image('sunglasses',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_sunglasses.png');
+    this.load.image('miror',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_miror.png');
+    this.load.image('comb',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_comb.png');
+    this.load.image('bone',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bone.png');
+    this.load.image('bowl',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bowl.png');
 
     for (let i = 1; i < 17; i++)
       eval(`this.load.image('eclair${i}', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png');`)
@@ -89,13 +96,17 @@ export default class LevelFirst extends Phaser.Scene {
     //here 2 spawner but we can add more
     this.allSpawner = [
       new Spawner(
-          this.add.rectangle(ww*(0.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
+          this.add.rectangle(ww * (0.5 / 20), wh * (4.5 / 12), ww * (1 / 20), wh * (1 / 12), 0xFFD700, 0.1), this
       ),
 
       new Spawner(
-          this.add.rectangle(ww*(0.5/20), wh*(6.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
+          this.add.rectangle(ww * (0.5 / 20), wh * (6.5 / 12), ww * (1 / 20), wh * (1 / 12), 0xFFD700, 0.1), this
       )
     ];
+
+
+    this.add.image(this.allSpawner[0].x, this.allSpawner[0].y, 'spwaner').setScale(0.5)
+    this.add.image(this.allSpawner[1].x, this.allSpawner[1].y, 'spwaner').setScale(0.5)
 
     //init mailbox
     this.mailBoxCerbere = new MailBox(
@@ -148,6 +159,7 @@ export default class LevelFirst extends Phaser.Scene {
 
     this.add.image(this.mailBoxIcare.x,   this.mailBoxIcare.y, 'mailboxblue1').setScale(0.5);
     this.add.image(this.mailBoxCerbere.x, this.mailBoxCerbere.y, 'mailboxred1').setScale(0.5);
+
 
     this.allFramesWalk.forEach(i => i.visible = false)
     this.allFramesWalk[0].visible = true;
