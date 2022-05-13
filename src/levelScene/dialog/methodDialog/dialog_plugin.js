@@ -54,7 +54,6 @@ DialogModalPlugin.prototype = {
         this.dialogs         = opts.dialogs
 
         this.eventCounter = 0;
-        this.actualDialog = 0;
         this.text;
         this.dialog;
         this.graphics;
@@ -64,9 +63,10 @@ DialogModalPlugin.prototype = {
         this.iterator = (() => { 
             let n = 0;
             let m = this.dialogs.length;
-            return { next :    () => this.dialogs[n++]?.text,
-                     isEven :  () => n % 2 === 0,
-                     isEnded : () => n === m
+            return { next :       () => this.dialogs[n++]?.text,
+                     getPicture : () => this.dialogs[n-1]?.picture,
+                     isEven :     () => n % 2 === 0,
+                     isEnded :    () => n === m
                    };
         })();
 
@@ -99,7 +99,15 @@ DialogModalPlugin.prototype = {
         this.dialog = text.split('');
         if (this.timedEvent) this.timedEvent.remove();
 
-        this._setText(text);
+        if (this.picture) this.picture.destroy();
+        if (!this.iterator.isEven())
+            this.picture = this.scene.add.image(this.padding, 100, this.iterator.getPicture())
+                .setOrigin(0, 1)
+                .setScale(2);
+        else 
+            this.picture = this.scene.add.image(200, 200, this.iterator.getPicture());
+
+        this._setText();
 
         this.timedEvent = this.scene.time.addEvent({
             delay: 90,
@@ -110,7 +118,7 @@ DialogModalPlugin.prototype = {
     },
 
     // Calcuate the position of the text in the dialog window
-    _setText: function (text) {
+    _setText: function () {
         // Reset the dialog
         if (this.text) this.text.destroy();
 
@@ -121,9 +129,7 @@ DialogModalPlugin.prototype = {
             x : x,
             y : y,
             text : "",
-            style: {
-                wordWrap: { width: this._getGameWidth() - (this.padding * 2) - 25 }
-            }
+            style: { wordWrap: { width: this._getGameWidth() - (this.padding * 2) - 25 } }
         });
     },
 

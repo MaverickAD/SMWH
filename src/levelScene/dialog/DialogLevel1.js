@@ -7,18 +7,17 @@ export default class DialogLevel1 extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('zeus', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair16.png');
+        this.load.image('zeus', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/Zeus.svg');
     }
 
     create() {
         this.dialogFirst = new DialogModalPlugin(this)
         this.dialogFirst.init({
             dialogs : [
-                { text : 'taume tu es tres beau' },
-                { text : 'merci ca fait plaisir' },
-                { text : 'loick dit que cela n"est pas vrai' }],
+                { text : 'taume tu es tres beau', picture : 'zeus' },
+                { text : 'merci ca fait plaisir', picture : 'zeus' },
+                { text : 'loick dit que cela n"est pas vrai', picture : 'zeus' }],
         })
-        this.add.image(100, 100, 'zeus').setScale(3);
     }
 
     update() {}
