@@ -145,20 +145,20 @@ export class Press {
                 this.img.setTexture("pressHalf" + grape.color + "Unpressed"); this.state = "Half" + grape.color + "Unpressed";  break;
             case 'HalfRedUnpressed' : 
                 if(grape.color == "Red"){
-                    this.img.setTexture("pressFullRedUnpressed"); this.state = "FullRedUnpressed";
+                    this.img.setTexture("pressFullRedUnpressed1"); this.state = "FullRedUnpressed";
                 }
                 else{
-                    this.img.setTexture("pressFullRoseUnpressed"); this.state = "FullRoseUnpressed";
+                    this.img.setTexture("pressFullRoseUnpressed1"); this.state = "FullRoseUnpressed";
                 }
                 this.space = false;
                 this.pressable = true;
                 break;
             case 'HalfWhiteUnpressed' : 
                 if(grape.color == "Red"){
-                    this.img.setTexture("pressFullRoseUnpressed"); this.state = "FullRoseUnpressed";
+                    this.img.setTexture("pressFullRoseUnpressed1"); this.state = "FullRoseUnpressed";
                 }
                 else{
-                    this.img.setTexture("pressFullWhiteUnpressed"); this.state = "FullWhiteUnpressed";
+                    this.img.setTexture("pressFullWhiteUnpressed1"); this.state = "FullWhiteUnpressed";
                 }
                 this.space = false;
                 this.pressable = true;
