@@ -42,6 +42,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('pressWhitePressed',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressWhitePressed.png');
         this.load.image('pressRedPressed',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedPressed.png');
         this.load.image('pressRosePressed',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRosePressed.png');
+        this.load.image('shelf',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/shelf.png');
     }
 
 
@@ -78,7 +79,7 @@ export default class LevelSecond extends Phaser.Scene {
         //init bottle spawner
         this.bottleSpawner = 
             new BottleSpawner(
-                this.add.rectangle(ww*(3/12), wh*(7/8), ww*(1/12), wh*(1/8), 0xFFD700, 1), this
+                this.add.rectangle(ww*(3/12), wh*(8/8), ww*(2/12), wh*(1/8), 0xFFD700, 0), this
             );
         
         this.etiqueteur = 
@@ -191,7 +192,7 @@ export default class LevelSecond extends Phaser.Scene {
                 }
 
                 if(!this.secBall){
-                    if (this.isInRect(this.ball, this.bottleSpawner, 100)) {
+                    if (this.isInRect(this.ball, this.bottleSpawner, 200)) {
                         this.secBall = this.bottleSpawner.generateNewBottle('bottleEmptyWithoutTag');
                         this.allBottle.push(this.secBall);
                     }

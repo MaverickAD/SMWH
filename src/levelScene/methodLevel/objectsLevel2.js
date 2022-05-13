@@ -4,9 +4,12 @@ export class BottleSpawner {
         this.scene  = scene;
         this.obj    = obj;
 
-
+        
         this.x      = this.obj.x;
         this.y      = this.obj.y;
+        
+        this.img = this.scene.add.image(this.x, this.y - 90, "shelf").setScale(3);
+        this.img.setDepth(3);
 
         this.scene.physics.add.existing(this.obj, true);
         this.scene.physics.add.collider(this.obj, this.scene.ball);
@@ -152,7 +155,7 @@ export class Press {
     }
 
     press(){
-        
+
     }
 
     giveWine(bottle) {
