@@ -230,7 +230,7 @@ export class Command {
         }
 
 
-        this.img = this.scene.add.image((this.position / 12) * window.innerWidth, (1.5 / 8 ) * window.innerHeight, "command" + this.command);
+        this.img = this.scene.add.image(((this.position + 1) / 12) * window.innerWidth, (1.5 / 8 ) * window.innerHeight, "command" + this.command);
 
         this.x = this.img.x
         this.y = this.img.y
@@ -240,11 +240,23 @@ export class Command {
     receiveBottle(bottle){
         if(this.command == bottle.color && bottle.tag){
             this.scene.score += 10; 
+            this.scene.allCommands = this.scene.allCommands.filter(item => item != this);
+            this.scene.commandState[this.position - 1] = false;
+            this.scene.allBottle = this.scene.allBottle.filter(item => item != bottle);
+            bottle.destroy();
+            console.log(this.scene.score);
+            this.destroy();
+
         }
-        else{this.scene.score -= 10;}
-        this.scene.allBottle.filter(item => item != bottle);
-        bottle.destroy();
-        console.log(this.scene.score);
+        else{
+            this.scene.score -= 10;
+            this.scene.allBottle = this.scene.allBottle.filter(item => item != bottle);
+            bottle.destroy();
+            console.log(this.scene.score);
+        }
     }
+
+    destroy(){this.img.destroy()}
+
 
 }

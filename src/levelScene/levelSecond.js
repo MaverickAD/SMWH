@@ -147,8 +147,11 @@ export default class LevelSecond extends Phaser.Scene {
 
         this.allBottle = []
         this.allCommands.push(new Command(this, 1));
+        this.commandState = [true, false, false];
 
         this.score = 0;
+
+        this.counter = 0;
     }
     
     update() {
@@ -207,6 +210,19 @@ export default class LevelSecond extends Phaser.Scene {
             this.allFramesWalk.forEach(i => i.visible = false)
             this.allFramesWalk[this.actualFrame + (this.wichSubFrame > 5)].visible = true;
         }
+
+        this.counter ++;
+        if(this.counter > 1200){
+            this.counter = 0;
+            for(let i = 0; i < 3; i++){
+                if(!this.commandState[i]){
+                    this.allCommands.push(new Command(this, i + 1));
+                    this.commandState[i] = true;
+                    break;
+                }
+            }
+        }
+
 
         if (this.inputKeysMeta.SPACE.isDown && this.inputKeysMeta.SPACE.timeDown - this.lastSpaceDown > 50 ) {
 
