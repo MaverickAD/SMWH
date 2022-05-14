@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {BottleSpawner, Etiqueteur, Bottle, GrapeSpawner, Press, SendBottle} from "./methodLevel/objectsLevel2";
+import {BottleSpawner, Etiqueteur, Bottle, GrapeSpawner, Press, Command} from "./methodLevel/objectsLevel2";
 import {walls} from "./methodLevel/wallsLevel2";
 
 const ww = window.innerWidth;
@@ -50,9 +50,9 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('pressRosePressed',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRosePressed.png');
         this.load.image('shelf',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/shelf.png');
         this.load.image('ground',                   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/groundLevel2.png');
-        this.load.image('commandeRed',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/centaure.png');
-        this.load.image('commandeRose',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/cyclope');
-        this.load.image('commandeWhite',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/satyre');
+        this.load.image('commandRed',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/centaure.png');
+        this.load.image('commandRose',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/cyclope.png');
+        this.load.image('commandWhite',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/satyre.png');
     }
 
 
@@ -107,10 +107,6 @@ export default class LevelSecond extends Phaser.Scene {
                 this.add.rectangle(ww*(11.5/12), wh*(6.5/8), ww*(1/20), wh*(1/12), 0xFFD700, 0), this, "Red"
             ),
         ]
-
-        this.sendBottle = new SendBottle(
-            this.add.rectangle(ww*(6.5/20), wh*(1/2), ww*(1/40), wh*(1/24), 0xFF00FF, 1), this
-        )
         
 
         this.allPress = [
@@ -127,8 +123,12 @@ export default class LevelSecond extends Phaser.Scene {
                 this.add.rectangle(ww*(1.5/24), wh*(7.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , true
             )
         ]
-        this.secBall = undefined;//init if something are in the hand
 
+        this.allCommands = [];
+
+        
+        this.secBall = undefined;//init if something are in the hand
+        
         //sprite for the player, walk effect
         this.allFramesWalk = [
             this.add.image(this.ball.x, this.ball.y, 'persobas1grand').setScale(2.5),
@@ -146,8 +146,11 @@ export default class LevelSecond extends Phaser.Scene {
         this.wichSubFrame = 0;
 
         this.allBottle = []
-    }
+        this.allCommands.push(new Command(this, 1));
 
+        this.score = 0;
+    }
+    
     update() {
         //if player are something in his hand, put the object near of player
         if(this.secBall){
@@ -156,7 +159,7 @@ export default class LevelSecond extends Phaser.Scene {
             this.secBall.obj.y = this.ball.y + 10;
             this.secBall.y = this.ball.y + 10;
         }
-
+        
         //update of sprite when the player move
         this.allFramesWalk.forEach(i => {
             i.x = this.ball.x;
@@ -219,7 +222,6 @@ export default class LevelSecond extends Phaser.Scene {
                     if (this.isInRect(this.ball, this.bottleSpawner, 200)) {
                         this.secBall = this.bottleSpawner.generateNewBottle('bottleEmpty');
                         this.allBottle.push(this.secBall);
-                        this.sendBottle.generateCommand()
                     }
                 }
 
@@ -271,11 +273,13 @@ export default class LevelSecond extends Phaser.Scene {
                         }
                     }
                 }
-                if(this.isInRect(this.ball, this.sendBottle, 100)){
-                    console.log('sendBottle')
-                    console.log(this.secBall)
-                    this.secBall.destroy()
-                    this.secBall = undefined;
+
+                if(!DidSmth && this.secBall.id == "bottle"){
+                    for(let command of this.allCommands) {
+                        if(this.isInRect(this.ball, command, 100)){
+                            command.receiveBottle(this.secBall);
+                        }
+                    }
                 }
 
                 if(!DidSmth) {

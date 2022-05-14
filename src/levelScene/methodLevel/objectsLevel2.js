@@ -213,7 +213,7 @@ export class Press {
     }
 }
 
-export class SendBottle {
+export class Command {
     constructor(scene, position) {
         this.position = position;
         this.scene = scene;
@@ -225,27 +225,26 @@ export class SendBottle {
         else if (0.33 < randIndicator && randIndicator <= 0.66) {
             this.command = "White";
         }
-        else if (0.66 < randIndicator && randIndicator < 1){
+        else {
             this.command = "Rose";
         }
 
-        
-        this.img = 0;
-        this.command = undefined
+
+        this.img = this.scene.add.image((this.position / 12) * window.innerWidth, (1.5 / 8 ) * window.innerHeight, "command" + this.command);
 
         this.x = this.img.x
         this.y = this.img.y
 
     }
 
+    receiveBottle(bottle){
+        if(this.command == bottle.color && bottle.tag){
+            this.scene.score += 10; 
+        }
+        else{this.scene.score -= 10;}
+        this.scene.allBottle.filter(item => item != bottle);
+        bottle.destroy();
+        console.log(this.scene.score);
+    }
+
 }
-
-
-
-
-
-//presse
-//bottle
-//etiqueteur
-//spwaner raisin et bottle
-//mailbox
