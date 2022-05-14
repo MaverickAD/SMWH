@@ -49,7 +49,10 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('pressRedPressed',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedPressed.png');
         this.load.image('pressRosePressed',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRosePressed.png');
         this.load.image('shelf',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/shelf.png');
-        this.load.image('ground',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/groundLevel2.png');
+        this.load.image('ground',                   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/groundLevel2.png');
+        this.load.image('commandeRed',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/centaure.png');
+        this.load.image('commandeRose',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/cyclope');
+        this.load.image('commandeWhite',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/satyre');
     }
 
 
@@ -87,7 +90,7 @@ export default class LevelSecond extends Phaser.Scene {
         //init bottle spawner
         this.bottleSpawner = 
             new BottleSpawner(
-                this.add.rectangle(ww*(3/12), wh*(8/8), ww*(2/12), wh*(1/8), 0xFFD700, 0), this
+                this.add.rectangle(ww*(3.5/12), wh*(8/8), ww*(2/12), wh*(1/8), 0xFFD700, 0), this
             );
         
         this.etiqueteur = 
@@ -118,7 +121,10 @@ export default class LevelSecond extends Phaser.Scene {
                 this.add.rectangle(ww*(9.5/12), wh*(2.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , false
             ),
             new Press (
-                this.add.rectangle(ww*(1.5/24), wh*(5.5/8), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , true
+                this.add.rectangle(ww*(1.5/24), wh*(6.5/8), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , true
+            ),
+            new Press (
+                this.add.rectangle(ww*(1.5/24), wh*(7.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , true
             )
         ]
         this.secBall = undefined;//init if something are in the hand

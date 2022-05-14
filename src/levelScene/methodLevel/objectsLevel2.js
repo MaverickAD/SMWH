@@ -214,31 +214,30 @@ export class Press {
 }
 
 export class SendBottle {
-    constructor(obj, scene) {
-        this.obj = obj
-        this.scene = scene
-        this.command = undefined
+    constructor(scene, position) {
+        this.position = position;
+        this.scene = scene;
 
-        this.x = this.obj.x
-        this.y = this.obj.y
-
-        this.scene.physics.add.existing(this.obj, true);
-        this.scene.physics.add.collider(this.obj, this.scene.ball);
-    }
-
-    generateCommand(){
         const randIndicator = Math.random()
         if (randIndicator <= 0.33) {
-            this.command = "Red"
+            this.command = "Red";
         }
         else if (0.33 < randIndicator && randIndicator <= 0.66) {
-            this.command = "White"
+            this.command = "White";
         }
         else if (0.66 < randIndicator && randIndicator < 1){
-            this.command = "Rose"
+            this.command = "Rose";
         }
-        console.log(this.command)
+
+        
+        this.img = 0;
+        this.command = undefined
+
+        this.x = this.img.x
+        this.y = this.img.y
+
     }
+
 }
 
 
