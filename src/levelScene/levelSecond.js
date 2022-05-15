@@ -54,8 +54,8 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('commandRose',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/cyclope.png');
         this.load.image('commandWhite',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/satyre.png');
         this.load.image('fenceHori',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_horizontale.png');
-        this.load.image('fenceVert',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_verticale.png');
-        this.load.image('fence',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_alone.png');
+        this.load.image('fenceVert',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_vertical.png');
+        this.load.image('fence',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_alone.png');
     }
 
 
@@ -64,6 +64,14 @@ export default class LevelSecond extends Phaser.Scene {
         this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
 
 
+        this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (0.2/8), "fenceHori");
+        this.add.tileSprite(ww * (14/24),  wh *  (10/16) ,   ww * (2/12),   wh * (0.2/8), "fenceHori");
+        this.add.tileSprite(ww * (12/24),  wh *  (10.5/16) , ww * (0.2/24),wh * (1.4/16),  "fenceVert");
+        this.add.tileSprite(ww * (12/24),  wh *  (15/16) ,   ww * (0.2/24),wh * (2/16),  "fenceVert");
+        [ww * (12/24),  wh *  (10.5/16) , ww * (0.25/24),wh * (1/16)],
+        [ww * (12/24),  wh *  (15/16) ,   ww * (0.25/24),wh * (2/16)],
+ 
+
         //init player
         this.ball = this.add.rectangle(400, 250, 40, 75, 0xFFFFFF, 0);
         this.physics.add.existing(this.ball);
@@ -71,7 +79,7 @@ export default class LevelSecond extends Phaser.Scene {
 
         
         walls.forEach(elem => {
-            let closure = this.add.rectangle(...elem, 0xFFFFFF, 1);
+            let closure = this.add.rectangle(...elem, 0xFFFFFF, 0);
             this.physics.add.existing(closure, true);
             this.physics.add.collider(closure, this.ball);
         });
@@ -133,7 +141,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.secBall = undefined;//init if something are in the hand
         
         //sprite for the player, walk effect
-        this.allFramesWalk = [
+        this.allFramesWalk = [[
             this.add.image(this.ball.x, this.ball.y, 'persobas1grand').setScale(2.5),
             this.add.image(this.ball.x, this.ball.y, 'persobas2grand').setScale(2.5),
             this.add.image(this.ball.x, this.ball.y, 'persohaut1grand').setScale(2.5),
@@ -142,8 +150,30 @@ export default class LevelSecond extends Phaser.Scene {
             this.add.image(this.ball.x, this.ball.y, 'persodroite2grand').setScale(2.5),
             this.add.image(this.ball.x, this.ball.y, 'persogauche1grand').setScale(2.5),
             this.add.image(this.ball.x, this.ball.y, 'persogauche2grand').setScale(2.5)
+            ],
+            [
+            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5)
+            ],
+            [
+            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5)
+            ]
+
         ];
-        this.allFramesWalk.forEach(i => i.visible = false)
+        this.allFramesWalk.forEach(tab => tab.forEach(i => i.visible = false));
         this.allFramesWalk[0].visible = true;
         this.actualFrame = 0;
         this.wichSubFrame = 0;
@@ -152,12 +182,18 @@ export default class LevelSecond extends Phaser.Scene {
         this.allCommands.push(new Command(this, 1));
         this.commandState = [true, false, false];
 
+        this.currentAlter = 1;
+
         this.score = 0;
 
         this.counter = 0;
+        
     }
     
     update() {
+        this.counter ++;
+
+
         //if player are something in his hand, put the object near of player
         if(this.secBall){
             this.secBall.obj.x = this.ball.x + 10;
@@ -165,12 +201,18 @@ export default class LevelSecond extends Phaser.Scene {
             this.secBall.obj.y = this.ball.y + 10;
             this.secBall.y = this.ball.y + 10;
         }
+
+        //switch alter
+        if(this.counter % 180 == 0){
+            this.currentAlter = Math.floor(Math.random() * 3 + 1);
+            console.log(this.currentAlter);
+        }
         
         //update of sprite when the player move
-        this.allFramesWalk.forEach(i => {
+        this.allFramesWalk.forEach(tab => tab.forEach(i => {
             i.x = this.ball.x;
             i.y = this.ball.y;
-        })
+        }));
 
         const vx = this.ball.body.velocity.x;
         const vy = this.ball.body.velocity.y;
@@ -180,29 +222,29 @@ export default class LevelSecond extends Phaser.Scene {
         if (vx < 0) this.ball.body.setVelocityX(Math.min(vx + this.loosedSpeedperFrame, 0));
         if (vy < 0) this.ball.body.setVelocityY(Math.min(vy + this.loosedSpeedperFrame, 0));
 
-        if (vx > -300 && vx < 300) {
+        if (vx > -400 && vx < 400) {
             if (this.anyOfKey(this.rightKeys)) {
-                this.ball.body.setVelocityX(300);
+                this.ball.body.setVelocityX(300 + (this.currentAlter == 2 ? 50 : (this.currentAlter == 3 ? -50 : 0)));
                 this.actualFrame = 4;
             }
             else if (this.anyOfKey(this.leftKeys)) {
-                this.ball.body.setVelocityX(-300);
+                this.ball.body.setVelocityX(-300 - (this.currentAlter == 2 ? 50 : (this.currentAlter == 3 ? -50 : 0)));
                 this.actualFrame = 6;
             }
         }
 
-        if (vy > -300 && vy < 300) {
+        if (vy > -400 && vy < 400) {
             if (this.anyOfKey(this.upKeys)) {
                 
                 if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
-                    this.ball.body.setVelocityY(-300);
+                    this.ball.body.setVelocityY(-300 - (this.currentAlter == 2 ? 50 : (this.currentAlter == 3 ? -50 : 0)));
                     this.actualFrame = 2;
                 }
             }
             else if (this.anyOfKey(this.downKeys)) {
 
                 if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
-                    this.ball.body.setVelocityY(300);
+                    this.ball.body.setVelocityY(300 + (this.currentAlter == 2 ? 50 : (this.currentAlter == 3 ? -50 : 0)));
                     this.actualFrame = 0;
                 }
 
@@ -210,13 +252,12 @@ export default class LevelSecond extends Phaser.Scene {
         }
 
         if (vx != 0 || vy != 0) {
-            this.allFramesWalk.forEach(i => i.visible = false)
-            this.allFramesWalk[this.actualFrame + (this.wichSubFrame > 5)].visible = true;
+            this.allFramesWalk.forEach(tab => tab.forEach(i => i.visible = false));
+            this.allFramesWalk[this.currentAlter - 1][this.actualFrame + (this.wichSubFrame > 5)].visible = true;
         }
 
-        this.counter ++;
-        if(this.counter > 1200){
-            this.counter = 0;
+        if(this.counter % 1200 ==  0){
+            // this.counter = 0;
             for(let i = 0; i < 3; i++){
                 if(!this.commandState[i]){
                     this.allCommands.push(new Command(this, i + 1));
@@ -245,7 +286,7 @@ export default class LevelSecond extends Phaser.Scene {
                 }
 
                 for(let spawner of this.allGrapeSpawner) {
-                    if(this.isInRect(this.ball, spawner, 100)){
+                    if(this.isInRect(this.ball, spawner, 100) && this.currentAlter == 2){
                         this.secBall = spawner.getGrape();
                         break;
                     }
@@ -261,12 +302,12 @@ export default class LevelSecond extends Phaser.Scene {
 
             else {
                 let DidSmth = false;
-                if(this.isInRect(this.ball, this.etiqueteur, 100) && this.secBall.id == "bottle"){
+                if(this.isInRect(this.ball, this.etiqueteur, 100) && this.secBall.id == "bottle" && this.currentAlter == 1){
                     if(!this.secBall.tag){
                         DidSmth = true;
                         this.etiqueteur.putTag(this.secBall);
                     }
-                }
+                } 
                 if(!DidSmth && this.secBall.id == "grape"){
                     for(let press of this.allPress) {
                         if(this.isInRect(this.ball, press, 100)){

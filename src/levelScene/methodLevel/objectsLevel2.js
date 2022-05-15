@@ -172,6 +172,7 @@ export class Press {
 
     press(){
         this.pressAdvencement += 5;
+        if (this.scene.currentAlter == 3){this.pressAdvencement += 15};
         this.advencementBar.width = this.pressAdvencement;
         this.frame ++; 
         if (this.frame == 4){
