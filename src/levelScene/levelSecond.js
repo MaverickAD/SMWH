@@ -53,6 +53,9 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('commandRed',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/centaure.png');
         this.load.image('commandRose',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/cyclope.png');
         this.load.image('commandWhite',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/satyre.png');
+        this.load.image('fenceHori',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_horizontale.png');
+        this.load.image('fenceVert',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_verticale.png');
+        this.load.image('fence',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_alone.png');
     }
 
 
