@@ -80,8 +80,8 @@ export default class LevelSecond extends Phaser.Scene {
         this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
 
 
-        this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (0.2/8), "fenceHori");
-        this.add.tileSprite(ww * (14/24),  wh *  (10/16) ,   ww * (2/12),   wh * (0.2/8), "fenceHori");
+        this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
+        this.add.tileSprite(ww * (14/24),  wh *  (10/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
         this.add.tileSprite(ww * (12/24),  wh *  (10.5/16) , ww * (0.2/24),wh * (1.4/16),  "fenceVert");
         this.add.tileSprite(ww * (12/24),  wh *  (15/16) ,   ww * (0.2/24),wh * (2/16),  "fenceVert");
         [ww * (12/24),  wh *  (10.5/16) , ww * (0.25/24),wh * (1/16)],
