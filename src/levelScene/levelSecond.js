@@ -72,6 +72,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('alter2gauche2',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-gauche1.png');
         this.load.image('alter2haut1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut.png');
         this.load.image('alter2haut2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut1.png');
+        this.load.image('bar',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar.png');
     }
 
 
@@ -194,6 +195,8 @@ export default class LevelSecond extends Phaser.Scene {
         this.allFramesWalk[0][0].visible = true;
         this.actualFrame  = 0;
         this.wichSubFrame = 0;
+
+        this.add.image(ww * (3/12), wh * (1/8), "bar" )
 
         this.allBottle = []
         this.allCommands.push(new Command(this, 1));
