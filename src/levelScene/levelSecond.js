@@ -64,6 +64,14 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('alter1gauche2',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-gauche1.png');
         this.load.image('alter1haut1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-haut.png');
         this.load.image('alter1haut2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-haut1.png');
+        this.load.image('alter2bas1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-bas.png');
+        this.load.image('alter2bas2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-bas1.png');
+        this.load.image('alter2droite1',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-droite.png');
+        this.load.image('alter2droite2',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-droite1.png');
+        this.load.image('alter2gauche1',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-gauche.png');
+        this.load.image('alter2gauche2',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-gauche1.png');
+        this.load.image('alter2haut1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut.png');
+        this.load.image('alter2haut2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut1.png');
     }
 
 
@@ -162,22 +170,22 @@ export default class LevelSecond extends Phaser.Scene {
             [
             this.add.image(this.ball.x, this.ball.y, 'alter1bas1').setScale(2.5),
             this.add.image(this.ball.x, this.ball.y, 'alter1bas2').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1haut1').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1haut2').setScale(2.5),
             this.add.image(this.ball.x, this.ball.y, 'alter1droite1').setScale(2.5),
             this.add.image(this.ball.x, this.ball.y, 'alter1droite2').setScale(2.5),
             this.add.image(this.ball.x, this.ball.y, 'alter1gauche1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1gauche2').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1haut1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1haut2').setScale(2.5)
+            this.add.image(this.ball.x, this.ball.y, 'alter1gauche2').setScale(2.5)
             ],
             [
-            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5)
+                this.add.image(this.ball.x, this.ball.y, 'alter2bas1').setScale(2.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2bas2').setScale(2.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2haut1').setScale(2.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2haut2').setScale(2.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2droite1').setScale(2.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2droite2').setScale(2.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2gauche1').setScale(2.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2gauche2').setScale(2.5)
             ]
 
         ];
