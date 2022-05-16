@@ -80,10 +80,11 @@ export default class LevelSecond extends Phaser.Scene {
         this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
 
 
-        this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
-        this.add.tileSprite(ww * (14/24),  wh *  (10/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
-        this.add.tileSprite(ww * (12/24),  wh *  (10.5/16) , ww * (0.2/24),wh * (1.4/16),  "fenceVert");
-        this.add.tileSprite(ww * (12/24),  wh *  (15/16) ,   ww * (0.2/24),wh * (2/16),  "fenceVert");
+        this.add.tileSprite(ww * (22/24) ,  wh *  (9.5/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
+        this.add.tileSprite(ww * (14/24),  wh *  (9.5/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
+        this.add.tileSprite(ww * (12/24),  wh *  (10.5/16) , ww * (0.36/24),wh * (1.48/16),  "fenceVert");
+        this.add.tileSprite(ww * (12/24),  wh *  (15/16) ,   ww * (0.36/24),wh * (2/16),  "fenceVert");
+        this.add.image(ww * (12/24),  wh *  (11.5/16), "fence").setScale(2);
         [ww * (12/24),  wh *  (10.5/16) , ww * (0.25/24),wh * (1/16)],
         [ww * (12/24),  wh *  (15/16) ,   ww * (0.25/24),wh * (2/16)],
  
@@ -190,8 +191,8 @@ export default class LevelSecond extends Phaser.Scene {
 
         ];
         this.allFramesWalk.forEach(tab => tab.forEach(i => i.visible = false));
-        this.allFramesWalk[0].visible = true;
-        this.actualFrame = 0;
+        this.allFramesWalk[0][0].visible = true;
+        this.actualFrame  = 0;
         this.wichSubFrame = 0;
 
         this.allBottle = []
@@ -309,7 +310,7 @@ export default class LevelSecond extends Phaser.Scene {
                 }
 
                 for(let press of this.allPress){
-                    if(this.isInRect(this.ball, press, 80) && press.pressable){
+                    if(this.isInRect(this.ball, press, 100) && press.pressable){
                         press.press();
                     }
                 }
@@ -340,7 +341,7 @@ export default class LevelSecond extends Phaser.Scene {
 
                 if(!DidSmth && this.secBall.id == "bottle" ){
                     for(let press of this.allPress) {
-                        if(this.isInRect(this.ball, press, 80)){
+                        if(this.isInRect(this.ball, press, 100)){
                             if(press.collectable){
                                 DidSmth = true;
                                 press.giveWine(this.secBall);
