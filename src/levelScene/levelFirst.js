@@ -139,8 +139,6 @@ export default class LevelFirst extends Phaser.Scene {
       )
     ];
 
-    this.viewScore = this.add.text(ww*(12/20), wh*(1/2), this.score);
-
     this.secBall = undefined;//init if something are in the hand
     this.allSpawner.forEach(s => s.generateNewPackage());//generate new object to package
 
@@ -182,11 +180,17 @@ export default class LevelFirst extends Phaser.Scene {
       loop: true
     })
 
-    this.chronoText = this.add.text(ww - 75, 0, this.minuteChrono + "0:0" + this.secondChrono, {
+    this.chronoText = this.add.text(ww - 190, 0, "Timer : " + this.minuteChrono + "0:0" + this.secondChrono, {
       fontSize: "24px"
     })
     this.chronoText.setScrollFactor(0)
     this.chronoText.setDepth(15)
+
+    this.scoreText = this.add.text(ww - 190, 25, "Score : " + this.score, {
+      fontSize: "24px"
+    });
+    this.scoreText.setScrollFactor(0)
+    this.scoreText.setDepth(15)
   }
 
   update() {
@@ -307,11 +311,26 @@ export default class LevelFirst extends Phaser.Scene {
       }
 
       this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
+
+      if(this.minuteChrono === 3 && this.secondChrono === 0){
+        this.scene.start('LevelSecond')
+      }
     }
 
     this.wichSubFrame = this.wichSubFrame == 10 ? 0 : this.wichSubFrame + 1;
     this.allPacker.forEach(p => p.actualizeSituationPackage(this.time.now, this.wichSubFrame > 5));
-    this.viewScore.text = this.score;
+    this.scoreText.text = "Score : " + this.score;
+
+    if(this.minuteChrono === 3 && this.secondChrono === 0){
+      this.myTimer.paused = true;
+      this.upKeys        = [];
+      this.downKeys      = [];
+      this.leftKeys      = [];
+      this.rightKeys     = [];
+      this.endMessageBlock = this.add.rectangle(ww / 2, wh / 2, 600, 400, 0xFFFFFF, 1);
+      this.endMessageBlock.setDepth(20)
+
+    }
   }
 
   anyOfKey(keys, duration=0) {
@@ -337,18 +356,18 @@ export default class LevelFirst extends Phaser.Scene {
 
     if(this.secondChrono < 10){
       if(this.minuteChrono < 10){
-        this.chronoText.setText("0" + this.minuteChrono + ":0" + this.secondChrono)
+        this.chronoText.setText("Timer : " + "0" + this.minuteChrono + ":0" + this.secondChrono)
       }
       else {
-        this.chronoText.setText(this.minuteChrono + ":0" + this.secondChrono)
+        this.chronoText.setText("Timer : " + this.minuteChrono + ":0" + this.secondChrono)
       }
     }
     else{
       if(this.minuteChrono < 10) {
-        this.chronoText.setText("0" + this.minuteChrono + ":" + this.secondChrono);
+        this.chronoText.setText("Timer : " + "0" + this.minuteChrono + ":" + this.secondChrono);
         }
       else {
-        this.chronoText.setText(this.minuteChrono + ":" + this.secondChrono)
+        this.chronoText.setText("Timer : " + this.minuteChrono + ":" + this.secondChrono)
       }
     }
   }
@@ -357,4 +376,3 @@ export default class LevelFirst extends Phaser.Scene {
 
 
 //sound
-//score into end game
