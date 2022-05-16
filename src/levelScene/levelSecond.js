@@ -77,7 +77,7 @@ export default class LevelSecond extends Phaser.Scene {
 
 
     create() {
-        this.add.tileSprite(ww * 0.5 , wh * 0.5  ,  ww , wh , 'ground').setScale(1);
+        this.add.tileSprite(ww * 0.5 , wh * 0.5  ,  ww , wh , 'ground').setScale(1.2);
         this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
 
 
