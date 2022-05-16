@@ -72,19 +72,21 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('alter2gauche2',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-gauche1.png');
         this.load.image('alter2haut1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut.png');
         this.load.image('alter2haut2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut1.png');
+        this.load.image('bar',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar.png');
     }
 
 
     create() {
-        this.add.tileSprite(ww * 0.5 , wh * 0.5  ,  ww , wh , 'ground').setScale(1);
+        this.add.tileSprite(ww * 0.5 , wh * 0.5  ,  ww , wh , 'ground').setScale(1.2);
         this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
 
 
-        this.add.tileSprite(ww * (22/24) ,  wh *  (9.5/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
+        this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
         this.add.tileSprite(ww * (14/24),  wh *  (9.5/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
         this.add.tileSprite(ww * (12/24),  wh *  (10.5/16) , ww * (0.36/24),wh * (1.48/16),  "fenceVert");
         this.add.tileSprite(ww * (12/24),  wh *  (15/16) ,   ww * (0.36/24),wh * (2/16),  "fenceVert");
         this.add.image(ww * (12/24),  wh *  (11.5/16), "fence").setScale(2);
+        this.add.image(ww * (16.1/24),  wh *  (9.5/16), "fence").setScale(2);
         [ww * (12/24),  wh *  (10.5/16) , ww * (0.25/24),wh * (1/16)],
         [ww * (12/24),  wh *  (15/16) ,   ww * (0.25/24),wh * (2/16)],
  
@@ -194,6 +196,8 @@ export default class LevelSecond extends Phaser.Scene {
         this.allFramesWalk[0][0].visible = true;
         this.actualFrame  = 0;
         this.wichSubFrame = 0;
+
+        this.add.image(ww * (3/12), wh * (2/8), "bar" ).setScale(3)
 
         this.allBottle = []
         this.allCommands.push(new Command(this, 1));
