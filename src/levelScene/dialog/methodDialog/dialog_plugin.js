@@ -70,10 +70,12 @@ DialogModalPlugin.prototype = {
                      getMusic :   () => this.dialogs[n-1]?.sound,
                      isEven :     () => n % 2 === 0,
                      isEnded :    () => n === m,
+                     getAnim :    () => this.dialogs[n-1]?.anim
                    };
         })();
-
-        this.setText(this.iterator.next());
+        
+        const firstText = this.iterator.next();
+        this.setText(firstText);
     },
 
     // Hide/Show the dialog window
@@ -95,7 +97,17 @@ DialogModalPlugin.prototype = {
     // Sets the text for the dialog window
     setText: function (text) {
 
-        if (text === undefined) return;
+        if (text === undefined) {
+            // if (this.animation = this.iterator.getAnim()) {
+            //     this.timedEvent = this.scene.time.addEvent({
+            //         delay: 90,
+            //         callback: this.animate,
+            //         callbackScope: this,
+            //         loop: false
+            //     });
+            // }
+            return;
+        }
 
         // Reset the dialog
         this.eventCounter = 0;
@@ -119,9 +131,9 @@ DialogModalPlugin.prototype = {
             this.stackPicture.push(this.scene.add.image(
                 this._getGameWidth()  - this.padding,
                 this._getGameHeight() - this.windowHeight - this.padding,
-                this.iterator.getPicture())
-                    .setOrigin(1, 1)
-                    .setScale(3));
+                this.iterator.getPicture()
+            ).setOrigin(1, 1)
+             .setScale(3));
             this.stackPicture[1].flipX = true;
         }
 
@@ -136,6 +148,19 @@ DialogModalPlugin.prototype = {
             callbackScope: this,
             loop: true
         });
+    },
+
+    animate : function () {
+        if (!this.animation) {
+            this.timedEvent.destroy();
+            return;
+        }
+        if (this.actualFrameAnimation) this.actualFrameAnimation.destroy();
+        this.actualFrameAnimation = this.scene.add.image(
+            this._getGameWidth()  - this.padding,
+            this._getGameHeight() - this.windowHeight - this.padding,    
+            this.animation.shift()
+        )
     },
 
     // Calcuate the position of the text in the dialog window
