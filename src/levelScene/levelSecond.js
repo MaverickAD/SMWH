@@ -56,6 +56,14 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('fenceHori',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_horizontale.png');
         this.load.image('fenceVert',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_vertical.png');
         this.load.image('fence',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fence_alone.png');
+        this.load.image('alter1bas1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-bas.png');
+        this.load.image('alter1bas2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-bas1.png');
+        this.load.image('alter1droite1',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-droite.png');
+        this.load.image('alter1droite2',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-droite1.png');
+        this.load.image('alter1gauche1',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-gauche.png');
+        this.load.image('alter1gauche2',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-gauche1.png');
+        this.load.image('alter1haut1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-haut.png');
+        this.load.image('alter1haut2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-haut1.png');
     }
 
 
@@ -152,14 +160,14 @@ export default class LevelSecond extends Phaser.Scene {
             this.add.image(this.ball.x, this.ball.y, 'persogauche2grand').setScale(2.5)
             ],
             [
-            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'commandRed').setScale(2.5)
+            this.add.image(this.ball.x, this.ball.y, 'alter1bas1').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1bas2').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1droite1').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1droite2').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1gauche1').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1gauche2').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1haut1').setScale(2.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1haut2').setScale(2.5)
             ],
             [
             this.add.image(this.ball.x, this.ball.y, 'commandRose').setScale(2.5),
