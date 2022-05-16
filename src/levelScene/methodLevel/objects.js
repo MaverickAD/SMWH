@@ -16,21 +16,43 @@ export class Spawner {
     generateNewPackage() {
         this.fill = true;
         const randIndicator = Math.random()
-        if (randIndicator <= 0.33)
+        if (randIndicator <= 0.16){
             this.waitingObject = new Package(
-                this.scene.add.circle(this.x, this.y, 10, 0xFF0000, 1),
+                this.scene.add.image(this.x - 5, this.y - 30, 'leaf').setScale(0.8),
                 0
             );
-        else if (randIndicator <= 0.66)
+        }
+        else if (0.16 < randIndicator && randIndicator <= 0.32){
             this.waitingObject = new Package(
-                this.scene.add.circle(this.x, this.y,10, 0x00FF00, 1),
+                this.scene.add.image(this.x - 5, this.y - 30, 'sunglasses').setScale(1.2),
+                0
+            );
+        }
+        else if (0.32 < randIndicator && randIndicator <= 0.48){
+            this.waitingObject = new Package(
+                this.scene.add.image(this.x - 5, this.y - 30, 'miror').setScale(1),
                 1
             );
-        else
+        }
+        else if (0.48 < randIndicator && randIndicator <= 0.64){
             this.waitingObject = new Package(
-                this.scene.add.circle(this.x, this.y, 10, 0x0000FF, 1),
+                this.scene.add.image(this.x - 5, this.y - 30, 'comb').setScale(1.2),
+                1
+            );
+        }
+        else if (0.64 < randIndicator && randIndicator <= 0.80){
+            this.waitingObject = new Package(
+                this.scene.add.image(this.x - 5, this.y - 30, 'bone').setScale(2),
                 2
             );
+        }
+        else if (0.80 < randIndicator){
+            this.waitingObject = new Package(
+                this.scene.add.image(this.x - 5, this.y - 30, 'bowl').setScale(1.5),
+                2
+            );
+        }
+        this.waitingObject.obj.setDepth(5)
     }
 
     getObj(){
@@ -89,7 +111,7 @@ export class Packer {
 
     initPackaging(packageObject, timer){
         this.package = new Package(
-            this.scene.add.circle(this.x, this.y, 10, 0x000000, 1),
+            this.scene.add.image(this.x + 20, this.y, packageObject.obj.texture.key),
             packageObject.id
         );
         this.timePackaging = timer;
@@ -109,7 +131,8 @@ export class Packer {
             this.allFrames[1].visible = false;
             this.package.isPacked = true;
             this.finished = true;
-            this.package.obj.setFillStyle(0xFF00E5);
+            this.package.obj.setTexture('box');
+            this.package.obj.setScale(0.5)
         }
     }
 

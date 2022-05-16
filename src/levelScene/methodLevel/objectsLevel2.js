@@ -11,6 +11,7 @@ export class BottleSpawner {
         this.img = this.scene.add.image(this.x, this.y - 90, "shelf").setScale(3);
         this.img.setDepth(3);
 
+    
         this.scene.physics.add.existing(this.obj, true);
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
@@ -30,7 +31,8 @@ export class Bottle {
 
         this.id_state = 0;
 
-        this.state = "Empty";
+        this.color = "Empty";
+        this.tag = false;
 
         this.x = this.scene.ball.x;
         this.y = this.scene.ball.y;
@@ -56,7 +58,8 @@ export class Etiqueteur {
     }
 
     putTag(bottle) {
-        bottle.obj.setTexture("bottle" + bottle.state + "WithTag");
+        bottle.obj.setTexture("bottle" + bottle.color + "WithTag");
+        bottle.tag = true;
         bottle.id_state += 1;
     }
 }
@@ -117,9 +120,12 @@ export class Press {
         this.obj    = obj;
 
         this.state  = "Empty";
+        this.color = "Empty"
         this.space = true;
         this.pressable = false;
+        this.collectable = false;
 
+        this.frame = 1;
         this.pressAdvencement = 0; 
 
 
@@ -127,10 +133,11 @@ export class Press {
         this.y      = this.obj.y;
 
         
-        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 50, 0, 20, 0xFFD700, 1);
+        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 100, 0, 20, 0xFFD700, 1);
         this.advencementBar.setDisplayOrigin(0,1);
-        this.img =  this.scene.add.image(this.x, this.y, "press" + this.state)
-
+        this.img =  this.scene.add.image(this.x, this.y, "press" + this.state).setScale(1.5);
+        
+        
         this.scene.physics.add.existing(this.obj, true);
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
@@ -141,20 +148,20 @@ export class Press {
                 this.img.setTexture("pressHalf" + grape.color + "Unpressed"); this.state = "Half" + grape.color + "Unpressed";  break;
             case 'HalfRedUnpressed' : 
                 if(grape.color == "Red"){
-                    this.img.setTexture("pressFullRedUnpressed"); this.state = "FullRedUnpressed";
+                    this.img.setTexture("pressFullRedUnpressed1"); this.state = "FullRedUnpressed";
                 }
                 else{
-                    this.img.setTexture("pressFullRoseUnpressed"); this.state = "FullRoseUnpressed";
+                    this.img.setTexture("pressFullRoseUnpressed1"); this.state = "FullRoseUnpressed";
                 }
                 this.space = false;
                 this.pressable = true;
                 break;
             case 'HalfWhiteUnpressed' : 
                 if(grape.color == "Red"){
-                    this.img.setTexture("pressFullRoseUnpressed"); this.state = "FullRoseUnpressed";
+                    this.img.setTexture("pressFullRoseUnpressed1"); this.state = "FullRoseUnpressed";
                 }
                 else{
-                    this.img.setTexture("pressFullWhiteUnpressed"); this.state = "FullWhiteUnpressed";
+                    this.img.setTexture("pressFullWhiteUnpressed1"); this.state = "FullWhiteUnpressed";
                 }
                 this.space = false;
                 this.pressable = true;
@@ -165,58 +172,92 @@ export class Press {
 
     press(){
         this.pressAdvencement += 5;
+        if (this.scene.currentAlter == 3){this.pressAdvencement += 15};
         this.advencementBar.width = this.pressAdvencement;
+        this.frame ++; 
+        if (this.frame == 4){
+            this.frame = 1;
+        }
+
+        this.img.setTexture("press" + this.state + this.frame);
+
+
         if (this.pressAdvencement >= 100){
             switch (this.state){
-                case "FullRedUnpressed" : this.state =   "RedPressed"; break;
-                case "FullWhiteUnpressed" : this.state = "WhitePressed"; break;
-                case "FullRoseUnpressed" : this.state =  "RosePressed"; break;
+                case "FullRedUnpressed" : this.state =   "RedPressed"; this.color = "Red"; break;
+                case "FullWhiteUnpressed" : this.state = "WhitePressed"; this.color = "White"; break;
+                case "FullRoseUnpressed" : this.state =  "RosePressed"; this.color = "Rose"; break;
             }
+            this.collectable = true;
             this.advencementBar.width = 0;
+            this.pressAdvencement = 0;
             this.img.setTexture("press" + this.state);
             this.pressable = false;
         }
     }
 
     giveWine(bottle) {
-        this.state = "empty"
+        
+        if (bottle.tag){
+            bottle.obj.setTexture("bottle" + this.color + "WithTag");
+        }
+        else{
+            bottle.obj.setTexture("bottle" + this.color);
+        }
+        bottle.color = this.color;
+
+        this.img.setTexture("pressEmpty");
+        this.state = "Empty"; 
+        this.collectable = false;
+        this.color = "Empty"
+        this.space = true;
     }
 }
 
-export class SendBottle {
-    constructor(obj, scene) {
-        this.obj = obj
-        this.scene = scene
-        this.command = undefined
+export class Command {
+    constructor(scene, position) {
+        this.position = position;
+        this.scene = scene;
 
-        this.x = this.obj.x
-        this.y = this.obj.y
-
-        this.scene.physics.add.existing(this.obj, true);
-        this.scene.physics.add.collider(this.obj, this.scene.ball);
-    }
-
-    generateCommand(){
         const randIndicator = Math.random()
         if (randIndicator <= 0.33) {
-            this.command = "Red"
+            this.command = "Red";
         }
         else if (0.33 < randIndicator && randIndicator <= 0.66) {
-            this.command = "White"
+            this.command = "White";
         }
-        else if (0.66 < randIndicator && randIndicator < 1){
-            this.command = "Rose"
+        else {
+            this.command = "Rose";
         }
-        console.log(this.command)
+
+
+        this.img = this.scene.add.image(((this.position + 1) / 12) * window.innerWidth, (1.5 / 8 ) * window.innerHeight, "command" + this.command);
+
+        this.x = this.img.x
+        this.y = this.img.y
+
     }
+
+    receiveBottle(bottle){
+        if(this.command == bottle.color && bottle.tag){
+            this.scene.score += 10; 
+            this.scene.allCommands = this.scene.allCommands.filter(item => item != this);
+            this.scene.commandState[this.position - 1] = false;
+            this.scene.allBottle = this.scene.allBottle.filter(item => item != bottle);
+            bottle.destroy();
+            console.log(this.scene.score);
+            this.destroy();
+
+        }
+        else{
+            this.scene.score -= 10;
+            this.scene.allBottle = this.scene.allBottle.filter(item => item != bottle);
+            bottle.destroy();
+            console.log(this.scene.score);
+        }
+    }
+
+    destroy(){this.img.destroy()}
+
+
 }
-
-
-
-
-
-//presse
-//bottle
-//etiqueteur
-//spwaner raisin et bottle
-//mailbox

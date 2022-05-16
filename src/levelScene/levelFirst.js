@@ -25,6 +25,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('persohaut2',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2.png');
     this.load.image('mailboxblue1', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxblue1.png');
     this.load.image('mailboxred1',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxred1.png');
+    this.load.image('mailboxgreen1','https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxgreen1.png');
     this.load.image('packer1',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
     this.load.image('packer2',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
     this.load.image('packedpacket', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packedpacket.png');
@@ -33,6 +34,14 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('caducee',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/caducee.png');
     this.load.image('marteau',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/marteau.png');
     this.load.image('rat',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/rat.png');
+    this.load.image('spwaner',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/spawner.png');
+    this.load.image('leaf',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_leaf.png');
+    this.load.image('sunglasses',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_sunglasses.png');
+    this.load.image('miror',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_miror.png');
+    this.load.image('comb',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_comb.png');
+    this.load.image('bone',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bone.png');
+    this.load.image('bowl',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bowl.png');
+    this.load.image('box',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/box_packed.png');
 
     for (let i = 1; i < 17; i++)
       eval(`this.load.image('eclair${i}', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png');`)
@@ -89,13 +98,17 @@ export default class LevelFirst extends Phaser.Scene {
     //here 2 spawner but we can add more
     this.allSpawner = [
       new Spawner(
-          this.add.rectangle(ww*(0.5/20), wh*(4.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
+          this.add.rectangle(ww * (0.5 / 20), wh * (4.5 / 12), ww * (1 / 20), wh * (1 / 12), 0xFFD700, 0.1), this
       ),
 
       new Spawner(
-          this.add.rectangle(ww*(0.5/20), wh*(6.5/12), ww*(1/20), wh*(1/12), 0xFFD700, 1), this
+          this.add.rectangle(ww * (0.5 / 20), wh * (6.5 / 12), ww * (1 / 20), wh * (1 / 12), 0xFFD700, 0.1), this
       )
     ];
+
+
+    this.add.image(this.allSpawner[0].x, this.allSpawner[0].y, 'spwaner').setScale(0.5)
+    this.add.image(this.allSpawner[1].x, this.allSpawner[1].y, 'spwaner').setScale(0.5)
 
     //init mailbox
     this.mailBoxCerbere = new MailBox(
@@ -103,7 +116,7 @@ export default class LevelFirst extends Phaser.Scene {
     );
 
     this.mailBoxMedusa = new MailBox(
-        this.add.rectangle(ww*(7.5/20), wh*(11.5/12), ww*(1/20), wh*(1/12), 0x00FF00, 1), this, 1
+        this.add.rectangle(ww*(7.5/20), wh*(11.5/12), ww*(1/20), wh*(1/12), 0x00FF00, 0), this, 1
     );
 
     this.mailBoxIcare = new MailBox(
@@ -132,7 +145,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.allSpawner.forEach(s => s.generateNewPackage());//generate new object to package
 
     //init maks around the player
-    this.spotlight  = this.add.image(this.ball.x, this.ball.y, 'mask_blur').setDepth(2);
+    this.spotlight  = this.add.image(this.ball.x, this.ball.y, 'mask_blur').setDepth(10);
 
     //sprite for the player, walk effect
     this.allFramesWalk = [
@@ -148,12 +161,32 @@ export default class LevelFirst extends Phaser.Scene {
 
     this.add.image(this.mailBoxIcare.x,   this.mailBoxIcare.y, 'mailboxblue1').setScale(0.5);
     this.add.image(this.mailBoxCerbere.x, this.mailBoxCerbere.y, 'mailboxred1').setScale(0.5);
+    this.add.image(this.mailBoxMedusa.x,  this.mailBoxMedusa.y, 'mailboxgreen1').setScale(0.5);
+
 
     this.allFramesWalk.forEach(i => i.visible = false)
     this.allFramesWalk[0].visible = true;
     this.actualFrame = 0;
     this.wichSubFrame = 0;
 
+    
+    this.chronoText;
+    this.myTimer;
+    this.secondChrono = 0;
+    this.minuteChrono = 0;
+
+    this.myTimer = this.time.addEvent({
+      delay: 1000,
+      callback: this.startChrono,
+      callbackScope: this,
+      loop: true
+    })
+
+    this.chronoText = this.add.text(ww - 75, 0, this.minuteChrono + "0:0" + this.secondChrono, {
+      fontSize: "24px"
+    })
+    this.chronoText.setScrollFactor(0)
+    this.chronoText.setDepth(15)
   }
 
   update() {
@@ -235,6 +268,7 @@ export default class LevelFirst extends Phaser.Scene {
         for (let p of this.allPacker) {
           if (p.finished && this.isInRect(this.ball, p, 150)) {
             this.secBall = p.package;
+            this.secBall.obj.setScale(0.3)
             p.takeObject();
             break;
           }
@@ -294,10 +328,33 @@ export default class LevelFirst extends Phaser.Scene {
     return Math.sqrt(Math.pow(obj1.y - obj2.y, 2) + Math.pow(obj1.x - obj2.x, 2));
   }
 
+  startChrono() {
+    this.secondChrono += 1;
+    if(this.secondChrono === 60){
+      this.minuteChrono += 1;
+      this.secondChrono = 0;
+    }
+
+    if(this.secondChrono < 10){
+      if(this.minuteChrono < 10){
+        this.chronoText.setText("0" + this.minuteChrono + ":0" + this.secondChrono)
+      }
+      else {
+        this.chronoText.setText(this.minuteChrono + ":0" + this.secondChrono)
+      }
+    }
+    else{
+      if(this.minuteChrono < 10) {
+        this.chronoText.setText("0" + this.minuteChrono + ":" + this.secondChrono);
+        }
+      else {
+        this.chronoText.setText(this.minuteChrono + ":" + this.secondChrono)
+      }
+    }
+  }
+
 }
 
 
-//add sprite missing
 //sound
-//chrono
 //score into end game
