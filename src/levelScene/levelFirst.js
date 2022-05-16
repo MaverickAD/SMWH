@@ -169,6 +169,24 @@ export default class LevelFirst extends Phaser.Scene {
     this.actualFrame = 0;
     this.wichSubFrame = 0;
 
+    
+    this.chronoText;
+    this.myTimer;
+    this.secondChrono = 0;
+    this.minuteChrono = 0;
+
+    this.myTimer = this.time.addEvent({
+      delay: 1000,
+      callback: this.startChrono,
+      callbackScope: this,
+      loop: true
+    })
+
+    this.chronoText = this.add.text(ww - 75, 0, this.minuteChrono + "0:0" + this.secondChrono, {
+      fontSize: "24px"
+    })
+    this.chronoText.setScrollFactor(0)
+    this.chronoText.setDepth(15)
   }
 
   update() {
@@ -310,10 +328,33 @@ export default class LevelFirst extends Phaser.Scene {
     return Math.sqrt(Math.pow(obj1.y - obj2.y, 2) + Math.pow(obj1.x - obj2.x, 2));
   }
 
+  startChrono() {
+    this.secondChrono += 1;
+    if(this.secondChrono === 60){
+      this.minuteChrono += 1;
+      this.secondChrono = 0;
+    }
+
+    if(this.secondChrono < 10){
+      if(this.minuteChrono < 10){
+        this.chronoText.setText("0" + this.minuteChrono + ":0" + this.secondChrono)
+      }
+      else {
+        this.chronoText.setText(this.minuteChrono + ":0" + this.secondChrono)
+      }
+    }
+    else{
+      if(this.minuteChrono < 10) {
+        this.chronoText.setText("0" + this.minuteChrono + ":" + this.secondChrono);
+        }
+      else {
+        this.chronoText.setText(this.minuteChrono + ":" + this.secondChrono)
+      }
+    }
+  }
+
 }
 
 
-//add sprite missing
 //sound
-//chrono
 //score into end game
