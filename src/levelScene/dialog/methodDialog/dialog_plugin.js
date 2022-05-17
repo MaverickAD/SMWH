@@ -1,9 +1,10 @@
+// @ts-check
 export var DialogModalPlugin = function (scene) {
     this.scene = scene;
     this.systems = scene.sys;
 
     this.scene.input.keyboard.on('keydown-SPACE', _ => {
-        if (this.iterator.isEnded()) return;
+        if (this.iterator.isEnded()) this.scene.scene.start(this.nextScene);
         if (this.isFinished()) {
             this.setText(this.iterator.next());
             const newx = this.iterator.isEven() ? this.otherX : this.defaultX;
@@ -52,6 +53,7 @@ DialogModalPlugin.prototype = {
         this.windowHeight    = opts.windowHeight    || 150;
         this.padding         = opts.padding         || 32;
         this.dialogs         = opts.dialogs
+        this.nextScene       = opts.nextScene
 
         this.eventCounter = 0;
         this.stackPicture = [];

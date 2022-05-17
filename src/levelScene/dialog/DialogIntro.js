@@ -8,9 +8,9 @@ export default class DialogIntro extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('zeus', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/Zeus.svg');
-        for (let i = 1; i < 17; i++) 
-            this.load.image(`eclair${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/eclair${i}.png`);
+        this.load.image('zeus',    'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/Zeus.svg');
+        this.load.image('trident', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/trident.png')
+        this.load.audio('meuh',    'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/meuh.wav');
     }
 
     create() {
@@ -22,7 +22,8 @@ export default class DialogIntro extends Phaser.Scene {
                 { text : 'Bonjour a toi',      picture : 'zeus',    sound : 'meuh'},
                 { text : 'Bonjour de meme',    picture : 'trident', sound : 'meuh'}
             ],
-        })
+            nextScene : 'LevelFirst'
+        });
 
     }
 

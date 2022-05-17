@@ -66,8 +66,6 @@ export default class LevelFirst extends Phaser.Scene {
       else this.add.tileSprite(...elem, 'murVerti');
     });
 
-    console.log(decoration)
-
     decoration.forEach(elem => {
       console.log(elem);
       const temp = this.add.image(elem[0], elem[1], elem[2]);
@@ -94,8 +92,8 @@ export default class LevelFirst extends Phaser.Scene {
 
     this.score = 0;
 
-    //init spawner
-    //here 2 spawner but we can add more
+    // init spawner
+    // here 2 spawner but we can add more
     this.allSpawner = [
       new Spawner(
           this.add.rectangle(ww * (0.5 / 20), wh * (4.5 / 12), ww * (1 / 20), wh * (1 / 12), 0xFFD700, 0.1), this
@@ -277,7 +275,6 @@ export default class LevelFirst extends Phaser.Scene {
             break;
           }
         }
-
       }
 
       else {

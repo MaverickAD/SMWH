@@ -21,6 +21,7 @@ export default class DialogLevel1 extends Phaser.Scene {
                 { text : 'Bonjour a toi',      picture : 'zeus',    sound : 'meuh'},
                 { text : 'Bonjour de meme',    picture : 'trident', sound : 'meuh'}
             ],
+            nextScene : 'levelFirst'
         })
     }
 
