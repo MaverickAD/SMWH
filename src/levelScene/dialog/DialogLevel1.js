@@ -16,17 +16,8 @@ export default class DialogLevel1 extends Phaser.Scene {
     create() {
         this.dialogFirst = new DialogModalPlugin(this)
         this.dialogFirst.init({
-<<<<<<< HEAD
-            dialogs : [
-                { text : 'Ou est mon trident', picture : 'zeus',    sound : 'meuh'},
-                { text : 'Je suis ici',        picture : 'trident', sound : 'meuh'},
-                { text : 'Bonjour a toi',      picture : 'zeus',    sound : 'meuh'},
-                { text : 'Bonjour de meme',    picture : 'trident', sound : 'meuh'}
-            ],
-            nextScene : 'levelFirst'
-=======
             dialogs : textDialogIntro,
->>>>>>> dcc239a93f95148f9e16e7688f760baed8cddf1c
+            nextScene : 'LevelSecond'
         })
     }
 

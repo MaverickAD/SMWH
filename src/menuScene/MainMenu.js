@@ -1,10 +1,6 @@
 import Phaser from "phaser";
 
 export default class MainMenu extends Phaser.Scene {
-<<<<<<< HEAD
-    constructor() { 
-        super({key: 'MainMenu'});
-=======
   constructor() {
     super({ key: "MainMenu" });
   }
@@ -77,6 +73,7 @@ export default class MainMenu extends Phaser.Scene {
       0xffffff,
       1
     );
+
     this.creditText = this.add
       .text(this.creditButton.x, this.creditButton.y, "Credit", {
         color: "#000000",
@@ -110,7 +107,6 @@ export default class MainMenu extends Phaser.Scene {
           this.selectedButton -= 1;
           break;
       }
->>>>>>> dcc239a93f95148f9e16e7688f760baed8cddf1c
     }
 
     if (
@@ -133,7 +129,7 @@ export default class MainMenu extends Phaser.Scene {
     }
 
     if (this.inputKeysMeta.ENTER.isDown && this.selectedButton === 0)
-      this.scene.start("DialogLevel1");
+      this.scene.start("LevelFirst");
     else if (this.inputKeysMeta.ENTER.isDown && this.selectedButton === 1)
       this.scene.start("SettingsMenu");
   }
