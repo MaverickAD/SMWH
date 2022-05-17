@@ -1,0 +1,6 @@
+export const textDialogBeforeFirst = [
+    {picture: `hermès`,     sound: `meuh`, text: `Diiiingue tu as tout livré à temps ! Je vois que tu as réussi à finalement t’adapter à ta cécité, mais je ne t’ai pas trouvé si à l’aise que ça. Comme quoi tu as beau faire le malin, même toi, un handicape te ralentit.`},
+    {picture: `kevin`,      sound: `meuh`, text: `C’est surtout à cause de tes sandales contre-productives que j’ai galéré. Être aveugle c’est pas vraiment un souci, il suffit de s’adapter.`},
+    {picture: `hermès`,     sound: `meuh`, text: `Je t’ai bien vu te prendre tous les murs même en essayant d’avancer doucement, mais bon convaincs-t-en si ça te rassure.  Merci de ton aide en tout cas, je crois que le prochain dieu t’attend, moi je file, Zeus a ENCORE mis enceinte une de nos emballeuse, il faut que j’aille trouver une remplaçante. A la prochaine, je file !`},
+    {picture: `narrateur`,  sound: `meuh`, text: `Kevin, encore exténué par cette besogne bien plus complexe qu’il ne voulait l’admettre, se mit en route sans entrain ni sandales ailés. Il espérait calmer la colère de son père et que ses efforts ne seraient pas vains. En parlant de vin,  là où il allait, l'attendait un énergumène encore plus surprenant que le dieu des marchands.`}
+]
