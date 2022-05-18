@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { DialogModalPlugin } from "./methodDialog/dialog_plugin";
 import { textDialogIntro } from './methodDialog/textDialogIntro';
 
-export default class DialogLevel1 extends Phaser.Scene {
+export default class DialogBeforeLevel1 extends Phaser.Scene {
     constructor() {
         super({key: 'DialogLevel1'})
     }

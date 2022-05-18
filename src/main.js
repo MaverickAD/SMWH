@@ -6,7 +6,7 @@ import ControlMenu from "./menuScene/ControlMenu";
 import LevelFirst from "./levelScene/levelFirst";
 import LevelSecond from "./levelScene/levelSecond";
 import DialogIntro from "./levelScene/dialog/DialogIntro";
-import DialogLevel1 from "./levelScene/dialog/DialogLevel1";
+import DialogBeforeLevel1 from "./levelScene/dialog/DialogBeforeLevel1";
 
 const config = {
   scale: {
@@ -30,7 +30,7 @@ const config = {
     LevelFirst,
     LevelSecond,
     DialogIntro,
-    DialogLevel1,
+    DialogBeforeLevel1,
   ],
   callbacks: {
     postBoot: function (game) {

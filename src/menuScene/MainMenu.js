@@ -33,8 +33,8 @@ export default class MainMenu extends Phaser.Scene {
     ];
 
     this.allBackground.forEach(i => {
-      i.height = window.height;
-      i.width = window.width;
+      i.displayHeight = this.sys.canvas.height;
+      i.displayWidth = this.sys.canvas.width;
       i.visible = false
     });
     this.allBackground[(this.n = 0)].visible = true;
@@ -50,6 +50,6 @@ export default class MainMenu extends Phaser.Scene {
     this.allBackground.forEach(i => i.visible = false);
     this.allBackground[Math.floor(this.n / 10)].visible = true;
 
-    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("LevelFirst");
+    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("DialogIntro");
   }
 }

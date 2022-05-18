@@ -313,7 +313,7 @@ export default class LevelFirst extends Phaser.Scene {
 
       this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
 
-      if(this.minuteChrono === 0 && this.secondChrono === 5){
+      if(this.minuteChrono === 3 && this.secondChrono === 0){
         this.scene.start('LevelSecond')
       }
     }
