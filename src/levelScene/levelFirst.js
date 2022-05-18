@@ -328,13 +328,13 @@ export default class LevelFirst extends Phaser.Scene {
       this.downKeys      = [];
       this.leftKeys      = [];
       this.rightKeys     = [];
-      this.endMessageBlock = this.add.rectangle(ww / 2, wh / 2, 600, 400, 0xFFFFFF, 1);
+      this.endMessageBlock = this.add.image(ww / 2, wh / 2, "endScreenBackground");
       this.endMessageBlock.setDepth(20)
-      this.endMessageScreen = this.add.image(this.endMessageBlock.x, this.endMessageBlock.y, "endScreen")
+      this.endMessageScreen = this.add.image(this.endMessageBlock.x - (1.3/5) * this.endMessageBlock.x, this.endMessageBlock.y - (1.2/5) * this.endMessageBlock.y, "endScreenLaurier").setScale(0.9, 0.9)
       this.endMessageScreen.setDepth(20)
-      this.endMessageText1 = this.add.text(this.endMessageBlock.x, this.endMessageBlock.y - (1.5/5) * this.endMessageBlock.y, "YOU WIN !!!", {color: "000000", fontSize: "24px"}).setOrigin(0.5);
+      this.endMessageText1 = this.add.text(this.endMessageBlock.x, this.endMessageBlock.y - (1.9/5) * this.endMessageBlock.y, "YOU WIN !!!", {color: "000000", fontSize: "24px"}).setOrigin(0.5);
       this.endMessageText1.setDepth(20)
-      this.endMessageText2 = this.add.text(this.endMessageBlock.x, this.endMessageBlock.y + (1.5/5) * this.endMessageBlock.y, "Your score is " + this.score, {color: "000000", fontSize: "24px"}).setOrigin(0.5);
+      this.endMessageText2 = this.add.text(this.endMessageBlock.x, this.endMessageBlock.y + (0.85/5) * this.endMessageBlock.y, "Your score is " + this.score, {color: "000000", fontSize: "24px"}).setOrigin(0.5);
       this.endMessageText2.setDepth(20)
     }
   }
