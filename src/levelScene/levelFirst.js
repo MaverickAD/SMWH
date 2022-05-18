@@ -11,40 +11,40 @@ export default class LevelFirst extends Phaser.Scene {
   }
 
   preload(){
-    this.load.image('mask_blur',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/maskBlur.png');
-    this.load.image('murHorizon',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/murHorizon.png');
-    this.load.image('murVerti',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/murVerti.png');
-    this.load.image('ground',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/ground.png');
-    this.load.image('persobas1',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas1.png');
-    this.load.image('persobas2',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas2.png');
-    this.load.image('persodroite1',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite1.png');
-    this.load.image('persodroite2',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite2.png');
-    this.load.image('persogauche1',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche1.png');
-    this.load.image('persogauche2',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2.png');
-    this.load.image('persohaut1',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1.png');
-    this.load.image('persohaut2',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2.png');
-    this.load.image('mailboxblue1',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxblue1.png');
-    this.load.image('mailboxred1',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxred1.png');
-    this.load.image('mailboxgreen1',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxgreen1.png');
-    this.load.image('packer1',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
-    this.load.image('packer2',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
-    this.load.image('packedpacket',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packedpacket.png');
-    this.load.image('trident',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/trident.png');
-    this.load.image('lyre',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/lyre.png');
-    this.load.image('caducee',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/caducee.png');
-    this.load.image('marteau',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/marteau.png');
-    this.load.image('rat',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/rat.png');
-    this.load.image('spwaner',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/spawner.png');
-    this.load.image('leaf',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_leaf.png');
-    this.load.image('sunglasses',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_sunglasses.png');
-    this.load.image('miror',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_miror.png');
-    this.load.image('comb',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_comb.png');
-    this.load.image('bone',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bone.png');
-    this.load.image('bowl',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bowl.png');
-    this.load.image('box',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/box_packed.png');
-    this.load.image('endScreenLaurier', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_laurier.png');
-    this.load.image('endScreenBackground', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_pantheon.png');
-    this.load.audio('travailtermine', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/travailtermine.mp3');
+    this.load.image('mask_blur',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/maskBlur.png');
+    this.load.image('murHorizon',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/murHorizon.png');
+    this.load.image('murVerti',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/murVerti.png');
+    this.load.image('ground',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/ground.png');
+    this.load.image('persobas1',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas1.png');
+    this.load.image('persobas2',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-bas2.png');
+    this.load.image('persodroite1',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite1.png');
+    this.load.image('persodroite2',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-droite2.png');
+    this.load.image('persogauche1',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche1.png');
+    this.load.image('persogauche2',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2.png');
+    this.load.image('persohaut1',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1.png');
+    this.load.image('persohaut2',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2.png');
+    this.load.image('mailboxblue1',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxblue1.png');
+    this.load.image('mailboxred1',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxred1.png');
+    this.load.image('mailboxgreen1',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxgreen1.png');
+    this.load.image('packer1',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
+    this.load.image('packer2',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
+    this.load.image('packedpacket',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packedpacket.png');
+    this.load.image('trident',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/trident.png');
+    this.load.image('lyre',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/lyre.png');
+    this.load.image('caducee',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/caducee.png');
+    this.load.image('marteau',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/marteau.png');
+    this.load.image('rat',                  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/rat.png');
+    this.load.image('spwaner',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/spawner.png');
+    this.load.image('leaf',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_leaf.png');
+    this.load.image('sunglasses',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_sunglasses.png');
+    this.load.image('miror',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_miror.png');
+    this.load.image('medusa',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_medusa.png');
+    this.load.image('bone',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bone.png');
+    this.load.image('bowl',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bowl.png');
+    this.load.image('box',                  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/box_packed.png');
+    this.load.image('endScreenLaurier',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_laurier.png');
+    this.load.image('endScreenBackground',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_pantheon.png');
+    this.load.audio('travailtermine',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/travailtermine.mp3');
 
 
     for (let i = 1; i < 17; i++)
@@ -322,7 +322,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.allPacker.forEach(p => p.actualizeSituationPackage(this.time.now, this.wichSubFrame > 5));
     this.scoreText.text = "Score : " + this.score;
 
-    if(this.minuteChrono === 0 && this.secondChrono === 5){
+    if(this.minuteChrono === 3 && this.secondChrono === 0){
       this.myTimer.paused = true;
       this.upKeys        = [];
       this.downKeys      = [];
@@ -381,4 +381,6 @@ export default class LevelFirst extends Phaser.Scene {
 }
 
 
-//sound
+//bind after first object
+//mailbox animated or uni
+//medusa 

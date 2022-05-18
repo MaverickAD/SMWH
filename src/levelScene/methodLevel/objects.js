@@ -36,7 +36,7 @@ export class Spawner {
         }
         else if (0.48 < randIndicator && randIndicator <= 0.64){
             this.waitingObject = new Package(
-                this.scene.add.image(this.x - 5, this.y - 30, 'comb').setScale(1.2),
+                this.scene.add.image(this.x - 5, this.y - 30, 'medusa').setScale(1.2),
                 1
             );
         }
