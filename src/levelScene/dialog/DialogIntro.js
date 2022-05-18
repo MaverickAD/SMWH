@@ -9,18 +9,18 @@ export default class DialogIntro extends Phaser.Scene {
 
     preload() {
         this.load.image('zeus',    'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/Zeus.svg');
-        this.load.image('trident', 'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/trident.png')
-        this.load.audio('meuh',    'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/meuh.wav');
+        this.load.image('pathos',  'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/perso-grand.png');
+        this.load.audio('test',    'https://raw.githubusercontent.com/MaverickAD/SMWH/dialog/assets/DIALOGUE CUT/Narrateur/Narrateur1.mp3');
     }
 
     create() {
         this.dialogFirst = new DialogModalPlugin(this)
         this.dialogFirst.init({
             dialogs : [
-                { text : 'Ou est mon trident', picture : 'zeus',    sound : 'meuh'},
-                { text : 'Je suis ici',        picture : 'trident', sound : 'meuh'},
-                { text : 'Bonjour a toi',      picture : 'zeus',    sound : 'meuh'},
-                { text : 'Bonjour de meme',    picture : 'trident', sound : 'meuh'}
+                { text : 'Ou est mon trident', picture : 'zeus',    sound : 'test'},
+                { text : 'Je suis ici',        picture : 'trident', sound : 'test'},
+                { text : 'Bonjour a toi',      picture : 'zeus',    sound : 'test'},
+                { text : 'Bonjour de meme',    picture : 'trident', sound : 'test'}
             ],
             nextScene : 'LevelSecond'
         });
