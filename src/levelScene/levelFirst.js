@@ -64,8 +64,8 @@ export default class LevelFirst extends Phaser.Scene {
       let closure = this.add.rectangle(...elem, 0xFFFFFF, 0);
       this.physics.add.existing(closure, true);
       this.physics.add.collider(closure, this.ball);
-      if(elem[3] == 10 ) this.add.tileSprite(...elem, 'murHorizon');
-      else this.add.tileSprite(...elem, 'murVerti');
+      if(elem[3] == 10 ) this.add.tileSprite(...elem, 'murHorizon').setDepth(6);
+      else this.add.tileSprite(...elem, 'murVerti').setDepth(6);
     });
 
     decoration.forEach(elem => {
