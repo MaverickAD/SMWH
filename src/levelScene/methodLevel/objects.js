@@ -133,6 +133,7 @@ export class Packer {
             this.finished = true;
             this.package.obj.setTexture('box');
             this.package.obj.setScale(0.5)
+            this.scene.sound.add('travailtermine').play();
         }
     }
 

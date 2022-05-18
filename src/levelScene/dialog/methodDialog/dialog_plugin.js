@@ -1,4 +1,3 @@
-// @ts-check
 export var DialogModalPlugin = function (scene) {
     this.scene = scene;
     this.systems = scene.sys;
