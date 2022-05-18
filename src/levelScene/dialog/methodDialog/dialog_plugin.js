@@ -3,7 +3,10 @@ export var DialogModalPlugin = function (scene) {
     this.systems = scene.sys;
 
     this.scene.input.keyboard.on('keydown-SPACE', _ => {
-        if (this.iterator.isEnded()) this.scene.scene.start(this.nextScene);
+        if (this.iterator.isEnded()) {
+            this.scene.sound.stopAll();
+            this.scene.scene.start(this.nextScene);
+        }
         if (this.isFinished()) {
             this.setText(this.iterator.next());
             const newx = this.iterator.isEven() ? this.otherX : this.defaultX;
@@ -127,14 +130,14 @@ DialogModalPlugin.prototype = {
                 this._getGameHeight() - this.windowHeight - this.padding,
                 this.iterator.getPicture()
             ).setOrigin(0, 1)
-             .setScale(3));
+             .setScale(5));
         else {
             this.stackPicture.push(this.scene.add.image(
                 this._getGameWidth()  - this.padding,
                 this._getGameHeight() - this.windowHeight - this.padding,
                 this.iterator.getPicture()
             ).setOrigin(1, 1)
-             .setScale(3));
+             .setScale(5));
             this.stackPicture[1].flipX = true;
         }
 
