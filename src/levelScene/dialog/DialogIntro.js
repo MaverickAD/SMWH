@@ -11,7 +11,9 @@ export default class DialogIntro extends Phaser.Scene {
         
         this.load.image('zeus',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/Zeus.svg');
         this.load.image('pathos',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-grand.png');
-        
+        this.load.image('bg',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fonddialog1.png');
+
+
         for (let i = 1; i < 3; i++) {
             this.load.audio(`nar${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/DIALOGUECUT/Narrateur/Narrateur${i}.mp3`);
         }
@@ -27,6 +29,11 @@ export default class DialogIntro extends Phaser.Scene {
     }
 
     create() {
+
+        const bg = this.add.image(0, 0, 'bg').setOrigin(0,0);
+        bg.displayHeight = this.sys.canvas.height;
+        bg.displayWidth = this.sys.canvas.width;
+
         this.dialogFirst = new DialogModalPlugin(this)
         this.dialogFirst.init({
             dialogs : textDialogIntro,
