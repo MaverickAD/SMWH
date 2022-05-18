@@ -45,6 +45,57 @@ export default class MainMenu extends Phaser.Scene {
     this.allBackground.forEach((i) => (i.visible = false));
     this.allBackground[Math.floor(this.n / 10)].visible = true;
 
+<<<<<<< HEAD
     if (this.inputKeysMeta.ENTER.isDown) this.scene.start("LevelFirst");
+=======
+    if (
+      this.inputKeysMeta.UP.isDown &&
+      this.inputKeysMeta.UP.timeDown - this.lastShiftDownTime > 100
+    ) {
+      this.lastShiftDownTime = this.inputKeysMeta.UP.timeDown;
+      switch (this.selectedButton) {
+        case 1:
+          this.playButton.setFillStyle(0x0000ff, 1);
+          this.settingsButton.setFillStyle(0xffffff, 1);
+          this.selectedButton -= 1;
+          break;
+        case 2:
+          this.settingsButton.setFillStyle(0x0000ff, 1);
+          this.creditButton.setFillStyle(0xffffff, 1);
+          this.selectedButton -= 1;
+          break;
+      }
+    }
+
+    if (
+      this.inputKeysMeta.DOWN.isDown &&
+      this.inputKeysMeta.DOWN.timeDown - this.lastShiftDownTime > 100
+    ) {
+      this.lastShiftDownTime = this.inputKeysMeta.DOWN.timeDown;
+      switch (this.selectedButton) {
+        case 0:
+          this.settingsButton.setFillStyle(0x0000ff, 1);
+          this.playButton.setFillStyle(0xffffff, 1);
+          this.selectedButton += 1;
+          break;
+        case 1:
+          this.creditButton.setFillStyle(0x0000ff, 1);
+          this.settingsButton.setFillStyle(0xffffff, 1);
+          this.selectedButton += 1;
+          break;
+      }
+    }
+
+    if (this.inputKeysMeta.ENTER.isDown && this.selectedButton === 0)
+      this.scene.start("LevelFirst");
+    else if (this.inputKeysMeta.ENTER.isDown && this.selectedButton === 1)
+      this.scene.start("SettingsMenu");
+  }
+
+  anyOfKey(keys, duration = 0) {
+    for (let key of keys)
+      if (this.keyBoard.checkDown(key, duration)) return true;
+    return false;
+>>>>>>> adaa933c8cf1a87001eb7d3feb61d761d20499e0
   }
 }

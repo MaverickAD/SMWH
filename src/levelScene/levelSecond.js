@@ -49,7 +49,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('pressRedPressed',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRedPressed.png');
         this.load.image('pressRosePressed',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/pressRosePressed.png');
         this.load.image('shelf',                    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/shelf.png');
-        this.load.image('ground',                   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/groundLevel2.png');
+        this.load.image('ground2',                   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/groundLevel2.png');
         this.load.image('commandRed',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/centaure.png');
         this.load.image('commandRose',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/cyclope.png');
         this.load.image('commandWhite',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/satyre.png');
@@ -64,8 +64,8 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('alter1gauche2',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-gauche1.png');
         this.load.image('alter1haut1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-haut.png');
         this.load.image('alter1haut2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter1-marche-haut1.png');
-        this.load.image('alter2bas1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-bas.png');
-        this.load.image('alter2bas2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-bas1.png');
+        this.load.image('alter2bas1',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-bas.png');
+        this.load.image('alter2bas2',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-bas1.png');
         this.load.image('alter2droite1',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-droite.png');
         this.load.image('alter2droite2',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-droite1.png');
         this.load.image('alter2gauche1',             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-gauche.png');
@@ -73,20 +73,24 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('alter2haut1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut.png');
         this.load.image('alter2haut2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut1.png');
         this.load.image('bar',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar.png');
+        this.load.image('Arte1',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow1.png');
+        this.load.image('Arte2',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow2.png');
+        this.load.image('Arte3',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow3.png');
+        this.load.image('Arte4',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow4.png');
     }
 
 
     create() {
-        this.add.tileSprite(ww * 0.5 , wh * 0.5  ,  ww , wh , 'ground').setScale(1.2);
+        this.add.tileSprite(ww * 0.5 , wh * 0.5  ,  ww , wh , 'ground2').setScale(1.2);
         this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
 
 
-        this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
-        this.add.tileSprite(ww * (14/24),  wh *  (9.5/16) ,   ww * (2/12),   wh * (1.45/16), "fenceHori");
+        this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (1.2/16), "fenceHori");
+        this.add.tileSprite(ww * (14/24),  wh *  (10/16) ,   ww * (2/12),   wh * (1.2/16), "fenceHori");
         this.add.tileSprite(ww * (12/24),  wh *  (10.5/16) , ww * (0.36/24),wh * (1.48/16),  "fenceVert");
         this.add.tileSprite(ww * (12/24),  wh *  (15/16) ,   ww * (0.36/24),wh * (2/16),  "fenceVert");
         this.add.image(ww * (12/24),  wh *  (11.5/16), "fence").setScale(2);
-        this.add.image(ww * (16.1/24),  wh *  (9.5/16), "fence").setScale(2);
+        this.add.image(ww * (16.1/24),  wh *  (10/16), "fence").setScale(2);
         [ww * (12/24),  wh *  (10.5/16) , ww * (0.25/24),wh * (1/16)],
         [ww * (12/24),  wh *  (15/16) ,   ww * (0.25/24),wh * (2/16)],
  
@@ -125,7 +129,7 @@ export default class LevelSecond extends Phaser.Scene {
         
         this.etiqueteur = 
             new Etiqueteur(
-                this.add.rectangle(ww*(22.8/24), wh*(6.5/16), ww*(1.5/24), wh*(2/8), 0xFFD700, 1), this
+                this.add.rectangle(ww*(22.8/24), wh*(6.5/16), ww*(1.5/24), wh*(2/8), 0xFFD700, 0), this
             );
 
         this.allGrapeSpawner = [
@@ -197,7 +201,6 @@ export default class LevelSecond extends Phaser.Scene {
         this.actualFrame  = 0;
         this.wichSubFrame = 0;
 
-        this.add.image(ww * (3/12), wh * (2/8), "bar" ).setScale(3)
 
         this.allBottle = []
         this.allCommands.push(new Command(this, 1));
@@ -213,6 +216,7 @@ export default class LevelSecond extends Phaser.Scene {
     
     update() {
         this.counter ++;
+        this.etiqueteur.update();
 
 
         //if player are something in his hand, put the object near of player
@@ -224,9 +228,12 @@ export default class LevelSecond extends Phaser.Scene {
         }
 
         //switch alter
-        if(this.counter % 180 == 0){
-            this.currentAlter = Math.floor(Math.random() * 3 + 1);
-            console.log(this.currentAlter);
+        if(this.counter % 300 == 0){
+            let rng = Math.floor(Math.random() * 3 + 1);
+            while(rng == this.currentAlter){
+                rng = Math.floor(Math.random() * 3 + 1);
+            }
+            this.currentAlter = rng;
         }
         
         //update of sprite when the player move
