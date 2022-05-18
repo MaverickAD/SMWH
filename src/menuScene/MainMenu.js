@@ -45,9 +45,6 @@ export default class MainMenu extends Phaser.Scene {
     this.allBackground.forEach((i) => (i.visible = false));
     this.allBackground[Math.floor(this.n / 10)].visible = true;
 
-<<<<<<< HEAD
-    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("LevelFirst");
-=======
     if (
       this.inputKeysMeta.UP.isDown &&
       this.inputKeysMeta.UP.timeDown - this.lastShiftDownTime > 100
@@ -96,6 +93,5 @@ export default class MainMenu extends Phaser.Scene {
     for (let key of keys)
       if (this.keyBoard.checkDown(key, duration)) return true;
     return false;
->>>>>>> adaa933c8cf1a87001eb7d3feb61d761d20499e0
   }
 }
