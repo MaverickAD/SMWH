@@ -23,9 +23,11 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('persogauche2',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-gauche2.png');
     this.load.image('persohaut1',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut1.png');
     this.load.image('persohaut2',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-marche-haut2.png');
-    this.load.image('mailboxblue1',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxblue1.png');
-    this.load.image('mailboxred1',          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxred1.png');
-    this.load.image('mailboxgreen1',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxgreen1.png');
+    this.load.image('mailboxblueOpen',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxblue1_open.png');
+    this.load.image('mailboxblueClose',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxblue1_close.png');
+    this.load.image('mailboxredOpen',       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxred1_open.png');
+    this.load.image('mailboxredClose',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxred1_close.png');
+    this.load.image('mailboxgreen',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/mailboxgreen1.png');
     this.load.image('packer1',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer1.png');
     this.load.image('packer2',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packer2.png');
     this.load.image('packedpacket',         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/packedpacket.png');
@@ -34,11 +36,11 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('caducee',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/caducee.png');
     this.load.image('marteau',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/marteau.png');
     this.load.image('rat',                  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/rat.png');
-    this.load.image('spwaner',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/spawner.png');
+    this.load.image('spawner',              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/spawner.png');
     this.load.image('leaf',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_leaf.png');
     this.load.image('sunglasses',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_blue_sunglasses.png');
     this.load.image('miror',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_miror.png');
-    this.load.image('medusa',                'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_medusa.png');
+    this.load.image('medusa',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_green_medusa.png');
     this.load.image('bone',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bone.png');
     this.load.image('bowl',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bowl.png');
     this.load.image('box',                  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/box_packed.png');
@@ -100,29 +102,25 @@ export default class LevelFirst extends Phaser.Scene {
     // here 2 spawner but we can add more
     this.allSpawner = [
       new Spawner(
-          this.add.rectangle(ww * (0.5 / 20), wh * (4.5 / 12), ww * (1 / 20), wh * (1 / 12), 0xFFD700, 0.1), this
+          this.add.image(ww * (0.5 / 20), wh * (4.5 / 12), 'spawner').setScale(0.5), this
       ),
 
       new Spawner(
-          this.add.rectangle(ww * (0.5 / 20), wh * (6.5 / 12), ww * (1 / 20), wh * (1 / 12), 0xFFD700, 0.1), this
+          this.add.image(ww * (0.5 / 20), wh * (6.5 / 12), 'spawner').setScale(0.5), this
       )
     ];
 
-
-    this.add.image(this.allSpawner[0].x, this.allSpawner[0].y, 'spwaner').setScale(0.5)
-    this.add.image(this.allSpawner[1].x, this.allSpawner[1].y, 'spwaner').setScale(0.5)
-
     //init mailbox
     this.mailBoxCerbere = new MailBox(
-        this.add.rectangle(ww*(7.5/20), wh*(0.5/12), ww*(1/40), wh*(1/24), 0xFF0000, 0), this, 0
+        this.add.image(ww*(7.5/20), wh*(0.5/12), 'mailboxred1').setScale(0.5), this, 0
     );
 
     this.mailBoxMedusa = new MailBox(
-        this.add.rectangle(ww*(7.5/20), wh*(11.5/12), ww*(1/20), wh*(1/12), 0x00FF00, 0), this, 1
+        this.add.image(ww*(7.5/20), wh*(11.5/12), 'mailboxgreen1').setScale(0.5), this, 1
     );
 
     this.mailBoxIcare = new MailBox(
-        this.add.rectangle(ww*(19.5/20), wh*(1/2), ww*(1/40), wh*(1/24), 0x0000FF, 0), this, 2
+        this.add.image(ww*(19.5/20), wh*(1/2), 'mailboxblue1').setScale(0.5), this, 2
     );
 
     //init packer at the center
@@ -159,9 +157,9 @@ export default class LevelFirst extends Phaser.Scene {
       this.add.image(this.ball.x, this.ball.y, 'persogauche2').setScale(2.5)
     ];
 
-    this.add.image(this.mailBoxIcare.x,   this.mailBoxIcare.y, 'mailboxblue1').setScale(0.5);
-    this.add.image(this.mailBoxCerbere.x, this.mailBoxCerbere.y, 'mailboxred1').setScale(0.5);
-    this.add.image(this.mailBoxMedusa.x,  this.mailBoxMedusa.y, 'mailboxgreen1').setScale(0.5);
+    // this.add.image(this.mailBoxIcare.x,   this.mailBoxIcare.y, 'mailboxblue1').setScale(0.5);
+    // this.add.image(this.mailBoxCerbere.x, this.mailBoxCerbere.y, 'mailboxred1').setScale(0.5);
+    // this.add.image(this.mailBoxMedusa.x,  this.mailBoxMedusa.y, 'mailboxgreen1').setScale(0.5);
 
 
     this.allFramesWalk.forEach(i => i.visible = false)
@@ -383,4 +381,3 @@ export default class LevelFirst extends Phaser.Scene {
 
 //bind after first object
 //mailbox animated or uni
-//medusa 
