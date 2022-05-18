@@ -17,6 +17,7 @@ export default class DialogLevel1 extends Phaser.Scene {
         this.dialogFirst = new DialogModalPlugin(this)
         this.dialogFirst.init({
             dialogs : textDialogIntro,
+            nextScene : 'LevelSecond'
         })
     }
 
