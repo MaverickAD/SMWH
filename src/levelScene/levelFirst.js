@@ -42,6 +42,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('bone',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bone.png');
     this.load.image('bowl',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bowl.png');
     this.load.image('box',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/box_packed.png');
+    this.load.image('endScreen',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/asstes/end_screen_level_1.png')
     this.load.audio('travailtermine', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/travailtermine.mp3');
 
 
