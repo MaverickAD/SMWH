@@ -42,6 +42,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('bone',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bone.png');
     this.load.image('bowl',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bowl.png');
     this.load.image('box',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/box_packed.png');
+    this.load.image('endScreen',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1.png');
     this.load.audio('travailtermine', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/travailtermine.mp3');
 
 
@@ -311,7 +312,7 @@ export default class LevelFirst extends Phaser.Scene {
 
       this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
 
-      if(this.minuteChrono === 3 && this.secondChrono === 0){
+      if(this.minuteChrono === 0 && this.secondChrono === 5){
         this.scene.start('LevelSecond')
       }
     }
@@ -320,7 +321,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.allPacker.forEach(p => p.actualizeSituationPackage(this.time.now, this.wichSubFrame > 5));
     this.scoreText.text = "Score : " + this.score;
 
-    if(this.minuteChrono === 3 && this.secondChrono === 0){
+    if(this.minuteChrono === 0 && this.secondChrono === 5){
       this.myTimer.paused = true;
       this.upKeys        = [];
       this.downKeys      = [];
@@ -328,6 +329,8 @@ export default class LevelFirst extends Phaser.Scene {
       this.rightKeys     = [];
       this.endMessageBlock = this.add.rectangle(ww / 2, wh / 2, 600, 400, 0xFFFFFF, 1);
       this.endMessageBlock.setDepth(20)
+      this.endMessageScreen = this.add.image(ww / 2, wh / 2, "endScreen")
+      this.endMessageScreen.setDepth(20)
 
     }
   }
