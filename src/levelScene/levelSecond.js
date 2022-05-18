@@ -77,14 +77,14 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('Arte2',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow2.png');
         this.load.image('Arte3',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow3.png');
         this.load.image('Arte4',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow4.png');
+        this.load.image('carpet',                      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/redCarpet.png');
+        this.load.image('gate',                        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/gate.png');
     }
 
 
     create() {
         this.add.tileSprite(ww * 0.5 , wh * 0.5  ,  ww , wh , 'ground2').setScale(1.2);
-        this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2), wh * (3/8), 'grass');
-
-
+        this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2) / 2, wh * (3/8) / 2, 'grass').setScale(2);
         this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (1.2/16), "fenceHori");
         this.add.tileSprite(ww * (14/24),  wh *  (10/16) ,   ww * (2/12),   wh * (1.2/16), "fenceHori");
         this.add.tileSprite(ww * (12/24),  wh *  (10.5/16) , ww * (0.36/24),wh * (1.48/16),  "fenceVert");
@@ -96,7 +96,7 @@ export default class LevelSecond extends Phaser.Scene {
  
 
         //init player
-        this.ball = this.add.rectangle(400, 250, 40, 75, 0xFFFFFF, 0);
+        this.ball = this.add.rectangle(400, 250, 40, 100, 0xFFFFFF, 0);
         this.physics.add.existing(this.ball);
         this.ball.body.setCollideWorldBounds(true, 0.3, 0.3);
 
@@ -124,7 +124,7 @@ export default class LevelSecond extends Phaser.Scene {
         //init bottle spawner
         this.bottleSpawner = 
             new BottleSpawner(
-                this.add.rectangle(ww*(3.5/12), wh*(8/8), ww*(2/12), wh*(1/8), 0xFFD700, 0), this
+                this.add.rectangle(ww*(3.5/12), wh*(8.5/8), ww*(2.5/12), wh*(2/8), 0xFFD700, 0), this
             );
         
         this.etiqueteur = 
@@ -134,27 +134,27 @@ export default class LevelSecond extends Phaser.Scene {
 
         this.allGrapeSpawner = [
             new GrapeSpawner(
-                this.add.rectangle(ww*(9/12), wh*(7.5/8), ww*(1/20), wh*(1/12), 0xFFD700, 0), this, "White"
+                this.add.rectangle(ww*(9/12), wh*(7.5/8), ww*(2/20), wh*(2/12), 0xFFD700, 0), this, "White"
             ),
 
             new GrapeSpawner(
-                this.add.rectangle(ww*(11.5/12), wh*(6.5/8), ww*(1/20), wh*(1/12), 0xFFD700, 0), this, "Red"
+                this.add.rectangle(ww*(11.5/12), wh*(6.5/8), ww*(2/20), wh*(2/12), 0xFFD700, 0), this, "Red"
             ),
         ]
         
 
         this.allPress = [
             new Press (
-                this.add.rectangle(ww*(7.5/12), wh*(2.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this, false
+                this.add.rectangle(ww*(7.5/12), wh*(2.5/16), ww*(1/12), wh*(1.5/12), 0xFFD700, 0), this, false
             ), 
             new Press (
-                this.add.rectangle(ww*(9.5/12), wh*(2.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , false
+                this.add.rectangle(ww*(9.5/12), wh*(2.5/16), ww*(1/12), wh*(1.5/12), 0xFFD700, 0), this , false
             ),
             new Press (
-                this.add.rectangle(ww*(1.5/24), wh*(6.5/8), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , true
+                this.add.rectangle(ww*(1.5/24), wh*(6.5/8), ww*(1/12), wh*(1.5/12), 0xFFD700, 0), this , true
             ),
             new Press (
-                this.add.rectangle(ww*(1.5/24), wh*(7.5/16), ww*(0.5/12), wh*(1.5/12), 0xFFD700, 0), this , true
+                this.add.rectangle(ww*(1.5/24), wh*(7.5/16), ww*(1/12), wh*(1.5/12), 0xFFD700, 0), this , true
             )
         ]
 
@@ -165,34 +165,34 @@ export default class LevelSecond extends Phaser.Scene {
         
         //sprite for the player, walk effect
         this.allFramesWalk = [[
-            this.add.image(this.ball.x, this.ball.y, 'persobas1grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persobas2grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persohaut1grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persohaut2grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persodroite1grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persodroite2grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persogauche1grand').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'persogauche2grand').setScale(2.5)
+            this.add.image(this.ball.x, this.ball.y, 'persobas1grand').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'persobas2grand').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'persohaut1grand').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'persohaut2grand').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'persodroite1grand').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'persodroite2grand').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'persogauche1grand').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'persogauche2grand').setScale(3.5)
             ],
             [
-            this.add.image(this.ball.x, this.ball.y, 'alter1bas1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1bas2').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1haut1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1haut2').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1droite1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1droite2').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1gauche1').setScale(2.5),
-            this.add.image(this.ball.x, this.ball.y, 'alter1gauche2').setScale(2.5)
+            this.add.image(this.ball.x, this.ball.y, 'alter1bas1').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1bas2').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1haut1').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1haut2').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1droite1').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1droite2').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1gauche1').setScale(3.5),
+            this.add.image(this.ball.x, this.ball.y, 'alter1gauche2').setScale(3.5)
             ],
             [
-                this.add.image(this.ball.x, this.ball.y, 'alter2bas1').setScale(2.5),
-                this.add.image(this.ball.x, this.ball.y, 'alter2bas2').setScale(2.5),
-                this.add.image(this.ball.x, this.ball.y, 'alter2haut1').setScale(2.5),
-                this.add.image(this.ball.x, this.ball.y, 'alter2haut2').setScale(2.5),
-                this.add.image(this.ball.x, this.ball.y, 'alter2droite1').setScale(2.5),
-                this.add.image(this.ball.x, this.ball.y, 'alter2droite2').setScale(2.5),
-                this.add.image(this.ball.x, this.ball.y, 'alter2gauche1').setScale(2.5),
-                this.add.image(this.ball.x, this.ball.y, 'alter2gauche2').setScale(2.5)
+                this.add.image(this.ball.x, this.ball.y, 'alter2bas1').setScale(3.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2bas2').setScale(3.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2haut1').setScale(3.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2haut2').setScale(3.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2droite1').setScale(3.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2droite2').setScale(3.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2gauche1').setScale(3.5),
+                this.add.image(this.ball.x, this.ball.y, 'alter2gauche2').setScale(3.5)
             ]
 
         ];
@@ -284,7 +284,7 @@ export default class LevelSecond extends Phaser.Scene {
             this.allFramesWalk[this.currentAlter - 1][this.actualFrame + (this.wichSubFrame > 5)].visible = true;
         }
 
-        if(this.counter % 1500 ==  0){
+        if(this.counter % 1500 ==  0 || this.allCommands.length == 0){
             // this.counter = 0;
             for(let i = 0; i < 3; i++){
                 if(!this.commandState[i]){
