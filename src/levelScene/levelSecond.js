@@ -206,7 +206,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.allCommands.push(new Command(this, 1));
         this.commandState = [true, false, false];
 
-        this.currentAlter = 1;
+        this.currentAlter = 2;
 
         this.score = 0;
 
@@ -228,7 +228,7 @@ export default class LevelSecond extends Phaser.Scene {
         }
 
         //switch alter
-        if(this.counter % 300 == 0){
+        if(this.counter % 360 == 0){
             let rng = Math.floor(Math.random() * 3 + 1);
             while(rng == this.currentAlter){
                 rng = Math.floor(Math.random() * 3 + 1);
@@ -284,7 +284,7 @@ export default class LevelSecond extends Phaser.Scene {
             this.allFramesWalk[this.currentAlter - 1][this.actualFrame + (this.wichSubFrame > 5)].visible = true;
         }
 
-        if(this.counter % 1200 ==  0){
+        if(this.counter % 1500 ==  0){
             // this.counter = 0;
             for(let i = 0; i < 3; i++){
                 if(!this.commandState[i]){
