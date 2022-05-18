@@ -73,6 +73,10 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('alter2haut1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut.png');
         this.load.image('alter2haut2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut1.png');
         this.load.image('bar',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar.png');
+        this.load.image('Arte1',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow1.png');
+        this.load.image('Arte2',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow2.png');
+        this.load.image('Arte3',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow3.png');
+        this.load.image('Arte4',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow4.png');
     }
 
 
@@ -125,7 +129,7 @@ export default class LevelSecond extends Phaser.Scene {
         
         this.etiqueteur = 
             new Etiqueteur(
-                this.add.rectangle(ww*(22.8/24), wh*(6.5/16), ww*(1.5/24), wh*(2/8), 0xFFD700, 1), this
+                this.add.rectangle(ww*(22.8/24), wh*(6.5/16), ww*(1.5/24), wh*(2/8), 0xFFD700, 0), this
             );
 
         this.allGrapeSpawner = [
@@ -212,6 +216,7 @@ export default class LevelSecond extends Phaser.Scene {
     
     update() {
         this.counter ++;
+        this.etiqueteur.update();
 
 
         //if player are something in his hand, put the object near of player

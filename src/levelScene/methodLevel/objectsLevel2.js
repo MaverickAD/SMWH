@@ -48,10 +48,15 @@ export class Etiqueteur {
 
         this.scene  = scene;
         this.obj    = obj;
-
-
+        
         this.x      = this.obj.x;
         this.y      = this.obj.y;
+        
+        this.sprite = this.scene.add.image(this.x - 20, this.y, "Arte1").setScale(0.7);
+        this.sprite.setDepth(4);
+
+        this.frame = 0;
+        this.animated = false;
 
         this.scene.physics.add.existing(this.obj, true);
         this.scene.physics.add.collider(this.obj, this.scene.ball);
@@ -61,6 +66,27 @@ export class Etiqueteur {
         bottle.obj.setTexture("bottle" + bottle.color + "WithTag");
         bottle.tag = true;
         bottle.id_state += 1;
+        this.animated = true;
+    }
+
+    update() {
+        if(this.animated){
+            this.frame += 1;
+            if(this.frame == 7){
+                this.sprite.setTexture("Arte2");
+            }
+            if(this.frame == 14){
+                this.sprite.setTexture("Arte3");
+            }
+            if(this.frame == 21){
+                this.sprite.setTexture("Arte4");
+            };
+            if(this.frame == 28){
+                this.sprite.setTexture("Arte1");
+                this.frame = 0;
+                this.animated = false;
+            }
+        }
     }
 }
 
