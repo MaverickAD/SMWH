@@ -17,10 +17,7 @@ export default class DialogIntro extends Phaser.Scene {
         this.dialogFirst = new DialogModalPlugin(this)
         this.dialogFirst.init({
             dialogs : [
-                { text : 'Ou est mon trident', picture : 'zeus',    sound : 'test'},
-                { text : 'Je suis ici',        picture : 'trident', sound : 'test'},
-                { text : 'Bonjour a toi',      picture : 'zeus',    sound : 'test'},
-                { text : 'Bonjour de meme',    picture : 'trident', sound : 'test'}
+                { text : 'Quelque part près d’Athène, il y a environ 2400 ans, la foudre retentit…', sound : 'test'},
             ],
             nextScene : 'LevelSecond'
         });
