@@ -42,7 +42,8 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.image('bone',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bone.png');
     this.load.image('bowl',           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/object_red_bowl.png');
     this.load.image('box',            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/box_packed.png');
-    this.load.image('endScreen',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1.png');
+    this.load.image('endScreenLaurier', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_laurier.png');
+    this.load.image('endScreenBackground', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_pantheon.png');
     this.load.audio('travailtermine', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/travailtermine.mp3');
 
 
@@ -329,9 +330,12 @@ export default class LevelFirst extends Phaser.Scene {
       this.rightKeys     = [];
       this.endMessageBlock = this.add.rectangle(ww / 2, wh / 2, 600, 400, 0xFFFFFF, 1);
       this.endMessageBlock.setDepth(20)
-      this.endMessageScreen = this.add.image(ww / 2, wh / 2, "endScreen")
+      this.endMessageScreen = this.add.image(this.endMessageBlock.x, this.endMessageBlock.y, "endScreen")
       this.endMessageScreen.setDepth(20)
-
+      this.endMessageText1 = this.add.text(this.endMessageBlock.x, this.endMessageBlock.y - (1.5/5) * this.endMessageBlock.y, "YOU WIN !!!", {color: "000000", fontSize: "24px"}).setOrigin(0.5);
+      this.endMessageText1.setDepth(20)
+      this.endMessageText2 = this.add.text(this.endMessageBlock.x, this.endMessageBlock.y + (1.5/5) * this.endMessageBlock.y, "Your score is " + this.score, {color: "000000", fontSize: "24px"}).setOrigin(0.5);
+      this.endMessageText2.setDepth(20)
     }
   }
 
