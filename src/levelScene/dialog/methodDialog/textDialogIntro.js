@@ -6,7 +6,7 @@ export const textDialogIntro = [
     {picture: `pathos`, sound: `pat2`, text: `AH AH AH quelle plouque, imagine ne même pas être capable de voir devant soit, la honte un peu.\nJe vois pas trop en quoi ça peut m’intéresser par contre.`, },
     {picture: `zeus`,   sound: `zeus3`, text: `Cesse ces simagrées, tu sais très bien ce que je te reproche !\nTu lui as mis une gifle puis déclamé : "tu l’as pas vu venir celle-ci !".`, },
     {picture: `pathos`, sound: `pat3`, text: `Objectivement c’est une de mes meilleures blagues, même Socrate ne joue pas aussi bien avec les mots.`, },
-    {picture: `zeus`,   sound: `zeus4`, text: `PETIT EFFRONTÉ !!!!\nSi tu n’as de cesse de te gausser des handicaps des mortels, ils ne réaliseront jamais que c’est en fait un pouvoir que nous leur offrons`},
+    {picture: `zeus`,   sound: `zeus4`, text: `PETIT EFFRONTÉ !!!!\nSi tu n’as de cesse de te gausser des handicaps des mortels,\nils ne réaliseront jamais que c’est en fait un pouvoir que nous leur offrons`},
     {picture: `pathos`, sound: `pat4`, text: `UN POUVOIR ? A d'autres Papa !\nTu ne me feras pas croire que perdre un sens peut apporter quoique ce soit de positif,\nc’est juste un énième défaut de ces nullos de mortels.`, },
     {picture: `zeus`,   sound: `zeus5`, text: `Tu ne peux pas comprendre, toi qui as la chance d’être un demi-dieu. Ton manque d’empathie est consternant.\nJe me dois de te supplicier ! Tu iras aider les autres dieux tout en endossant un handicap.\nCela te permettra peut être de réaliser à quel point ces mortels sont courageux et bien plus des dieux que toi !`, },
     {picture: `pathos`,  sound: `pat5`, text: `C’est pas un petit handicap qui va me déranger moi Pathos le demi-dieu de l’orgueil, je ne verrai même pas la différence ! `, },
