@@ -73,10 +73,11 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('alter2haut1',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut.png');
         this.load.image('alter2haut2',               'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/alter2-marche-haut1.png');
         this.load.image('bar',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar.png');
-        this.load.image('Arte1',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow1.png');
-        this.load.image('Arte2',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow2.png');
-        this.load.image('Arte3',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow3.png');
-        this.load.image('Arte4',                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow4.png');
+
+        for(let i = 1; i <= 9; i++){
+            this.load.image('Arte' + i,                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow' + i + '.png');
+        }
+        
         this.load.image('carpet',                      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/redCarpet.png');
         this.load.image('gate',                        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/gate.png');
         this.load.image('fleurs',                      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fleurs.png');
@@ -90,6 +91,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('no-escape',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/no-escape.mp3');
         this.load.image("endScreenLaurier",                  "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_laurier.png");
         this.load.image("endScreenBackground",               "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_pantheon.png");
+        this.load.audio('bar_sound',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar_sound.mp3');
     }
 
 
@@ -228,9 +230,12 @@ export default class LevelSecond extends Phaser.Scene {
         this.counter = 0;
         
         this.steps = this.sound.add("steps");
-        this.steps.setVolume(0.3);
+        this.steps.setVolume(0.35);
         this.background = this.sound.add("no-escape");
-        this.background.setVolume(0.3)
+        this.background.setVolume(0.25)
+        this.bar = this.sound.add("bar_sound");
+        this.bar.setVolume(0.2);
+        this.bar.setLoop(true);
 
         this.chronoText;
         this.myTimer;
@@ -260,6 +265,9 @@ export default class LevelSecond extends Phaser.Scene {
     update() {
         if(!this.background.isPlaying){
             this.background.play();
+        }
+        if(!this.bar.isPlaying){
+            this.bar.play();
         }
         this.counter ++;
         this.etiqueteur.update();

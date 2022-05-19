@@ -76,20 +76,30 @@ export class Etiqueteur {
     update() {
         if(this.animated){
             this.frame += 1;
-            if(this.frame == 7){
-                this.sprite.setTexture("Arte2");
+
+            for (let i = 1; i <= 9; i++){
+                if(this.frame == 2 * i){
+                    this.sprite.setTexture("Arte" + i);
+                }   
+                if(this.frame == 2 * 9){
+                    this.frame = 0;
+                    this.animated = false;
+                }
             }
-            if(this.frame == 14){
-                this.sprite.setTexture("Arte3");
-            }
-            if(this.frame == 21){
-                this.sprite.setTexture("Arte4");
-            };
-            if(this.frame == 28){
-                this.sprite.setTexture("Arte1");
-                this.frame = 0;
-                this.animated = false;
-            }
+            // if(this.frame == 4){
+            //     this.sprite.setTexture("Arte2");
+            // }
+            // if(this.frame == 8){
+            //     this.sprite.setTexture("Arte3");
+            // }
+            // if(this.frame == 21){
+            //     this.sprite.setTexture("Arte4");
+            // };
+            // if(this.frame == 28){
+            //     this.sprite.setTexture("Arte1");
+            //     this.frame = 0;
+            //     this.animated = false;
+            // }
         }
     }
 }
