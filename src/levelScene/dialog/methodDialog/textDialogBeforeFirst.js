@@ -1,5 +1,5 @@
 export const textDialogBeforeFirst = [
-    {picture: `hermes`, sound: `hermes1`, text: `Bienvenue dans mon centre de distribution de colis supervisés par les Amazones en personnes. On a énormément de boulot et Bezos notre stagiaire s’est fait enlever par Hadès, on a bien besoin de ton aide.`},
+    {picture: `hermes`, sound: `hermes1`, text: `Bienvenue dans mon centre de distribution de colis supervisés par les Amazones en personnes.\nOn a énormément de boulot et Bezos notre stagiaire s’est fait enlever par Hadès, on a bien besoin de ton aide.`},
     {picture: `pathos`, sound: `pat6`, text: `Je peux savoir pourquoi tu parles aussi vite et surtout pourquoi on se trouve dans le labyrinthe de Dédale ?`},
     {picture: `hermes`, sound: `hermes2`, text: `Les Satyres nous volaient constamment notre marchandise, ici ils ne peuvent pas nous trouver, et de toute façon ces couards craignent trop le Minotaure.`},
     {picture: `pathos`, sound: `pat7`, text: `Huuum, je vais faire comme si c’était logique. Qu'est-ce que je suis censé faire ?`},
