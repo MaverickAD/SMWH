@@ -390,7 +390,7 @@ export default class LevelFirst extends Phaser.Scene {
       if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 60) {
         this.scene.start("LevelSecond");
       }
-      else if (this.minuteChrono === 3 && this.secondChrono === 0 && this.score < 60){
+      else if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score < 60){
         this.scene.start("LevelFirst")
       }
     }

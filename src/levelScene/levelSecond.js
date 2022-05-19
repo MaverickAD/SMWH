@@ -88,6 +88,8 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('step2',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/sfx_step_grass_l.flac.mp3');
         this.load.audio('steps',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/steps.mp3');
         this.load.audio('no-escape',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/no-escape.mp3');
+        this.load.image("endScreenLaurier",                  "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_laurier.png");
+        this.load.image("endScreenBackground",               "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_pantheon.png");
     }
 
 
@@ -229,6 +231,30 @@ export default class LevelSecond extends Phaser.Scene {
         this.steps.setVolume(0.5);
         this.background = this.sound.add("no-escape");
         this.background.setVolume(0.3)
+
+        this.chronoText;
+        this.myTimer;
+        this.secondChrono = 0;
+        this.minuteChrono = 0;
+
+        this.myTimer = this.time.addEvent({
+            delay: 1000,
+            callback: this.startChrono,
+            callbackScope: this,
+            loop: true,
+        });
+
+        this.chronoText = this.add.text(ww - 190, 0, "Timer : " + this.minuteChrono + "0:0" + this.secondChrono, {
+            fontSize: "24px",
+        });
+        this.chronoText.setScrollFactor(0);
+        this.chronoText.setDepth(15);
+
+        this.scoreText = this.add.text(ww - 190, 25, "Score : " + this.score, {
+            fontSize: "24px",
+        });
+        this.scoreText.setScrollFactor(0);
+        this.scoreText.setDepth(15);
     }
     
     update() {
@@ -416,6 +442,12 @@ export default class LevelSecond extends Phaser.Scene {
                     this.secBall = undefined;
                 }
 
+                if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 60) {
+                    this.scene.start("LevelFirst");
+                }
+                else if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score < 60){
+                    this.scene.start("LevelSecond")
+                }
             }
 
             this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
@@ -423,6 +455,56 @@ export default class LevelSecond extends Phaser.Scene {
 
         this.wichSubFrame = this.wichSubFrame == 10 ? 0 : this.wichSubFrame + 1;
 
+        if (this.minuteChrono === 3 && this.secondChrono === 30) {
+            this.myTimer.paused = true;
+            this.upKeys = [];
+            this.downKeys = [];
+            this.leftKeys = [];
+            this.rightKeys = [];
+            this.endMessageBlock = this.add.image(
+              ww / 2,
+              wh / 2,
+              "endScreenBackground"
+            );
+            this.endMessageBlock.setDepth(20);
+            this.endMessageScreen = this.add
+              .image(
+                this.endMessageBlock.x - (1.3 / 5) * this.endMessageBlock.x,
+                this.endMessageBlock.y - (1.2 / 5) * this.endMessageBlock.y,
+                "endScreenLaurier"
+              )
+              .setScale(0.9, 0.9);
+            this.endMessageScreen.setDepth(20);
+            if (this.score >= 60) {
+              this.endMessageText1 = this.add
+                .text(
+                  this.endMessageBlock.x,
+                  this.endMessageBlock.y - (1.9 / 5) * this.endMessageBlock.y,
+                  "YOU WIN !!!",
+                  { color: "000000", fontSize: "24px" }
+                )
+                .setOrigin(0.5);
+            } else {
+              this.endMessageText1 = this.add
+                .text(
+                  this.endMessageBlock.x,
+                  this.endMessageBlock.y - (1.9 / 5) * this.endMessageBlock.y,
+                  "YOU LOSE !!!",
+                  { color: "000000", fontSize: "24px" }
+                )
+                .setOrigin(0.5);
+            }
+            this.endMessageText1.setDepth(20);
+            this.endMessageText2 = this.add
+              .text(
+                this.endMessageBlock.x,
+                this.endMessageBlock.y + (0.85 / 5) * this.endMessageBlock.y,
+                "Your score is " + this.score,
+                { color: "000000", fontSize: "24px" }
+              )
+              .setOrigin(0.5);
+            this.endMessageText2.setDepth(20);
+        }
     }
 
     anyOfKey(keys, duration=0) {
@@ -438,4 +520,34 @@ export default class LevelSecond extends Phaser.Scene {
     calcDistance(obj1, obj2) {
         return Math.sqrt(Math.pow(obj1.y - obj2.y, 2) + Math.pow(obj1.x - obj2.x, 2));
     }
+
+    startChrono() {
+        this.secondChrono += 1;
+        if (this.secondChrono === 60) {
+          this.minuteChrono += 1;
+          this.secondChrono = 0;
+        }
+    
+        if (this.secondChrono < 10) {
+          if (this.minuteChrono < 10) {
+            this.chronoText.setText(
+              "Timer : " + "0" + this.minuteChrono + ":0" + this.secondChrono
+            );
+          } else {
+            this.chronoText.setText(
+              "Timer : " + this.minuteChrono + ":0" + this.secondChrono
+            );
+          }
+        } else {
+          if (this.minuteChrono < 10) {
+            this.chronoText.setText(
+              "Timer : " + "0" + this.minuteChrono + ":" + this.secondChrono
+            );
+          } else {
+            this.chronoText.setText(
+              "Timer : " + this.minuteChrono + ":" + this.secondChrono
+            );
+          }
+        }
+      }
 }
