@@ -81,25 +81,12 @@ export class Etiqueteur {
                 if(this.frame == 2 * i){
                     this.sprite.setTexture("Arte" + i);
                 }   
-                if(this.frame == 2 * 9){
-                    this.frame = 0;
-                    this.animated = false;
-                }
             }
-            // if(this.frame == 4){
-            //     this.sprite.setTexture("Arte2");
-            // }
-            // if(this.frame == 8){
-            //     this.sprite.setTexture("Arte3");
-            // }
-            // if(this.frame == 21){
-            //     this.sprite.setTexture("Arte4");
-            // };
-            // if(this.frame == 28){
-            //     this.sprite.setTexture("Arte1");
-            //     this.frame = 0;
-            //     this.animated = false;
-            // }
+            if(this.frame == 2 * 10){
+                this.sprite.setTexture("Arte1");
+                this.frame = 0;
+                this.animated = false;
+            }
         }
     }
 }
@@ -114,10 +101,11 @@ export class Grape {
         this.obj = obj;
         this.color = color;
 
+        
         this.x = this.obj.x;
         this.y = this.obj.y;
     }
-
+    
     destroy() {
         this.obj.destroy();
     }
@@ -126,11 +114,12 @@ export class Grape {
 
 export class GrapeSpawner {
     constructor(obj, scene, color) {
-
+        
         this.scene  = scene;
         this.obj    = obj;
-
+        
         this.color   = color;
+        this.cut = this.scene.sound.add("cut");
         
         this.x      = this.obj.x;
         this.y      = this.obj.y;
@@ -148,6 +137,7 @@ export class GrapeSpawner {
 
     getGrape(){
         this.generateNewGrape();
+        this.cut.play();
         return this.waitingGrape;
     }
 }

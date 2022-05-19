@@ -77,7 +77,7 @@ export default class LevelSecond extends Phaser.Scene {
         for(let i = 1; i <= 9; i++){
             this.load.image('Arte' + i,                       'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/artemisBow' + i + '.png');
         }
-        
+
         this.load.image('carpet',                      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/redCarpet.png');
         this.load.image('gate',                        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/gate.png');
         this.load.image('fleurs',                      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fleurs.png');
@@ -92,6 +92,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image("endScreenLaurier",                  "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_laurier.png");
         this.load.image("endScreenBackground",               "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_pantheon.png");
         this.load.audio('bar_sound',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar_sound.mp3');
+        this.load.audio('cut',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/cut.mp3');
     }
 
 
