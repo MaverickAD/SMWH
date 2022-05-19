@@ -279,6 +279,7 @@ export class Command {
 
         this.img = this.scene.add.image(((this.position * 1.5 + 0.5) / 12) * window.innerWidth, (1 / 8 ) * window.innerHeight, "command" + this.command).setScale(0.8);
         this.good = this.scene.sound.add("good");
+        this.error = this.scene.sound.add("error");
 
         this.x = this.img.x
         this.y = this.img.y
@@ -297,6 +298,7 @@ export class Command {
 
         }
         else{
+            this.error.play();
             this.scene.score -= 10;
             this.scene.allBottle = this.scene.allBottle.filter(item => item != bottle);
             bottle.destroy();
