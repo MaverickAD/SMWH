@@ -8,7 +8,7 @@ export class BottleSpawner {
         this.x      = this.obj.x;
         this.y      = this.obj.y;
         
-        this.img = this.scene.add.image(this.x, this.y - 200, "shelf").setScale(5);
+        this.img = this.scene.add.image(this.x, this.y - 250, "shelf").setScale(5);
         this.img.setDepth(3);
 
     

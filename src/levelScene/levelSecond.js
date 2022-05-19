@@ -86,13 +86,14 @@ export default class LevelSecond extends Phaser.Scene {
         this.add.tileSprite(ww * 0.5 , wh * 0.5  ,  ww , wh , 'ground2').setScale(1.2);
         this.add.tileSprite(ww * (9/12), wh * (6.5/8) ,  ww * (1/2) / 2, wh * (3/8) / 2, 'grass').setScale(2);
         this.add.tileSprite(ww * (0/24), wh *  (1.5/8) ,     ww * (6/24),  wh * (1.3/40), 'carpet').setScale(4)
+        this.add.tileSprite(ww * (0/24), wh *  (3.5/16) ,     ww * (12/24),  wh * (1.22/40), 'gate').setScale(2)
 
-        this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (1.2/16), "fenceHori");
-        this.add.tileSprite(ww * (14/24),  wh *  (10/16) ,   ww * (2/12),   wh * (1.2/16), "fenceHori");
-        this.add.tileSprite(ww * (12/24),  wh *  (10.5/16) , ww * (0.36/24),wh * (1.48/16),  "fenceVert");
-        this.add.tileSprite(ww * (12/24),  wh *  (15/16) ,   ww * (0.36/24),wh * (2/16),  "fenceVert");
+        this.add.tileSprite(ww * (22/24) ,  wh *  (10/16) ,   ww * (2/12),   wh * (0.8/16), "fenceHori");
+        this.add.tileSprite(ww * (14/24),  wh *  (10/16) ,   ww * (2/12),   wh * (0.8/16), "fenceHori");
+        this.add.tileSprite(ww * (12/24),  wh *  (10.5/16) , ww * (0.24/24),wh * (1.48/16),  "fenceVert");
+        this.add.tileSprite(ww * (12/24),  wh *  (15/16) ,   ww * (0.24/24),wh * (2/16),  "fenceVert");
         this.add.image(ww * (12/24),  wh *  (11.5/16), "fence").setScale(2);
-        this.add.image(ww * (16.1/24),  wh *  (10/16), "fence").setScale(2);
+        this.add.image(ww * (16/24),  wh *  (10/16), "fence").setScale(2);
         [ww * (12/24),  wh *  (10.5/16) , ww * (0.25/24),wh * (1/16)],
         [ww * (12/24),  wh *  (15/16) ,   ww * (0.25/24),wh * (2/16)],
  
@@ -252,29 +253,29 @@ export default class LevelSecond extends Phaser.Scene {
         if (vx < 0) this.ball.body.setVelocityX(Math.min(vx + this.loosedSpeedperFrame, 0));
         if (vy < 0) this.ball.body.setVelocityY(Math.min(vy + this.loosedSpeedperFrame, 0));
 
-        if (vx > -400 && vx < 400) {
+        if (vx > -600 && vx < 600) {
             if (this.anyOfKey(this.rightKeys)) {
-                this.ball.body.setVelocityX(300 + (this.currentAlter == 2 ? 50 : (this.currentAlter == 3 ? -50 : 0)));
+                this.ball.body.setVelocityX(450 + (this.currentAlter == 2 ? 100 : (this.currentAlter == 3 ? -50 : 0)));
                 this.actualFrame = 4;
             }
             else if (this.anyOfKey(this.leftKeys)) {
-                this.ball.body.setVelocityX(-300 - (this.currentAlter == 2 ? 50 : (this.currentAlter == 3 ? -50 : 0)));
+                this.ball.body.setVelocityX(-450 - (this.currentAlter == 2 ? 100 : (this.currentAlter == 3 ? -50 : 0)));
                 this.actualFrame = 6;
             }
         }
 
-        if (vy > -400 && vy < 400) {
+        if (vy > -600 && vy < 600) {
             if (this.anyOfKey(this.upKeys)) {
                 
                 if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
-                    this.ball.body.setVelocityY(-300 - (this.currentAlter == 2 ? 50 : (this.currentAlter == 3 ? -50 : 0)));
+                    this.ball.body.setVelocityY(-450 - (this.currentAlter == 2 ? 100 : (this.currentAlter == 3 ? -50 : 0)));
                     this.actualFrame = 2;
                 }
             }
             else if (this.anyOfKey(this.downKeys)) {
 
                 if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
-                    this.ball.body.setVelocityY(300 + (this.currentAlter == 2 ? 50 : (this.currentAlter == 3 ? -50 : 0)));
+                    this.ball.body.setVelocityY(450 + (this.currentAlter == 2 ? 100 : (this.currentAlter == 3 ? -50 : 0)));
                     this.actualFrame = 0;
                 }
 
@@ -302,28 +303,28 @@ export default class LevelSecond extends Phaser.Scene {
 
             if (!this.secBall) {
                 for (let bottle of this.allBottle) {
-                    if (this.isInRect(this.ball, bottle, 60)) {
+                    if (this.isInRect(this.ball, bottle, 80)) {
                         this.secBall = bottle;
                         break;
                     }
                 }
 
                 if(!this.secBall){
-                    if (this.isInRect(this.ball, this.bottleSpawner, 200)) {
+                    if (this.isInRect(this.ball, this.bottleSpawner, 350)) {
                         this.secBall = this.bottleSpawner.generateNewBottle('bottleEmpty');
                         this.allBottle.push(this.secBall);
                     }
                 }
 
                 for(let spawner of this.allGrapeSpawner) {
-                    if(this.isInRect(this.ball, spawner, 100) && this.currentAlter == 2){
+                    if(this.isInRect(this.ball, spawner, 200) && this.currentAlter == 2){
                         this.secBall = spawner.getGrape();
                         break;
                     }
                 }
 
                 for(let press of this.allPress){
-                    if(this.isInRect(this.ball, press, 100) && press.pressable){
+                    if(this.isInRect(this.ball, press, 200) && press.pressable){
                         press.press();
                     }
                 }
@@ -332,7 +333,7 @@ export default class LevelSecond extends Phaser.Scene {
 
             else {
                 let DidSmth = false;
-                if(this.isInRect(this.ball, this.etiqueteur, 100) && this.secBall.id == "bottle" && this.currentAlter == 1){
+                if(this.isInRect(this.ball, this.etiqueteur, 200) && this.secBall.id == "bottle" && this.currentAlter == 1){
                     if(!this.secBall.tag){
                         DidSmth = true;
                         this.etiqueteur.putTag(this.secBall);
@@ -340,7 +341,7 @@ export default class LevelSecond extends Phaser.Scene {
                 } 
                 if(!DidSmth && this.secBall.id == "grape"){
                     for(let press of this.allPress) {
-                        if(this.isInRect(this.ball, press, 100)){
+                        if(this.isInRect(this.ball, press, 200)){
                             DidSmth = true;
                             if(press.space){
                                 press.receiveGrape(this.secBall);
@@ -354,7 +355,7 @@ export default class LevelSecond extends Phaser.Scene {
 
                 if(!DidSmth && this.secBall.id == "bottle" ){
                     for(let press of this.allPress) {
-                        if(this.isInRect(this.ball, press, 100)){
+                        if(this.isInRect(this.ball, press, 200)){
                             if(press.collectable){
                                 DidSmth = true;
                                 press.giveWine(this.secBall);
@@ -366,7 +367,7 @@ export default class LevelSecond extends Phaser.Scene {
 
                 if(!DidSmth && this.secBall.id == "bottle"){
                     for(let command of this.allCommands) {
-                        if(this.isInRect(this.ball, command, 100)){
+                        if(this.isInRect(this.ball, command, 200)){
                             command.receiveBottle(this.secBall);
                         }
                     }
