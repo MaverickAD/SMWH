@@ -159,7 +159,7 @@ export class Press {
         this.y      = this.obj.y;
 
         
-        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 100, 0, 20, 0xFFD700, 1);
+        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 150, 0, 20, 0xFFD700, 1);
         this.advencementBar.setDisplayOrigin(0,1);
         this.img =  this.scene.add.image(this.x, this.y, "press" + this.state).setScale(2.5);
         
