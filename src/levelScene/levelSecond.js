@@ -84,6 +84,9 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('bottle_fill',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_fill.mp3');
         this.load.audio('bow',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bow.mp3');
         this.load.audio('clink',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/clink.mp3');
+        this.load.audio('step1',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/sfx_step_grass_r.flac.mp3');
+        this.load.audio('step2',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/sfx_step_grass_l.flac.mp3');
+        this.load.audio('steps',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/steps.mp3');
     }
 
 
@@ -221,6 +224,7 @@ export default class LevelSecond extends Phaser.Scene {
 
         this.counter = 0;
         
+        this.steps = this.sound.add("steps");
     }
     
     update() {
@@ -254,11 +258,15 @@ export default class LevelSecond extends Phaser.Scene {
         const vx = this.ball.body.velocity.x;
         const vy = this.ball.body.velocity.y;
 
+
         if (vx > 0) this.ball.body.setVelocityX(Math.max(vx - this.loosedSpeedperFrame, 0));
         if (vy > 0) this.ball.body.setVelocityY(Math.max(vy - this.loosedSpeedperFrame, 0));
         if (vx < 0) this.ball.body.setVelocityX(Math.min(vx + this.loosedSpeedperFrame, 0));
         if (vy < 0) this.ball.body.setVelocityY(Math.min(vy + this.loosedSpeedperFrame, 0));
 
+
+
+        
         if (vx > -600 && vx < 600) {
             if (this.anyOfKey(this.rightKeys)) {
                 this.ball.body.setVelocityX(450 + (this.currentAlter == 2 ? 100 : (this.currentAlter == 3 ? -50 : 0)));
