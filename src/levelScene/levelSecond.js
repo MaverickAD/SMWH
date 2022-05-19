@@ -228,7 +228,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.counter = 0;
         
         this.steps = this.sound.add("steps");
-        this.steps.setVolume(0.5);
+        this.steps.setVolume(0.3);
         this.background = this.sound.add("no-escape");
         this.background.setVolume(0.3)
 
@@ -258,6 +258,9 @@ export default class LevelSecond extends Phaser.Scene {
     }
     
     update() {
+        if(!this.background.isPlaying){
+            this.background.play();
+        }
         this.counter ++;
         this.etiqueteur.update();
 
