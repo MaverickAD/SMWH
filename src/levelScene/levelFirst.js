@@ -145,7 +145,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.allSpawner.forEach(s => s.generateNewPackage());//generate new object to package
 
     //init maks around the player
-    this.spotlight  = this.add.image(this.ball.x, this.ball.y, 'mask_blur').setDepth(10);
+    // this.spotlight  = this.add.image(this.ball.x, this.ball.y, 'mask_blur').setDepth(10);
 
     //sprite for the player, walk effect
     this.allFramesWalk = [
@@ -211,8 +211,8 @@ export default class LevelFirst extends Phaser.Scene {
     const vx = this.ball.body.velocity.x;
     const vy = this.ball.body.velocity.y;
 
-    this.spotlight.x = this.ball.x-30;
-    this.spotlight.y = this.ball.y-30;
+    // this.spotlight.x = this.ball.x-30;
+    // this.spotlight.y = this.ball.y-30;
 
     if (vx > 0) this.ball.body.setVelocityX(Math.max(vx - this.loosedSpeedperFrame, 0));
     if (vy > 0) this.ball.body.setVelocityY(Math.max(vy - this.loosedSpeedperFrame, 0));
