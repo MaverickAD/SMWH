@@ -176,12 +176,13 @@ export default class LevelFirst extends Phaser.Scene {
     ];
 
     this.secBall = undefined; //init if something are in the hand
-    this.allSpawner.forEach((s) => s.generateNewPackage()); //generate new object to package
+    this.allSpawner.forEach(s => s.generateNewPackage()); //generate new object to package
 
     //init maks around the player
     this.spotlight = this.add
       .image(this.ball.x, this.ball.y, "mask_blur")
       .setDepth(10);
+    this.spotlight.visible = false;
 
     //sprite for the player, walk effect
     this.allFramesWalk = [
@@ -338,6 +339,7 @@ export default class LevelFirst extends Phaser.Scene {
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxCerbere, 1000)
         ) {
+          if (!this.spotlight.visible) this.spotlight.visible = true;
           this.score += 15;
           this.mailBoxCerbere.obj.setTexture("mailboxredClose");
         } else if (
@@ -345,12 +347,14 @@ export default class LevelFirst extends Phaser.Scene {
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxMedusa, 100)
         ) {
+          if (!this.spotlight.visible) this.spotlight.visible = true;
           this.score += 15;
         } else if (
           this.secBall.id == this.mailBoxIcare.id &&
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxIcare, 1000)
         ) {
+          if (!this.spotlight.visible) { this.spotlight.visible = true; }
           this.score += 15;
           this.mailBoxIcare.obj.setTexture("mailboxblueClose");
         }
