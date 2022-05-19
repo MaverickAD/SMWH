@@ -7,7 +7,8 @@ export class BottleSpawner {
         
         this.x      = this.obj.x;
         this.y      = this.obj.y;
-        
+
+        this.clink = this.scene.sound.add("clink");
         this.img = this.scene.add.image(this.x, this.y - 250, "shelf").setScale(5);
         this.img.setDepth(3);
 
@@ -18,6 +19,7 @@ export class BottleSpawner {
 
     generateNewBottle(texture) {
         this.newBottle = new Bottle(this.scene, texture);
+        this.clink.play();
         return this.newBottle
     }
 }
@@ -51,7 +53,8 @@ export class Etiqueteur {
         
         this.x      = this.obj.x;
         this.y      = this.obj.y;
-        
+
+        this.bow = this.scene.sound.add("bow");
         this.sprite = this.scene.add.image(this.x - 30, this.y - 20, "Arte1").setScale(1.4);
         this.sprite.setDepth(4);
 
@@ -67,6 +70,7 @@ export class Etiqueteur {
         bottle.tag = true;
         bottle.id_state += 1;
         this.animated = true;
+        this.bow.play();
     }
 
     update() {
