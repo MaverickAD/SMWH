@@ -51,9 +51,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.audio('musique', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/musiquegrecque.mp3")
 
     for (let i = 1; i < 17; i++)
-      eval(
-        `this.load.image('eclair${i}', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png');`
-      );
+      this.load.image(`eclair${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png`);
   }
 
   create() {
@@ -62,7 +60,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.add.tileSprite(ww * 0.5, wh * 0.5, ww, wh, "ground");
 
     //init player
-    this.ball = this.add.circle(400, 250, 10, 0xffffff, 0);
+    this.ball = this.add.circle((3/20)*ww, wh / 2, 10, 0xffffff, 0);
     this.physics.add.existing(this.ball);
     this.ball.body.setCollideWorldBounds(true, 0.3, 0.3);
 
@@ -76,7 +74,6 @@ export default class LevelFirst extends Phaser.Scene {
     });
 
     decoration.forEach((elem) => {
-      console.log(elem);
       const temp = this.add.image(elem[0], elem[1], elem[2]);
       if (elem[3].scale) temp.setScale(elem[3].scale);
       if (elem[3].rotation) {
@@ -179,12 +176,13 @@ export default class LevelFirst extends Phaser.Scene {
     ];
 
     this.secBall = undefined; //init if something are in the hand
-    this.allSpawner.forEach((s) => s.generateNewPackage()); //generate new object to package
+    this.allSpawner.forEach(s => s.generateNewPackage()); //generate new object to package
 
     //init maks around the player
     this.spotlight = this.add
       .image(this.ball.x, this.ball.y, "mask_blur")
       .setDepth(10);
+    this.spotlight.visible = false;
 
     //sprite for the player, walk effect
     this.allFramesWalk = [
@@ -341,6 +339,7 @@ export default class LevelFirst extends Phaser.Scene {
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxCerbere, 1000)
         ) {
+          if (!this.spotlight.visible) this.spotlight.visible = true;
           this.score += 15;
           this.mailBoxCerbere.obj.setTexture("mailboxredClose");
         } else if (
@@ -348,20 +347,22 @@ export default class LevelFirst extends Phaser.Scene {
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxMedusa, 100)
         ) {
+          if (!this.spotlight.visible) this.spotlight.visible = true;
           this.score += 15;
         } else if (
           this.secBall.id == this.mailBoxIcare.id &&
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxIcare, 1000)
         ) {
+          if (!this.spotlight.visible) { this.spotlight.visible = true; }
           this.score += 15;
           this.mailBoxIcare.obj.setTexture("mailboxblueClose");
         }
 
         for (let p of this.allPacker) {
           if (!this.secBall.isPacked && this.isInRect(this.ball, p, 150)) {
-            this.score += 5;
             if (!p.package) {
+              this.score += 5;
               p.initPackaging(this.secBall, this.time.now);
               break;
             }
