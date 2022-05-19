@@ -153,6 +153,7 @@ export class Press {
 
         this.frame = 1;
         this.pressAdvencement = 0; 
+        this.squish = this.scene.sound.add("squish");
 
 
         this.x      = this.obj.x;
@@ -206,7 +207,7 @@ export class Press {
         }
 
         this.img.setTexture("press" + this.state + this.frame);
-
+        this.squish.play();
 
         if (this.pressAdvencement >= 100){
             switch (this.state){
