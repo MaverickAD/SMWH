@@ -49,6 +49,7 @@ export default class LevelFirst extends Phaser.Scene {
     
     this.load.audio("travailtermine", "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/travailtermine.mp3");
     this.load.audio('musique', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/musiquegrecque.mp3")
+    this.load.audio('courrier', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/courrier.mp3")
 
     for (let i = 1; i < 17; i++)
       this.load.image(`eclair${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png`);
@@ -339,6 +340,7 @@ export default class LevelFirst extends Phaser.Scene {
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxCerbere, 1000)
         ) {
+          this.sound.add('courrier').play();
           if (!this.spotlight.visible) this.spotlight.visible = true;
           this.score += 15;
           this.mailBoxCerbere.obj.setTexture("mailboxredClose");
@@ -347,6 +349,7 @@ export default class LevelFirst extends Phaser.Scene {
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxMedusa, 100)
         ) {
+          this.sound.add('courrier').play();
           if (!this.spotlight.visible) this.spotlight.visible = true;
           this.score += 15;
         } else if (
@@ -354,6 +357,7 @@ export default class LevelFirst extends Phaser.Scene {
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxIcare, 1000)
         ) {
+          this.sound.add('courrier').play();
           if (!this.spotlight.visible) { this.spotlight.visible = true; }
           this.score += 15;
           this.mailBoxIcare.obj.setTexture("mailboxblueClose");
