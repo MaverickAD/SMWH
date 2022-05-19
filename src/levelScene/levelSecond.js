@@ -87,6 +87,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('step1',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/sfx_step_grass_r.flac.mp3');
         this.load.audio('step2',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/sfx_step_grass_l.flac.mp3');
         this.load.audio('steps',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/steps.mp3');
+        this.load.audio('no-escape',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/no-escape.mp3');
     }
 
 
@@ -225,6 +226,9 @@ export default class LevelSecond extends Phaser.Scene {
         this.counter = 0;
         
         this.steps = this.sound.add("steps");
+        this.steps.setVolume(0.5);
+        this.background = this.sound.add("no-escape");
+        this.background.setVolume(0.3)
     }
     
     update() {
@@ -247,6 +251,8 @@ export default class LevelSecond extends Phaser.Scene {
                 rng = Math.floor(Math.random() * 3 + 1);
             }
             this.currentAlter = rng;
+            this.allFramesWalk.forEach(tab => tab.forEach(i => i.visible = false));
+            this.allFramesWalk[this.currentAlter - 1][this.actualFrame + (this.wichSubFrame > 5)].visible = true;
         }
         
         //update of sprite when the player move
@@ -271,10 +277,16 @@ export default class LevelSecond extends Phaser.Scene {
             if (this.anyOfKey(this.rightKeys)) {
                 this.ball.body.setVelocityX(450 + (this.currentAlter == 2 ? 100 : (this.currentAlter == 3 ? -50 : 0)));
                 this.actualFrame = 4;
+                if(!this.steps.isPlaying){
+                    this.steps.play();
+                }
             }
             else if (this.anyOfKey(this.leftKeys)) {
                 this.ball.body.setVelocityX(-450 - (this.currentAlter == 2 ? 100 : (this.currentAlter == 3 ? -50 : 0)));
                 this.actualFrame = 6;
+                if(!this.steps.isPlaying){
+                    this.steps.play();
+                }
             }
         }
 
@@ -284,6 +296,9 @@ export default class LevelSecond extends Phaser.Scene {
                 if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
                     this.ball.body.setVelocityY(-450 - (this.currentAlter == 2 ? 100 : (this.currentAlter == 3 ? -50 : 0)));
                     this.actualFrame = 2;
+                    if(!this.steps.isPlaying){
+                        this.steps.play();
+                    }
                 }
             }
             else if (this.anyOfKey(this.downKeys)) {
@@ -291,9 +306,16 @@ export default class LevelSecond extends Phaser.Scene {
                 if(!this.anyOfKey(this.leftKeys) && !this.anyOfKey(this.rightKeys)){
                     this.ball.body.setVelocityY(450 + (this.currentAlter == 2 ? 100 : (this.currentAlter == 3 ? -50 : 0)));
                     this.actualFrame = 0;
+                    if(!this.steps.isPlaying){
+                        this.steps.play();
+                    }
                 }
 
             }
+        }
+
+        if(Math.abs(vx) < 50 && Math.abs(vy) < 50){
+            this.steps.stop();
         }
 
         if (vx != 0 || vy != 0) {
