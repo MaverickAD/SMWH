@@ -333,15 +333,21 @@ export default class LevelFirst extends Phaser.Scene {
         }
       } else {
         let tmp = this.secBall.id;
+
+        if (this.isInRect(this.ball, this.mailBoxCerbere, 100)
+        || this.isInRect(this.ball, this.mailBoxMedusa, 100)
+        || this.isInRect(this.ball, this.mailBoxIcare, 100)) {
+          this.spotlight.visible = true;
+          this.sound.add('courrier').play();
+        }
+
         this.timeForMailBox = undefined ? this.secondChrono : "";
         console.log(this.timeForMailBox);
         if (
           this.secBall.id == this.mailBoxCerbere.id &&
           this.secBall.isPacked &&
-          this.isInRect(this.ball, this.mailBoxCerbere, 1000)
+          this.isInRect(this.ball, this.mailBoxCerbere, 100)
         ) {
-          this.sound.add('courrier').play();
-          if (!this.spotlight.visible) this.spotlight.visible = true;
           this.score += 15;
           this.mailBoxCerbere.obj.setTexture("mailboxredClose");
         } else if (
@@ -349,16 +355,12 @@ export default class LevelFirst extends Phaser.Scene {
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxMedusa, 100)
         ) {
-          this.sound.add('courrier').play();
-          if (!this.spotlight.visible) this.spotlight.visible = true;
           this.score += 15;
         } else if (
           this.secBall.id == this.mailBoxIcare.id &&
           this.secBall.isPacked &&
-          this.isInRect(this.ball, this.mailBoxIcare, 1000)
+          this.isInRect(this.ball, this.mailBoxIcare, 100)
         ) {
-          this.sound.add('courrier').play();
-          if (!this.spotlight.visible) { this.spotlight.visible = true; }
           this.score += 15;
           this.mailBoxIcare.obj.setTexture("mailboxblueClose");
         }
