@@ -340,6 +340,8 @@ export default class LevelFirst extends Phaser.Scene {
     });
     this.scoreText.setScrollFactor(0);
     this.scoreText.setDepth(15);
+
+    this.timeForMailBox = undefined;
   }
 
   update() {
@@ -436,13 +438,15 @@ export default class LevelFirst extends Phaser.Scene {
         }
       } else {
         let tmp = this.secBall.id;
+        this.timeForMailBox = undefined ? this.secondChrono : "";
+        console.log(this.timeForMailBox);
         if (
           this.secBall.id == this.mailBoxCerbere.id &&
           this.secBall.isPacked &&
           this.isInRect(this.ball, this.mailBoxCerbere, 1000)
         ) {
           this.score += 15;
-          this.mailBoxCerbere.obj.setTexture('mailboxredClose');
+          this.mailBoxCerbere.obj.setTexture("mailboxredClose");
         } else if (
           this.secBall.id == this.mailBoxMedusa.id &&
           this.secBall.isPacked &&
@@ -455,7 +459,7 @@ export default class LevelFirst extends Phaser.Scene {
           this.isInRect(this.ball, this.mailBoxIcare, 1000)
         ) {
           this.score += 15;
-          this.mailBoxIcare.obj.setTexture('mailboxblueClose');
+          this.mailBoxIcare.obj.setTexture("mailboxblueClose");
         }
 
         for (let p of this.allPacker) {
@@ -474,18 +478,24 @@ export default class LevelFirst extends Phaser.Scene {
         this.allSpawner.forEach((s) =>
           s.fill ? undefined : s.generateNewPackage()
         );
-        // if(tmp === 0){
-        //   this.mailBoxCerbere.obj.setTexture('mailboxredOpen');
-        // }
-        // if(tmp === 2){
-        //   this.mailBoxIcare.obj.setTexture('mailboxblueOpen');
-        // }
+
+        if (this.timeForMailBox !== undefined && tmp === 0) {
+          this.mailBoxCerbere.obj.setTexture("mailboxredOpen");
+          this.timeForMailBox = undefined;
+        }
+        if (this.timeForMailBox !== undefined && tmp === 2) {
+          this.mailBoxIcare.obj.setTexture("mailboxblueOpen");
+          this.timeForMailBox = undefined;
+        }
       }
 
       this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
 
-      if (this.minuteChrono === 3 && this.secondChrono === 0) {
+      if (this.minuteChrono === 3 && this.secondChrono === 0 && this.score >= 60) {
         this.scene.start("LevelSecond");
+      }
+      else if (this.minuteChrono === 3 && this.secondChrono === 0 && this.score < 60){
+        this.scene.start("LevelFirst")
       }
     }
 
@@ -515,14 +525,25 @@ export default class LevelFirst extends Phaser.Scene {
         )
         .setScale(0.9, 0.9);
       this.endMessageScreen.setDepth(20);
-      this.endMessageText1 = this.add
-        .text(
-          this.endMessageBlock.x,
-          this.endMessageBlock.y - (1.9 / 5) * this.endMessageBlock.y,
-          "YOU WIN !!!",
-          { color: "000000", fontSize: "24px" }
-        )
-        .setOrigin(0.5);
+      if (this.score >= 60) {
+        this.endMessageText1 = this.add
+          .text(
+            this.endMessageBlock.x,
+            this.endMessageBlock.y - (1.9 / 5) * this.endMessageBlock.y,
+            "YOU WIN !!!",
+            { color: "000000", fontSize: "24px" }
+          )
+          .setOrigin(0.5);
+      } else {
+        this.endMessageText1 = this.add
+          .text(
+            this.endMessageBlock.x,
+            this.endMessageBlock.y - (1.9 / 5) * this.endMessageBlock.y,
+            "YOU LOSE !!!",
+            { color: "000000", fontSize: "24px" }
+          )
+          .setOrigin(0.5);
+      }
       this.endMessageText1.setDepth(20);
       this.endMessageText2 = this.add
         .text(
