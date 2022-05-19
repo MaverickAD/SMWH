@@ -51,9 +51,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.audio('musique', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/musiquegrecque.mp3")
 
     for (let i = 1; i < 17; i++)
-      eval(
-        `this.load.image('eclair${i}', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png');`
-      );
+      this.load.image(`eclair${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png`);
   }
 
   create() {
@@ -62,7 +60,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.add.tileSprite(ww * 0.5, wh * 0.5, ww, wh, "ground");
 
     //init player
-    this.ball = this.add.circle(400, 250, 10, 0xffffff, 0);
+    this.ball = this.add.circle((3/20)*ww, wh / 2, 10, 0xffffff, 0);
     this.physics.add.existing(this.ball);
     this.ball.body.setCollideWorldBounds(true, 0.3, 0.3);
 
@@ -76,7 +74,6 @@ export default class LevelFirst extends Phaser.Scene {
     });
 
     decoration.forEach((elem) => {
-      console.log(elem);
       const temp = this.add.image(elem[0], elem[1], elem[2]);
       if (elem[3].scale) temp.setScale(elem[3].scale);
       if (elem[3].rotation) {
@@ -236,7 +233,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.scoreText.setScrollFactor(0);
     this.scoreText.setDepth(15);
 
-    this.scene.sound.add('musique').play();
+    this.sound.add('musique').play();
   }
 
   update() {
@@ -332,7 +329,6 @@ export default class LevelFirst extends Phaser.Scene {
           }
         }
       } else {
-        let tmp = this.secBall.id;
         if (
           this.secBall.id == this.mailBoxCerbere.id &&
           this.secBall.isPacked &&
@@ -357,8 +353,8 @@ export default class LevelFirst extends Phaser.Scene {
 
         for (let p of this.allPacker) {
           if (!this.secBall.isPacked && this.isInRect(this.ball, p, 150)) {
-            this.score += 5;
             if (!p.package) {
+              this.score += 5;
               p.initPackaging(this.secBall, this.time.now);
               break;
             }
@@ -368,20 +364,12 @@ export default class LevelFirst extends Phaser.Scene {
         this.secBall.destroy();
         this.secBall = undefined;
         this.score -= 5;
-        this.allSpawner.forEach((s) =>
-          s.fill ? undefined : s.generateNewPackage()
-        );
-        // if(tmp === 0){
-        //   this.mailBoxCerbere.obj.setTexture('mailboxredOpen');
-        // }
-        // if(tmp === 2){
-        //   this.mailBoxIcare.obj.setTexture('mailboxblueOpen');
-        // }
+        this.allSpawner.forEach(s =>s.fill ? undefined : s.generateNewPackage());
       }
 
       this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
 
-      if (this.minuteChrono === 3 && this.secondChrono === 0) {
+      if (this.minuteChrono === 3 && this.secondChrono === 30) {
         this.scene.start("LevelSecond");
       }
     }
@@ -392,7 +380,7 @@ export default class LevelFirst extends Phaser.Scene {
     );
     this.scoreText.text = "Score : " + this.score;
 
-    if (this.minuteChrono === 3 && this.secondChrono === 0) {
+    if (this.minuteChrono === 3 && this.secondChrono === 30) {
       this.myTimer.paused = true;
       this.upKeys = [];
       this.downKeys = [];
