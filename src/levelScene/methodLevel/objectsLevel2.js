@@ -154,6 +154,7 @@ export class Press {
         this.frame = 1;
         this.pressAdvencement = 0; 
         this.squish = this.scene.sound.add("squish");
+        this.fill = this.scene.sound.add("bottle_fill");
 
 
         this.x      = this.obj.x;
@@ -207,7 +208,9 @@ export class Press {
         }
 
         this.img.setTexture("press" + this.state + this.frame);
-        this.squish.play();
+        if(!this.squish.isPlaying){
+            this.squish.play();
+        }
 
         if (this.pressAdvencement >= 100){
             switch (this.state){
@@ -232,6 +235,18 @@ export class Press {
             bottle.obj.setTexture("bottle" + this.color);
         }
         bottle.color = this.color;
+
+        const config = {
+            mute: false,
+            volume: 1,
+            rate: 1.8,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        }
+
+        this.fill.play(config)
 
         this.img.setTexture("pressEmpty");
         this.state = "Empty"; 
