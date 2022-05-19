@@ -94,6 +94,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('bar_sound',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar_sound.mp3');
         this.load.audio('cut',                              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/cut.mp3');
         this.load.audio('good',                              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/good.wav');
+        this.load.audio('error',                              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/error.mp3');
     }
 
 
