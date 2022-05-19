@@ -80,7 +80,8 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.image('carpet',                      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/redCarpet.png');
         this.load.image('gate',                        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/gate.png');
         this.load.image('fleurs',                      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fleurs.png');
-        this.load.image('squish',                      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/squish.mp3');
+        this.load.audio('squish',                      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/squish.mp3');
+        this.load.audio('bottle_fill',                 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bottle_fill.mp3');
     }
 
 
