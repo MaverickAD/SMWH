@@ -19,13 +19,13 @@ export class Spawner {
         if (randIndicator <= 0.16){
             this.waitingObject = new Package(
                 this.scene.add.image(this.x - 5, this.y - 30, 'leaf').setScale(0.8),
-                0
+                2
             );
         }
         else if (0.16 < randIndicator && randIndicator <= 0.32){
             this.waitingObject = new Package(
                 this.scene.add.image(this.x - 5, this.y - 30, 'sunglasses').setScale(1.2),
-                0
+                2
             );
         }
         else if (0.32 < randIndicator && randIndicator <= 0.48){
@@ -36,20 +36,20 @@ export class Spawner {
         }
         else if (0.48 < randIndicator && randIndicator <= 0.64){
             this.waitingObject = new Package(
-                this.scene.add.image(this.x - 5, this.y - 30, 'comb').setScale(1.2),
+                this.scene.add.image(this.x - 5, this.y - 30, 'medusa').setScale(1.2),
                 1
             );
         }
         else if (0.64 < randIndicator && randIndicator <= 0.80){
             this.waitingObject = new Package(
                 this.scene.add.image(this.x - 5, this.y - 30, 'bone').setScale(2),
-                2
+                0
             );
         }
         else if (0.80 < randIndicator){
             this.waitingObject = new Package(
                 this.scene.add.image(this.x - 5, this.y - 30, 'bowl').setScale(1.5),
-                2
+                0
             );
         }
         this.waitingObject.obj.setDepth(5)

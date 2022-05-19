@@ -8,7 +8,7 @@ export class BottleSpawner {
         this.x      = this.obj.x;
         this.y      = this.obj.y;
         
-        this.img = this.scene.add.image(this.x, this.y - 90, "shelf").setScale(3);
+        this.img = this.scene.add.image(this.x, this.y - 200, "shelf").setScale(5);
         this.img.setDepth(3);
 
     
@@ -27,7 +27,7 @@ export class Bottle {
         this.id = "bottle"
 
         this.scene = scene;
-        this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture).setScale(0.7);
+        this.obj = this.scene.add.image(this.scene.ball.x, this.scene.ball.y, texture);
 
         this.id_state = 0;
 
@@ -52,7 +52,7 @@ export class Etiqueteur {
         this.x      = this.obj.x;
         this.y      = this.obj.y;
         
-        this.sprite = this.scene.add.image(this.x - 20, this.y, "Arte1").setScale(0.7);
+        this.sprite = this.scene.add.image(this.x - 30, this.y - 20, "Arte1").setScale(1.4);
         this.sprite.setDepth(4);
 
         this.frame = 0;
@@ -121,15 +121,15 @@ export class GrapeSpawner {
         this.x      = this.obj.x;
         this.y      = this.obj.y;
         
-        this.scene.add.image(this.x, this.y, 'bush').setScale(1.5);
-        this.waitingGrape = new Grape (this.scene, this.color, this.scene.add.image(this.x, this.y, "Grape" + this.color));
+        this.scene.add.image(this.x, this.y, 'bush').setScale(3);
+        this.waitingGrape = new Grape (this.scene, this.color, this.scene.add.image(this.x, this.y, "Grape" + this.color).setScale(2.5));
 
         this.scene.physics.add.existing(this.obj, true); 
         this.scene.physics.add.collider(this.obj, this.scene.ball);
     }
 
     generateNewGrape() {
-        this.waitingGrape = new Grape (this.scene, this.color, this.scene.add.image(this.x, this.y, "Grape" + this.color));
+        this.waitingGrape = new Grape (this.scene, this.color, this.scene.add.image(this.x, this.y, "Grape" + this.color).setScale(2.5));
     }
 
     getGrape(){
@@ -161,7 +161,7 @@ export class Press {
         
         this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 100, 0, 20, 0xFFD700, 1);
         this.advencementBar.setDisplayOrigin(0,1);
-        this.img =  this.scene.add.image(this.x, this.y, "press" + this.state).setScale(1.5);
+        this.img =  this.scene.add.image(this.x, this.y, "press" + this.state).setScale(2.5);
         
         
         this.scene.physics.add.existing(this.obj, true);
@@ -257,7 +257,7 @@ export class Command {
         }
 
 
-        this.img = this.scene.add.image(((this.position + 1) / 12) * window.innerWidth, (1.5 / 8 ) * window.innerHeight, "command" + this.command);
+        this.img = this.scene.add.image(((this.position * 1.5 + 0.5) / 12) * window.innerWidth, (1 / 8 ) * window.innerHeight, "command" + this.command).setScale(0.8);
 
         this.x = this.img.x
         this.y = this.img.y
