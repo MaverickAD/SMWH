@@ -7,8 +7,9 @@ export class BottleSpawner {
         
         this.x      = this.obj.x;
         this.y      = this.obj.y;
-        
-        this.img = this.scene.add.image(this.x, this.y - 200, "shelf").setScale(5);
+
+        this.clink = this.scene.sound.add("clink");
+        this.img = this.scene.add.image(this.x, this.y - 250, "shelf").setScale(5);
         this.img.setDepth(3);
 
     
@@ -18,6 +19,7 @@ export class BottleSpawner {
 
     generateNewBottle(texture) {
         this.newBottle = new Bottle(this.scene, texture);
+        this.clink.play();
         return this.newBottle
     }
 }
@@ -51,7 +53,8 @@ export class Etiqueteur {
         
         this.x      = this.obj.x;
         this.y      = this.obj.y;
-        
+
+        this.bow = this.scene.sound.add("bow");
         this.sprite = this.scene.add.image(this.x - 30, this.y - 20, "Arte1").setScale(1.4);
         this.sprite.setDepth(4);
 
@@ -67,6 +70,7 @@ export class Etiqueteur {
         bottle.tag = true;
         bottle.id_state += 1;
         this.animated = true;
+        this.bow.play();
     }
 
     update() {
@@ -153,13 +157,15 @@ export class Press {
 
         this.frame = 1;
         this.pressAdvencement = 0; 
+        this.squish = this.scene.sound.add("squish");
+        this.fill = this.scene.sound.add("bottle_fill");
 
 
         this.x      = this.obj.x;
         this.y      = this.obj.y;
 
         
-        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 100, 0, 20, 0xFFD700, 1);
+        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 150, 0, 20, 0xFFD700, 1);
         this.advencementBar.setDisplayOrigin(0,1);
         this.img =  this.scene.add.image(this.x, this.y, "press" + this.state).setScale(2.5);
         
@@ -206,7 +212,9 @@ export class Press {
         }
 
         this.img.setTexture("press" + this.state + this.frame);
-
+        if(!this.squish.isPlaying){
+            this.squish.play();
+        }
 
         if (this.pressAdvencement >= 100){
             switch (this.state){
@@ -231,6 +239,18 @@ export class Press {
             bottle.obj.setTexture("bottle" + this.color);
         }
         bottle.color = this.color;
+
+        const config = {
+            mute: false,
+            volume: 1,
+            rate: 1.8,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        }
+
+        this.fill.play(config)
 
         this.img.setTexture("pressEmpty");
         this.state = "Empty"; 
