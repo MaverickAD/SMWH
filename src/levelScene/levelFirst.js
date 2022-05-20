@@ -324,7 +324,7 @@ export default class LevelFirst extends Phaser.Scene {
     ) {
       if (!this.secBall) {
         for (let s of this.allSpawner)
-          if (this.isInRect(this.ball, s, 100)) {
+          if (this.isInRect(this.ball, s, 120)) {
             this.secBall = s.getObj();
           }
 
@@ -339,9 +339,9 @@ export default class LevelFirst extends Phaser.Scene {
       } else {
         let tmp = this.secBall.id;
 
-        if (this.isInRect(this.ball, this.mailBoxCerbere, 100)
-        || this.isInRect(this.ball, this.mailBoxMedusa, 100)
-        || this.isInRect(this.ball, this.mailBoxIcare, 100)) {
+        if (this.isInRect(this.ball, this.mailBoxCerbere, 120)
+        || this.isInRect(this.ball, this.mailBoxMedusa, 120)
+        || this.isInRect(this.ball, this.mailBoxIcare, 120)) {
           if (!this.spotlight.visible) {
             this.spotlight.visible = true;
             this.sound.add('thunder').play();
@@ -353,20 +353,20 @@ export default class LevelFirst extends Phaser.Scene {
         if (
           this.secBall.id == this.mailBoxCerbere.id &&
           this.secBall.isPacked &&
-          this.isInRect(this.ball, this.mailBoxCerbere, 100)
+          this.isInRect(this.ball, this.mailBoxCerbere, 120)
         ) {
           this.score += 15;
           this.mailBoxCerbere.obj.setTexture("mailboxredClose");
         } else if (
           this.secBall.id == this.mailBoxMedusa.id &&
           this.secBall.isPacked &&
-          this.isInRect(this.ball, this.mailBoxMedusa, 100)
+          this.isInRect(this.ball, this.mailBoxMedusa, 120)
         ) {
           this.score += 15;
         } else if (
           this.secBall.id == this.mailBoxIcare.id &&
           this.secBall.isPacked &&
-          this.isInRect(this.ball, this.mailBoxIcare, 100)
+          this.isInRect(this.ball, this.mailBoxIcare, 120)
         ) {
           this.score += 15;
           this.mailBoxIcare.obj.setTexture("mailboxblueClose");
@@ -401,7 +401,7 @@ export default class LevelFirst extends Phaser.Scene {
 
       this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
 
-      if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 60) {
+      if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 0) {
         this.scene.start("DialogAfterLevel1");
       }
       else if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score < 60){
