@@ -69,12 +69,13 @@ DialogModalPlugin.prototype = {
         this.iterator = (() => { 
             let n = 0;
             let m = this.dialogs.length;
-            return { next :       () => this.dialogs[n++]?.text,
-                     getPicture : () => this.dialogs[n-1]?.picture,
-                     getMusic :   () => this.dialogs[n-1]?.sound,
-                     isEven :     () => n % 2 === 0,
-                     isEnded :    () => n === m,
-                     getAnim :    () => this.dialogs[n-1]?.anim
+            return { next :          () => this.dialogs[n++]?.text,
+                     getPicture :    () => this.dialogs[n-1]?.picture,
+                     getMusic :      () => this.dialogs[n-1]?.sound,
+                     isEven :        () => n % 2 === 0,
+                     isEnded :       () => n === m,
+                     getAnim :       () => this.dialogs[n-1]?.anim,
+                     getAdditional : () => this.dialogs[n-1]?.additional
                    };
         })();
         
@@ -101,17 +102,7 @@ DialogModalPlugin.prototype = {
     // Sets the text for the dialog window
     setText: function (text) {
 
-        if (text === undefined) {
-            // if (this.animation = this.iterator.getAnim()) {
-            //     this.timedEvent = this.scene.time.addEvent({
-            //         delay: 90,
-            //         callback: this.animate,
-            //         callbackScope: this,
-            //         loop: false
-            //     });
-            // }
-            return;
-        }
+        if (text === undefined) return;
 
         // Reset the dialog
         this.eventCounter = 0;
@@ -145,6 +136,9 @@ DialogModalPlugin.prototype = {
         this.sound = this.scene.sound.add(this.iterator.getMusic()).play();
 
         this._setText();
+        
+        const pict = undefined;
+        if (pict = this.iterator.getAdditional()) { this.scene.add.image(100, 100, pict); }
 
         this.timedEvent = this.scene.time.addEvent({
             delay: 90,
