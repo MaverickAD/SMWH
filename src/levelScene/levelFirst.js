@@ -308,7 +308,7 @@ export default class LevelFirst extends Phaser.Scene {
       this.inputKeysMeta.SHIFT.timeDown - this.lastShiftDown > 500
     ) {
 
-      this.audio.add('rush').play();
+      this.sound.add('rush').play();
 
       this.lastShiftDown = this.inputKeysMeta.SHIFT.timeDown;
 
