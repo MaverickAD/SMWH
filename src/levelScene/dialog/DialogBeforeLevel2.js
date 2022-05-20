@@ -8,13 +8,13 @@ export default class DialogBeforeLevel2 extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('hermes',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/hermes.png');
-        this.load.image('dyonisos', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/dyonisos.png');
+        this.load.image('pathos',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-grand.png');
+        this.load.image('dionysos', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/dionysos.png');
 
         for (let i = 1; i < 8; i++)
-            this.load.audio(`hermes${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/DIALOGUECUT/Hermes/Hermes${i}.mp3`);
+            this.load.audio(`diony${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/DIALOGUECUT/Dyonisos/Dyonisos${i}.mp3`);
     
-        for (let i = 6; i < 11; i++) 
+        for (let i = 12; i < 18; i++) 
             this.load.audio(`pat${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/DIALOGUECUT/Patos/Patos${i}.mp3`);
     }
 
