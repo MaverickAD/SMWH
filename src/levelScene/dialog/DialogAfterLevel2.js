@@ -8,6 +8,9 @@ export default class DialogAfterLevel2 extends Phaser.Scene {
   }
 
   preload() {
+
+    this.load.image('bg', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bgDyoni.png');
+
     this.load.image(
       "dionysos",
       "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/dionysos.png"
@@ -34,6 +37,11 @@ export default class DialogAfterLevel2 extends Phaser.Scene {
   }
 
   create() {
+ 
+    const bg = this.add.image(0,0,'bg').setOrigin(0, 0);
+    bg.displayHeight = window.innerHeight;
+    bg.displayWidth = window.innerWidth;
+
     this.dialogFirst = new DialogModalPlugin(this);
     this.dialogFirst.init({
       dialogs: textDialogAfterSecond,

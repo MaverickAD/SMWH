@@ -11,9 +11,8 @@ export default class DialogBeforeLevel2 extends Phaser.Scene {
         this.load.image('pathos',   'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-grand.png');
         this.load.image('dionysos', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/dionysos.png');
 
-        this.load.image('bg', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bgDyoni.png')
+        this.load.image('bg', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bgDyoni.png');
         this.load.image('parcheminVin', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/parcheminVin.png');
-        this.load.image('parcheminMouvement', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/parcheminMouvement.png');
         this.load.image('parcheminPerso', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/parcheminPerso.png');
 
         for (let i = 1; i < 8; i++)

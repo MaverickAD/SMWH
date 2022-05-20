@@ -7,7 +7,7 @@ export const textDialogBeforeFirst = [
     {picture: `pathos`, sound: `pat8`,      text: `Oui d’accord c’est assez trivial, fin je vois pas trop comment je pourrai échouer ça. Déjà moi je suis pas un raté de daltonien.`},
     {additional : `parcheminObjets`, picture: `hermes`, sound: `hermes4`,   text: `Voici les objets que tu peux croiser, ainsi qu’à qui tu dois les livrer.\nPrend garde à ne pas faire trop d’erreur, ce sont des clients assez colériques,\non ne voudrait pas que méduse vienne encore se plaindre, elle change très vite d’humeur et en pierre.\nOn a déjà 3 statues de vaches dans les locaux.`},
     {picture: `pathos`, sound: `pat9`,      text: `De la crème solaire ? Pour Icare ? Ça te fait rire je suppose …`},
-    {picture: `hermes`, sound: `hermes5`,   text: `Beaucoup. Pour que tu ailles plus vite, je te prête mes sandales qui te permettront de bondir en avant\n, attention c’est assez incontrôlable.\nAppuie sur shift pour les utiliser.`},
+    {additional:'parcheminMouvement', picture: `hermes`, sound: `hermes5`,   text: `Beaucoup. Pour que tu ailles plus vite, je te prête mes sandales qui te permettront de bondir en avant\n, attention c’est assez incontrôlable.\nAppuie sur shift pour les utiliser.`},
     {picture: `pathos`, sound: `pat10`,     text: `Shift ?`},
     {picture: `hermes`, sound: `hermes6`,   text: `prf, j’ai pas compris non plus. Pose pas trop de questions on n’a pas vraiment le temps, au boulot !`},
 ]
