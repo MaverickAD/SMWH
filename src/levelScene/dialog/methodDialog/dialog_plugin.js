@@ -151,7 +151,7 @@ DialogModalPlugin.prototype = {
         });
     },
 
-    animate : function () {
+    animate : function () { 
         if (!this.animation) {
             this.timedEvent.destroy();
             return;
