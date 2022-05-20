@@ -1,13 +1,19 @@
 import Phaser from "phaser";
 
+const ww = window.innerWidth;
+const wh = window.innerHeight;
+
 export default class EndMenu extends Phaser.Scene {
   constructor() {
     super({ key: "EndMenu" });
   }
 
   preload() {
-    for(let i = 1; i <= 8; i++){
-        this.load.image(`endMenu${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/endmenu/endMenu${i}.png`)
+    for (let i = 1; i <= 8; i++) {
+      this.load.image(
+        `endMenu${i}`,
+        `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/endmenu/endMenu${i}.png`
+      );
     }
   }
 
@@ -30,12 +36,22 @@ export default class EndMenu extends Phaser.Scene {
     });
     this.allBackground[(this.n = 0)].visible = true;
 
+    // this.mainEndMessage = this.add
+    //   .text(ww / 2, wh / 2, "Thanks for playing !", {
+    //     color: "#000000",
+    //     fontSize: "5.1rem",
+    //     fontFamily: '"greek", sans-serif',
+    //   })
+    //   .setOrigin(0.5);
 
-    this.mainEndMessage = this.add.text(100, 100, "The end !", {
+    this.mainEndMessage = this.add
+      .text(ww / 2, wh / 2, "Thanks for playing !", {
         color: "#FFFFFF",
-        fontSize: "24px",
-        fontFamily: '"greek", sans-serif'
-    })
+        fontSize: "5rem",
+        fontFamily: '"greek", sans-serif',
+      })
+      .setOrigin(0.5)
+      .setShadow(5, 5, 'rgba(0, 0, 0, 1)', 1);
 
     this.keyBoard = this.input.keyboard;
     this.inputKeysMeta = this.keyBoard.addKeys("ENTER");
