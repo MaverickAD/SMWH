@@ -1,10 +1,9 @@
 import Phaser from "phaser";
 
-export default class MainMenu extends Phaser.Scene {
+export default class EndMenu extends Phaser.Scene {
   constructor() {
-    super({ key: "MainMenu" });
+    super({ key: "EndMenu" });
   }
-
   preload() {
     this.load.image(
       "homemenu1",
@@ -23,7 +22,6 @@ export default class MainMenu extends Phaser.Scene {
       "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/homemenu4.jpg"
     );
   }
-
   create() {
     this.allBackground = [
       this.add.image(0, 0, "homemenu1").setOrigin(0, 0),
@@ -42,13 +40,12 @@ export default class MainMenu extends Phaser.Scene {
     this.keyBoard = this.input.keyboard;
     this.inputKeysMeta = this.keyBoard.addKeys("ENTER");
   }
-
-  update() {
+  upload() {
     this.n = this.n === 39 ? 0 : this.n + 1;
 
     this.allBackground.forEach((i) => (i.visible = false));
     this.allBackground[Math.floor(this.n / 10)].visible = true;
 
-    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("LevelSecond");
+    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("LevelFirst");
   }
 }

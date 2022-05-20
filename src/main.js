@@ -29,6 +29,7 @@ const config = {
     MainMenu,
     SettingsMenu,
     ControlMenu,
+    EndMenu,
     LevelFirst,
     LevelSecond,
     DialogIntro,

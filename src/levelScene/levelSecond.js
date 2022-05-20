@@ -94,6 +94,17 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('good',                             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/good.wav');
         this.load.audio('error',                            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/error.mp3');
         this.load.audio('switch',                           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/switch.mp3');
+
+        this.chronoText = this.add.text(ww - 190, 0, "Timer : " + this.minuteChrono + "0:0" + this.secondChrono, {
+            fontSize: "24px",
+            fontFamily: '"greek", sans-serif'
+        });
+        this.chronoText.setAlpha(0);
+        this.scoreText = this.add.text(ww - 190, 25, "Score : " + this.score, {
+            fontSize: "24px",
+            fontFamily: '"greek", sans-serif'
+        });
+        this.scoreText.setAlpha(0);
     }
 
 
@@ -252,15 +263,11 @@ export default class LevelSecond extends Phaser.Scene {
             loop: true,
         });
 
-        this.chronoText = this.add.text(ww - 190, 0, "Timer : " + this.minuteChrono + "0:0" + this.secondChrono, {
-            fontSize: "24px",
-        });
+        this.chronoText.setAlpha(1);
         this.chronoText.setScrollFactor(0);
         this.chronoText.setDepth(15);
 
-        this.scoreText = this.add.text(ww - 190, 25, "Score : " + this.score, {
-            fontSize: "24px",
-        });
+        this.scoreText.setAlpha(1)
         this.scoreText.setScrollFactor(0);
         this.scoreText.setDepth(15);
     }
