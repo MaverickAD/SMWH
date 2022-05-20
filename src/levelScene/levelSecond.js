@@ -96,16 +96,9 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('switch',                           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/switch.mp3');
         this.load.audio('victory',                          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/victory.mp3');
 
-        this.chronoText = this.add.text(ww - 190, 0, "Timer : " + this.minuteChrono + "0:0" + this.secondChrono, {
-            fontSize: "24px",
-            fontFamily: '"greek", sans-serif'
-        });
-        this.chronoText.setAlpha(0);
-        this.scoreText = this.add.text(ww - 190, 25, "Score : " + this.score, {
-            fontSize: "24px",
-            fontFamily: '"greek", sans-serif'
-        });
-        this.scoreText.setAlpha(0);
+        this.secondChrono = 0;
+        this.minuteChrono = 0;
+        this.score = 0;
     }
 
 
@@ -239,8 +232,6 @@ export default class LevelSecond extends Phaser.Scene {
 
         this.currentAlter = 2;
 
-        this.score = 0;
-
         this.counter = 0;
         
         this.steps = this.sound.add("steps");
@@ -255,8 +246,7 @@ export default class LevelSecond extends Phaser.Scene {
 
         this.chronoText;
         this.myTimer;
-        this.secondChrono = 0;
-        this.minuteChrono = 0;
+        
 
         this.myTimer = this.time.addEvent({
             delay: 1000,
@@ -264,6 +254,17 @@ export default class LevelSecond extends Phaser.Scene {
             callbackScope: this,
             loop: true,
         });
+
+        this.chronoText = this.add.text(ww - 190, 0, "Timer : " + this.minuteChrono + "0:0" + this.secondChrono, {
+            fontSize: "24px",
+            fontFamily: '"greek", sans-serif'
+        });
+        this.chronoText.setAlpha(0);
+        this.scoreText = this.add.text(ww - 190, 25, "Score : " + this.score, {
+            fontSize: "24px",
+            fontFamily: '"greek", sans-serif'
+        });
+        this.scoreText.setAlpha(0);
 
         this.chronoText.setAlpha(1);
         this.chronoText.setScrollFactor(0);
