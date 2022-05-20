@@ -86,13 +86,14 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('bow',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bow.mp3');
         this.load.audio('clink',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/clink.mp3');
         this.load.audio('steps',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/steps.mp3');
-        this.load.audio('no-escape',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/no-escape.mp3');
-        this.load.image("endScreenLaurier",                  "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_laurier.png");
-        this.load.image("endScreenBackground",               "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_pantheon.png");
-        this.load.audio('bar_sound',                         'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar_sound.mp3');
+        this.load.audio('no-escape',                        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/no-escape.mp3');
+        this.load.image("endScreenLaurier",                 "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_laurier.png");
+        this.load.image("endScreenBackground",              "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/end_screen_level_1_pantheon.png");
+        this.load.audio('bar_sound',                        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bar_sound.mp3');
         this.load.audio('cut',                              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/cut.mp3');
-        this.load.audio('good',                              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/good.wav');
-        this.load.audio('error',                              'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/error.mp3');
+        this.load.audio('good',                             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/good.wav');
+        this.load.audio('error',                            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/error.mp3');
+        this.load.audio('switch',                           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/switch.mp3');
     }
 
 
@@ -237,6 +238,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.bar = this.sound.add("bar_sound");
         this.bar.setVolume(0.2);
         this.bar.setLoop(true);
+        this.switch = this.sound.add("switch");
 
         this.chronoText;
         this.myTimer;
@@ -289,6 +291,7 @@ export default class LevelSecond extends Phaser.Scene {
                 rng = Math.floor(Math.random() * 3 + 1);
             }
             this.currentAlter = rng;
+            this.switch.play();
             this.allFramesWalk.forEach(tab => tab.forEach(i => i.visible = false));
             this.allFramesWalk[this.currentAlter - 1][this.actualFrame + (this.wichSubFrame > 5)].visible = true;
         }
