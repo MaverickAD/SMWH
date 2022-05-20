@@ -9,9 +9,9 @@ export default class DialogEnd extends Phaser.Scene {
 
     preload() {
         
-        this.load.image('zeus',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/Zeus.svg');
-        this.load.image('pathos',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-grand.png');
-        this.load.image('bg',      'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fonddialog1.png');
+        this.load.image('oie',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/oie.png');
+        this.load.image('pathos', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-grand.png');
+        this.load.image('bg',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fonddialog1.png');
 
 
         for (let i = 19; i < 21; i++) {
