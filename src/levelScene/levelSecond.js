@@ -509,9 +509,11 @@ export default class LevelSecond extends Phaser.Scene {
                   { color: "000000", fontSize: "24px" }
                 )
                 .setOrigin(0.5);
-
-                this.victory.play();
-                this.background.stop();
+                
+                if(!this.victory.isPlaying){
+                    this.victory.play();
+                    this.background.stop();
+                }
             } else {
               this.endMessageText1 = this.add
                 .text(
