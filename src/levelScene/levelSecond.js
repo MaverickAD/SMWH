@@ -236,7 +236,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.background = this.sound.add("no-escape");
         this.background.setVolume(0.25)
         this.bar = this.sound.add("bar_sound");
-        this.bar.setVolume(0.2);
+        this.bar.setVolume(0.15);
         this.bar.setLoop(true);
         this.switch = this.sound.add("switch");
 

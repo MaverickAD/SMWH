@@ -294,14 +294,16 @@ export class Command {
             this.scene.commandState[this.position - 1] = false;
             this.scene.allBottle = this.scene.allBottle.filter(item => item != bottle);
             bottle.destroy();
+            console.log(this.scene.score);
             this.destroy();
-
+            
         }
         else{
             this.error.play();
             this.scene.score -= 10;
             this.scene.allBottle = this.scene.allBottle.filter(item => item != bottle);
             bottle.destroy();
+            console.log(this.scene.score);
         }
     }
 
