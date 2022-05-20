@@ -32,7 +32,7 @@ export default class DialogEnd extends Phaser.Scene {
         this.dialogFirst = new DialogModalPlugin(this)
         this.dialogFirst.init({
             dialogs : textDialogEnd,
-            nextScene : 'MainMenu'
+            nextScene : 'EndMenu'
         });
 
     }
