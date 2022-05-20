@@ -52,8 +52,21 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.audio('courrier', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/courrier.mp3")
     this.load.audio('thunder', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/thunder.mp3")
 
-    for (let i = 1; i < 17; i++)
+    for (let i = 1; i < 17; i++) {
       this.load.image(`eclair${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/eclair${i}.png`);
+    }
+
+    this.chronoText = this.add.text(ww - 190, 0,"Timer : " + this.minuteChrono + "0:0" + this.secondChrono, {
+      fontSize: "24px",
+      fontFamily: '"greek", sans-serif'
+    });
+    this.chronoText.setAlpha(0);
+    this.scoreText = this.add.text(ww - 190, 25, "Score : " + this.score, {
+      fontSize: "24px",
+      fontFamily: '"greek", sans-serif'
+    });
+    this.scoreText.setAlpha(0);
+    
   }
 
   create() {
@@ -219,20 +232,11 @@ export default class LevelFirst extends Phaser.Scene {
       loop: true,
     });
 
-    this.chronoText = this.add.text(
-      ww - 190,
-      0,
-      "Timer : " + this.minuteChrono + "0:0" + this.secondChrono,
-      {
-        fontSize: "24px",
-      }
-    );
+    this.chronoText.setAlpha(1)
     this.chronoText.setScrollFactor(0);
     this.chronoText.setDepth(15);
 
-    this.scoreText = this.add.text(ww - 190, 25, "Score : " + this.score, {
-      fontSize: "24px",
-    });
+    this.scoreText.setAlpha(1)
     this.scoreText.setScrollFactor(0);
     this.scoreText.setDepth(15);
 

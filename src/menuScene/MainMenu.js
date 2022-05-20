@@ -32,13 +32,12 @@ export default class MainMenu extends Phaser.Scene {
       this.add.image(0, 0, "homemenu4").setOrigin(0, 0),
     ];
 
-    this.allBackground.forEach(i => {
+    this.allBackground.forEach((i) => {
       i.displayHeight = this.sys.canvas.height;
       i.displayWidth = this.sys.canvas.width;
-      i.visible = false
+      i.visible = false;
     });
     this.allBackground[(this.n = 0)].visible = true;
-
 
     this.keyBoard = this.input.keyboard;
     this.inputKeysMeta = this.keyBoard.addKeys("ENTER");
@@ -47,7 +46,7 @@ export default class MainMenu extends Phaser.Scene {
   update() {
     this.n = this.n === 39 ? 0 : this.n + 1;
 
-    this.allBackground.forEach(i => i.visible = false);
+    this.allBackground.forEach((i) => (i.visible = false));
     this.allBackground[Math.floor(this.n / 10)].visible = true;
 
     if (this.inputKeysMeta.ENTER.isDown) this.scene.start("DialogEnd");
