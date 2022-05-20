@@ -94,6 +94,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('good',                             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/good.wav');
         this.load.audio('error',                            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/error.mp3');
         this.load.audio('switch',                           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/switch.mp3');
+        this.load.audio('victory',                          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/victory.mp3');
 
         this.chronoText = this.add.text(ww - 190, 0, "Timer : " + this.minuteChrono + "0:0" + this.secondChrono, {
             fontSize: "24px",
@@ -250,6 +251,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.bar.setVolume(0.15);
         this.bar.setLoop(true);
         this.switch = this.sound.add("switch");
+        this.victory = this.sound.add("victory");
 
         this.chronoText;
         this.myTimer;
@@ -507,6 +509,9 @@ export default class LevelSecond extends Phaser.Scene {
                   { color: "000000", fontSize: "24px" }
                 )
                 .setOrigin(0.5);
+
+                this.victory.play();
+                this.background.stop();
             } else {
               this.endMessageText1 = this.add
                 .text(
