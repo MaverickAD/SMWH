@@ -51,7 +51,7 @@ export default class LevelFirst extends Phaser.Scene {
     this.load.audio('musique', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/musiquegrecque.mp3")
     this.load.audio('courrier', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/courrier.mp3")
     this.load.audio('thunder', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/thunder.mp3")
-
+    this.load.audio('rush', "https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/rush.mp3")
 
     this.secondChrono = 0;
     this.minuteChrono = 0;
@@ -307,6 +307,9 @@ export default class LevelFirst extends Phaser.Scene {
       this.inputKeysMeta.SHIFT.isDown &&
       this.inputKeysMeta.SHIFT.timeDown - this.lastShiftDown > 500
     ) {
+
+      this.audio.add('rush').play();
+
       this.lastShiftDown = this.inputKeysMeta.SHIFT.timeDown;
 
       const ratioX = Math.min(1, Math.abs(vx / 200));
