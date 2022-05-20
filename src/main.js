@@ -3,6 +3,7 @@ import Phaser from "phaser";
 import MainMenu           from "./menuScene/MainMenu";
 import SettingsMenu       from "./menuScene/SettingsMenu";
 import ControlMenu        from "./menuScene/ControlMenu";
+import EndMenu            from "./menuScene/EndMenu";
 import LevelFirst         from "./levelScene/levelFirst";
 import LevelSecond        from "./levelScene/levelSecond";
 import DialogIntro        from "./levelScene/dialog/DialogIntro";
@@ -26,10 +27,11 @@ const config = {
     },
   },
   scene: [
+    EndMenu,
     MainMenu,
     SettingsMenu,
     ControlMenu,
-    EndMenu,
+    
     LevelFirst,
     LevelSecond,
     DialogIntro,
