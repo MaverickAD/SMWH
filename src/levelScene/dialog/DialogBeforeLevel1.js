@@ -11,6 +11,10 @@ export default class DialogBeforeLevel1 extends Phaser.Scene {
         this.load.image('hermes',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/hermes.png');
         this.load.image('pathos',  'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-grand.png');
 
+        this.load.image('parcheminObjets', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/parcheminObjets.png');
+        this.load.image('parcheminMap',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/parcheminMap.png');
+        this.load.image('bgHermes',        'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/bgHermes.png')
+
         for (let i = 1; i < 8; i++)
             this.load.audio(`hermes${i}`, `https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/DIALOGUECUT/Hermes/Hermes${i}.mp3`);
     

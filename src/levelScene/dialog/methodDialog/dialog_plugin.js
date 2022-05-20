@@ -59,6 +59,7 @@ DialogModalPlugin.prototype = {
 
         this.eventCounter = 0;
         this.stackPicture = [];
+        this.pict;
         this.sound;
         this.text;
         this.dialog;
@@ -137,8 +138,10 @@ DialogModalPlugin.prototype = {
 
         this._setText();
         
-        const pict = undefined;
-        if (pict = this.iterator.getAdditional()) { this.scene.add.image(100, 100, pict); }
+        this.pict?.destroy();
+        if (this.iterator.getAdditional()) { 
+            this.pict = this.scene.add.image(window.innerWidth / 2, window.innerHeight / 2.5, this.iterator.getAdditional()).setScale(0.7); 
+        }
 
         this.timedEvent = this.scene.time.addEvent({
             delay: 90,

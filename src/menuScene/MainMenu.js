@@ -46,9 +46,9 @@ export default class MainMenu extends Phaser.Scene {
   update() {
     this.n = this.n === 39 ? 0 : this.n + 1;
 
-    this.allBackground.forEach((i) => (i.visible = false));
+    this.allBackground.forEach(i => i.visible = false);
     this.allBackground[Math.floor(this.n / 10)].visible = true;
 
-    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("LevelSecond");
+    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("DialogBeforeLevel1");
   }
 }
