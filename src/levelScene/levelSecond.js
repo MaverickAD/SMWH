@@ -467,12 +467,13 @@ export default class LevelSecond extends Phaser.Scene {
                     this.secBall = undefined;
                 }
 
-                if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 60) {
-                    this.scene.start("DialogAfterLevel2");
-                }
-                else if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score < 60){
-                    this.scene.start("LevelSecond")
-                }
+                
+            }
+            if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 60) {
+                this.scene.start("DialogAfterLevel2");
+            }
+            else if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score < 60){
+                this.scene.start("LevelSecond")
             }
 
             this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
