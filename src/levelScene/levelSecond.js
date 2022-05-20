@@ -115,7 +115,7 @@ export default class LevelSecond extends Phaser.Scene {
  
 
         //init player
-        this.ball = this.add.rectangle(400, 250, 40, 100, 0xFFFFFF, 0);
+        this.ball = this.add.rectangle(1000, 450, 40, 100, 0xFFFFFF, 0);
         this.physics.add.existing(this.ball);
         this.ball.body.setCollideWorldBounds(true, 0.3, 0.3);
 
