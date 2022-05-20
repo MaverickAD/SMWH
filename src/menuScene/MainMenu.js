@@ -50,6 +50,6 @@ export default class MainMenu extends Phaser.Scene {
     this.allBackground.forEach(i => i.visible = false);
     this.allBackground[Math.floor(this.n / 10)].visible = true;
 
-    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("LevelFirst");
+    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("DialogAfterLevel1");
   }
 }
