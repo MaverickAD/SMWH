@@ -30,6 +30,13 @@ export default class EndMenu extends Phaser.Scene {
     });
     this.allBackground[(this.n = 0)].visible = true;
 
+
+    this.mainEndMessage = this.add.text(100, 100, "The end !", {
+        color: "#FFFFFF",
+        fontSize: "24px",
+        fontFamily: '"greek", sans-serif'
+    })
+
     this.keyBoard = this.input.keyboard;
     this.inputKeysMeta = this.keyBoard.addKeys("ENTER");
   }
