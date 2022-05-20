@@ -94,6 +94,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.load.audio('good',                             'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/good.wav');
         this.load.audio('error',                            'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/error.mp3');
         this.load.audio('switch',                           'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/switch.mp3');
+        this.load.audio('victory',                          'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/victory.mp3');
 
         this.chronoText = this.add.text(ww - 190, 0, "Timer : " + this.minuteChrono + "0:0" + this.secondChrono, {
             fontSize: "24px",
@@ -250,6 +251,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.bar.setVolume(0.15);
         this.bar.setLoop(true);
         this.switch = this.sound.add("switch");
+        this.victory = this.sound.add("victory");
 
         this.chronoText;
         this.myTimer;
@@ -465,10 +467,10 @@ export default class LevelSecond extends Phaser.Scene {
                     this.secBall = undefined;
                 }
 
-                if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 0) {
+                if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 60) {
                     this.scene.start("DialogAfterLevel2");
                 }
-                else if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score < 0){
+                else if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score < 60){
                     this.scene.start("LevelSecond")
                 }
             }
@@ -484,50 +486,33 @@ export default class LevelSecond extends Phaser.Scene {
             this.downKeys = [];
             this.leftKeys = [];
             this.rightKeys = [];
-            this.endMessageBlock = this.add.image(
-              ww / 2,
-              wh / 2,
-              "endScreenBackground"
-            );
+      
+            this.endMessageBlock = this.add.image(ww / 2, wh / 2, "endScreenBackground");
             this.endMessageBlock.setDepth(20);
-            this.endMessageScreen = this.add
-              .image(
-                this.endMessageBlock.x - (1.3 / 5) * this.endMessageBlock.x,
-                this.endMessageBlock.y - (1.2 / 5) * this.endMessageBlock.y,
-                "endScreenLaurier"
-              )
-              .setScale(0.9, 0.9);
+      
+            this.endMessageScreen = this.add.image(this.endMessageBlock.x - (1.3 / 5) * this.endMessageBlock.x, this.endMessageBlock.y - (1.2 / 5) * this.endMessageBlock.y, "endScreenLaurier").setScale(0.9, 0.9);
             this.endMessageScreen.setDepth(20);
-            if (this.score >= 60) {
-              this.endMessageText1 = this.add
-                .text(
-                  this.endMessageBlock.x,
-                  this.endMessageBlock.y - (1.9 / 5) * this.endMessageBlock.y,
-                  "YOU WIN !!!",
-                  { color: "000000", fontSize: "24px" }
-                )
-                .setOrigin(0.5);
-            } else {
-              this.endMessageText1 = this.add
-                .text(
-                  this.endMessageBlock.x,
-                  this.endMessageBlock.y - (1.9 / 5) * this.endMessageBlock.y,
-                  "YOU LOSE !!!",
-                  { color: "000000", fontSize: "24px" }
-                )
-                .setOrigin(0.5);
-            }
+            this.endMessageText1 = this.add.text(this.endMessageBlock.x, this.endMessageBlock.y - (1.8/5) * this.endMessageBlock.y, '', {
+              color: '#000000',
+              fontSize: "24px",
+              fontFamily: '"greek", sans-serif'
+            }).setOrigin(0.5)
             this.endMessageText1.setDepth(20);
-            this.endMessageText2 = this.add
-              .text(
-                this.endMessageBlock.x,
-                this.endMessageBlock.y + (0.85 / 5) * this.endMessageBlock.y,
-                "Your score is " + this.score,
-                { color: "000000", fontSize: "24px" }
-              )
-              .setOrigin(0.5);
+            
+            if (this.score >= 60) {
+              this.endMessageText1.setText("YOU WIN !!!")
+            } else if(this.score < 60){
+              this.endMessageText1.setText("YOU LOSE !!!")
+            }
+      
+            
+            this.endMessageText2 = this.add.text(this.endMessageBlock.x, this.endMessageBlock.y + (0.75 / 5) * this.endMessageBlock.y, "Your score is " + this.score, { 
+              color: "000000", 
+              fontSize: "24px",
+              fontFamily: '"greek", sans-serif' 
+            }).setOrigin(0.5);
             this.endMessageText2.setDepth(20);
-        }
+          }
     }
 
     anyOfKey(keys, duration=0) {
