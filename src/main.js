@@ -16,7 +16,7 @@ import DialogEnd          from './levelScene/dialog/DialogEnd'
 
 const config = {
   scale: {
-    mode: Phaser.Scale.FIT,
+    mode: Phaser.Scale.EXACT_FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     width: window.innerWidth,
     height: window.innerHeight,
