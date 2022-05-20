@@ -23,6 +23,11 @@ export default class DialogBeforeLevel1 extends Phaser.Scene {
     }
 
     create() {
+
+        const bg = this.add.image(0, 0, 'bgHermes').setOrigin(0, 0);
+        bg.displayHeight = window.innerHeight;
+        bg.displayWidth = window.innerWidth;
+
         this.dialogFirst = new DialogModalPlugin(this)
         this.dialogFirst.init({
             dialogs : textDialogBeforeFirst,
