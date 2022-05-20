@@ -163,9 +163,8 @@ export class Press {
 
         this.x      = this.obj.x;
         this.y      = this.obj.y;
-
         
-        this.advencementBar = this.scene.add.rectangle(this.x - 50, this.y + 150, 0, 20, 0xFFD700, 1);
+        this.advencementBar = this.scene.add.rectangle(this.x - 75, this.y + 150, 0, 25, 0xFFD700, 0.75);
         this.advencementBar.setDisplayOrigin(0,1);
         this.img =  this.scene.add.image(this.x, this.y, "press" + this.state).setScale(2.5);
         
@@ -205,7 +204,7 @@ export class Press {
     press(){
         this.pressAdvencement += 5;
         if (this.scene.currentAlter == 3){this.pressAdvencement += 15};
-        this.advencementBar.width = this.pressAdvencement;
+        this.advencementBar.width = this.pressAdvencement * 1.5;
         this.frame ++; 
         if (this.frame == 4){
             this.frame = 1;
