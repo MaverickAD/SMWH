@@ -16,7 +16,7 @@ export var DialogModalPlugin = function (scene) {
         if (this.timedEvent) this.timedEvent.delay = 0;
     });
 
-    this.scene.input.keyboard.on('keyup-SPACE',   _ => { if (this.timedEvent) this.timedEvent.delay = 90 })
+    this.scene.input.keyboard.on('keyup-SPACE',   _ => { if (this.timedEvent) this.timedEvent.delay = 50; })
     
     if (!scene.sys.settings.isBooted) scene.sys.events.once('boot', this.boot, this);
 };
@@ -140,11 +140,11 @@ DialogModalPlugin.prototype = {
         
         this.pict?.destroy();
         if (this.iterator.getAdditional()) { 
-            this.pict = this.scene.add.image(window.innerWidth / 2, window.innerHeight / 2.5, this.iterator.getAdditional()).setScale(0.7); 
+            this.pict = this.scene.add.image(window.innerWidth / 2, window.innerHeight / 2.5, this.iterator.getAdditional()).setScale(0.8); 
         }
 
         this.timedEvent = this.scene.time.addEvent({
-            delay: 90,
+            delay: 50,
             callback: this._animateText,
             callbackScope: this,
             loop: true
