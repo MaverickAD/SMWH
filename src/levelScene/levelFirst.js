@@ -324,7 +324,7 @@ export default class LevelFirst extends Phaser.Scene {
     ) {
       if (!this.secBall) {
         for (let s of this.allSpawner)
-          if (this.isInRect(this.ball, s, 60)) {
+          if (this.isInRect(this.ball, s, 100)) {
             this.secBall = s.getObj();
           }
 
