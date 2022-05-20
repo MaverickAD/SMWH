@@ -275,6 +275,7 @@ export default class LevelSecond extends Phaser.Scene {
         this.counter ++;
         this.etiqueteur.update();
 
+        this.scoreText.text = "Score : " + this.score;  
 
         //if player are something in his hand, put the object near of player
         if(this.secBall){
