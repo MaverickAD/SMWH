@@ -8,11 +8,10 @@ import LevelFirst         from "./levelScene/levelFirst";
 import LevelSecond        from "./levelScene/levelSecond";
 import DialogIntro        from "./levelScene/dialog/DialogIntro";
 import DialogBeforeLevel1 from "./levelScene/dialog/DialogBeforeLevel1";
-import DialogAfterLevel1  from './levelScene/dialog/DialogAfterLevel1'
-import DialogBeforeLevel2 from './levelScene/dialog/DialogBeforeLevel2'
-import DialogAfterLevel2  from './levelScene/dialog/DialogAfterLevel2'
-import DialogEnd          from './levelScene/dialog/DialogEnd'
-import HermesRules        from "./levelScene/dialog/HermesRules";
+import DialogAfterLevel1  from './levelScene/dialog/DialogAfterLevel1';
+import DialogBeforeLevel2 from './levelScene/dialog/DialogBeforeLevel2';
+import DialogAfterLevel2  from './levelScene/dialog/DialogAfterLevel2';
+import DialogEnd          from './levelScene/dialog/DialogEnd';
 
 const config = {
   scale: {
@@ -42,9 +41,7 @@ const config = {
     DialogAfterLevel1,
     DialogBeforeLevel2,
     DialogAfterLevel2,
-    DialogEnd,
-
-    HermesRules
+    DialogEnd
   ],
   callbacks: {
     postBoot: function (game) {

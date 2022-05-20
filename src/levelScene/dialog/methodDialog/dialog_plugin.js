@@ -16,7 +16,7 @@ export var DialogModalPlugin = function (scene) {
         if (this.timedEvent) this.timedEvent.delay = 0;
     });
 
-    this.scene.input.keyboard.on('keyup-SPACE',   _ => { if (this.timedEvent) this.timedEvent.delay = 90 })
+    this.scene.input.keyboard.on('keyup-SPACE',   _ => { if (this.timedEvent) this.timedEvent.delay = 50; })
     
     if (!scene.sys.settings.isBooted) scene.sys.events.once('boot', this.boot, this);
 };
@@ -59,6 +59,7 @@ DialogModalPlugin.prototype = {
 
         this.eventCounter = 0;
         this.stackPicture = [];
+        this.pict;
         this.sound;
         this.text;
         this.dialog;
@@ -69,12 +70,13 @@ DialogModalPlugin.prototype = {
         this.iterator = (() => { 
             let n = 0;
             let m = this.dialogs.length;
-            return { next :       () => this.dialogs[n++]?.text,
-                     getPicture : () => this.dialogs[n-1]?.picture,
-                     getMusic :   () => this.dialogs[n-1]?.sound,
-                     isEven :     () => n % 2 === 0,
-                     isEnded :    () => n === m,
-                     getAnim :    () => this.dialogs[n-1]?.anim
+            return { next :          () => this.dialogs[n++]?.text,
+                     getPicture :    () => this.dialogs[n-1]?.picture,
+                     getMusic :      () => this.dialogs[n-1]?.sound,
+                     isEven :        () => n % 2 === 0,
+                     isEnded :       () => n === m,
+                     getAnim :       () => this.dialogs[n-1]?.anim,
+                     getAdditional : () => this.dialogs[n-1]?.additional
                    };
         })();
         
@@ -101,17 +103,7 @@ DialogModalPlugin.prototype = {
     // Sets the text for the dialog window
     setText: function (text) {
 
-        if (text === undefined) {
-            // if (this.animation = this.iterator.getAnim()) {
-            //     this.timedEvent = this.scene.time.addEvent({
-            //         delay: 90,
-            //         callback: this.animate,
-            //         callbackScope: this,
-            //         loop: false
-            //     });
-            // }
-            return;
-        }
+        if (text === undefined) return;
 
         // Reset the dialog
         this.eventCounter = 0;
@@ -145,9 +137,14 @@ DialogModalPlugin.prototype = {
         this.sound = this.scene.sound.add(this.iterator.getMusic()).play();
 
         this._setText();
+        
+        this.pict?.destroy();
+        if (this.iterator.getAdditional()) { 
+            this.pict = this.scene.add.image(window.innerWidth / 2, window.innerHeight / 2.5, this.iterator.getAdditional()).setScale(0.8); 
+        }
 
         this.timedEvent = this.scene.time.addEvent({
-            delay: 90,
+            delay: 50,
             callback: this._animateText,
             callbackScope: this,
             loop: true
