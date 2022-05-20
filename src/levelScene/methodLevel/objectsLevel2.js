@@ -76,16 +76,13 @@ export class Etiqueteur {
     update() {
         if(this.animated){
             this.frame += 1;
-            if(this.frame == 7){
-                this.sprite.setTexture("Arte2");
+
+            for (let i = 1; i <= 9; i++){
+                if(this.frame == 2 * i){
+                    this.sprite.setTexture("Arte" + i);
+                }   
             }
-            if(this.frame == 14){
-                this.sprite.setTexture("Arte3");
-            }
-            if(this.frame == 21){
-                this.sprite.setTexture("Arte4");
-            };
-            if(this.frame == 28){
+            if(this.frame == 2 * 10){
                 this.sprite.setTexture("Arte1");
                 this.frame = 0;
                 this.animated = false;
@@ -104,10 +101,11 @@ export class Grape {
         this.obj = obj;
         this.color = color;
 
+        
         this.x = this.obj.x;
         this.y = this.obj.y;
     }
-
+    
     destroy() {
         this.obj.destroy();
     }
@@ -116,11 +114,12 @@ export class Grape {
 
 export class GrapeSpawner {
     constructor(obj, scene, color) {
-
+        
         this.scene  = scene;
         this.obj    = obj;
-
+        
         this.color   = color;
+        this.cut = this.scene.sound.add("cut");
         
         this.x      = this.obj.x;
         this.y      = this.obj.y;
@@ -138,6 +137,7 @@ export class GrapeSpawner {
 
     getGrape(){
         this.generateNewGrape();
+        this.cut.play();
         return this.waitingGrape;
     }
 }
@@ -278,6 +278,8 @@ export class Command {
 
 
         this.img = this.scene.add.image(((this.position * 1.5 + 0.5) / 12) * window.innerWidth, (1 / 8 ) * window.innerHeight, "command" + this.command).setScale(0.8);
+        this.good = this.scene.sound.add("good");
+        this.error = this.scene.sound.add("error");
 
         this.x = this.img.x
         this.y = this.img.y
@@ -286,6 +288,7 @@ export class Command {
 
     receiveBottle(bottle){
         if(this.command == bottle.color && bottle.tag){
+            this.good.play();
             this.scene.score += 10; 
             this.scene.allCommands = this.scene.allCommands.filter(item => item != this);
             this.scene.commandState[this.position - 1] = false;
@@ -293,9 +296,10 @@ export class Command {
             bottle.destroy();
             console.log(this.scene.score);
             this.destroy();
-
+            
         }
         else{
+            this.error.play();
             this.scene.score -= 10;
             this.scene.allBottle = this.scene.allBottle.filter(item => item != bottle);
             bottle.destroy();
