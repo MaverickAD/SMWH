@@ -30,8 +30,8 @@ const config = {
     },
   },
   scene: [
-    EndMenu,
     MainMenu,
+    EndMenu,
     SettingsMenu,
     ControlMenu,
     

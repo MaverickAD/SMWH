@@ -164,7 +164,7 @@ export class Press {
         this.x      = this.obj.x;
         this.y      = this.obj.y;
         
-        this.advencementBar = this.scene.add.rectangle(this.x - 75, this.y + 150, 0, 25, 0xFFD700, 0.75);
+        this.advencementBar = this.scene.add.rectangle(this.x - 75, this.y + 150, 0, 25, 0x6EEB83, 0.75);
         this.advencementBar.setDisplayOrigin(0,1);
         this.img =  this.scene.add.image(this.x, this.y, "press" + this.state).setScale(2.5);
         
@@ -180,19 +180,23 @@ export class Press {
             case 'HalfRedUnpressed' : 
                 if(grape.color == "Red"){
                     this.img.setTexture("pressFullRedUnpressed1"); this.state = "FullRedUnpressed";
+                    this.advencementBar.setFillStyle(0x58181F, 0.75);
                 }
                 else{
                     this.img.setTexture("pressFullRoseUnpressed1"); this.state = "FullRoseUnpressed";
+                    this.advencementBar.setFillStyle(0xF4C4BB, 0.75);
                 }
                 this.space = false;
                 this.pressable = true;
                 break;
-            case 'HalfWhiteUnpressed' : 
+                case 'HalfWhiteUnpressed' : 
                 if(grape.color == "Red"){
                     this.img.setTexture("pressFullRoseUnpressed1"); this.state = "FullRoseUnpressed";
+                    this.advencementBar.setFillStyle(0xF4C4BB, 0.75);
                 }
                 else{
                     this.img.setTexture("pressFullWhiteUnpressed1"); this.state = "FullWhiteUnpressed";
+                    this.advencementBar.setFillStyle(0xEEEDC4, 0.75);
                 }
                 this.space = false;
                 this.pressable = true;
