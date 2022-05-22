@@ -40,7 +40,7 @@ export default class MainMenu extends Phaser.Scene {
     this.allBackground[(this.n = 0)].visible = true;
 
     this.keyBoard = this.input.keyboard;
-    this.inputKeysMeta = this.keyBoard.addKeys("ENTER");
+    this.inputKeysMeta = this.keyBoard.addKeys("ENTER,A,Z");
   }
 
   update() {
@@ -49,6 +49,9 @@ export default class MainMenu extends Phaser.Scene {
     this.allBackground.forEach(i => i.visible = false);
     this.allBackground[Math.floor(this.n / 10)].visible = true;
 
-    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("LevelFirst");
+    if (this.inputKeysMeta.ENTER.isDown) this.scene.start("DialogIntro");
+    if (this.inputKeysMeta.A.isDown) this.scene.start("LevelFirst");
+    if (this.inputKeysMeta.Z.isDown) this.scene.start("LevelSecond");
+    
   }
 }

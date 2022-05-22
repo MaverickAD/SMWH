@@ -11,7 +11,7 @@ export default class DialogEnd extends Phaser.Scene {
         
         this.load.image('oie',    'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/oie.png');
         this.load.image('pathos', 'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/perso-grand.png');
-        this.load.image('bg',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fonddialog1.png');
+        this.load.image('bg2',     'https://raw.githubusercontent.com/MaverickAD/SMWH/main/assets/fonddialog1.png');
 
 
         for (let i = 19; i < 21; i++) {
@@ -24,8 +24,7 @@ export default class DialogEnd extends Phaser.Scene {
     }
 
     create() {
-
-        const bg = this.add.image(0, 0, 'bg').setOrigin(0,0);
+        const bg = this.add.image(0, 0, 'bg2').setOrigin(0,0);
         bg.displayHeight = this.sys.canvas.height;
         bg.displayWidth = this.sys.canvas.width;
 
