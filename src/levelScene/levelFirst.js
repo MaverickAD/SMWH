@@ -403,10 +403,10 @@ export default class LevelFirst extends Phaser.Scene {
 
       this.lastSpaceDown = this.inputKeysMeta.SPACE.timeDown;
 
-      if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 60) {
+      if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score >= 10) {
         this.scene.start("DialogAfterLevel1");
       }
-      else if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score < 60){
+      else if (this.minuteChrono === 3 && this.secondChrono === 30 && this.score < 10){
         this.scene.start("LevelFirst")
       }
     }
@@ -436,9 +436,9 @@ export default class LevelFirst extends Phaser.Scene {
       }).setOrigin(0.5)
       this.endMessageText1.setDepth(20);
       
-      if (this.score >= 60) {
+      if (this.score >= 10) {
         this.endMessageText1.setText("YOU WIN !!!")
-      } else if(this.score < 60){
+      } else if(this.score < 10){
         this.endMessageText1.setText("YOU LOSE !!!")
       }
 

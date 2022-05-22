@@ -51,7 +51,6 @@ export default class MainMenu extends Phaser.Scene {
 
     if (this.inputKeysMeta.ENTER.isDown) this.scene.start("DialogIntro");
     if (this.inputKeysMeta.A.isDown) this.scene.start("LevelFirst");
-    if (this.inputKeysMeta.Z.isDown) this.scene.start("LevelSecond");
-    
+    if (this.inputKeysMeta.Z.isDown) this.scene.start("LevelSecond");  
   }
 }

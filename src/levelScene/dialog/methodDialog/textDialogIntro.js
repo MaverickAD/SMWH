@@ -3,7 +3,7 @@ export const textDialogIntro = [
     {picture: `zeus`,   sound: `zeus1`, text: `PAAAAATHOOOOOSSS !!!!! QU’AS TU ENCORE FAIT  ???!`, },
     {picture: `pathos`, sound: `pat1`,  text: `Moi ? Mais papounet,  rien du tout ! En tout cas rien d'inhabituel.`, },
     {picture: `zeus`,   sound: `zeus2`, text: `Une mortelle m’a encore prié de recouvrer l’usage de ses yeux !`, },
-    {picture: `pathos`, sound: `pat2`,  text: `AH AH AH quelle plouque, imagine ne même pas être capable de voir devant soit, la honte un peu.\nJe vois pas trop en quoi ça peut m’intéresser par contre.`, },
+    {picture: `pathos`, sound: `pat2`,  text: ` AH AH AH, imagine ne meme pas etre capable de voir devant soi, les humains sont vraiment des faibles.\n Je comprends pas vraiment en quoi ca me concerne, tu veux que je lui serve de chien-guide ? `, },
     {picture: `zeus`,   sound: `zeus3`, text: `Cesse ces simagrées, tu sais très bien ce que je te reproche !\nTu lui as mis une gifle puis déclamé : "tu l’as pas vu venir celle-ci !".`, },
     {picture: `pathos`, sound: `pat3`,  text: `Objectivement c’est une de mes meilleures blagues, même Socrate ne joue pas aussi bien avec les mots.`, },
     {picture: `zeus`,   sound: `zeus4`, text: `PETIT EFFRONTÉ !!!!\nSi tu n’as de cesse de te gausser des handicaps des mortels,\nils ne réaliseront jamais que c’est en fait un pouvoir que nous leur offrons`},
